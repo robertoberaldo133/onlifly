@@ -3,234 +3,250 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnliFly Viagens - Passagens Aéreas Nacionais</title>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--azul:#0B1F6B;--azul-medio:#0D2880;--azul-claro:#1a3a9e;--amarelo:#F5C518;--amarelo-escuro:#d4a800;--branco:#ffffff;--cinza:#f4f6fb;--texto:#1a1a2e;--texto-muted:#5a6282}
-body{font-family:'Open Sans',sans-serif;color:var(--texto);background:#fff;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Montserrat',sans-serif}
-nav{background:var(--azul);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:var(--branco);letter-spacing:-0.5px}
-.logo span{color:var(--amarelo)}
-.nav-cta{background:var(--amarelo);color:var(--azul);font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;padding:9px 18px;border-radius:6px;text-decoration:none;white-space:nowrap}
-.hero{background:var(--azul);padding:56px 24px 64px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;background:var(--amarelo);opacity:.06;border-radius:50%}
-.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:240px;height:240px;background:var(--amarelo);opacity:.05;border-radius:50%}
-.hero-badge{display:inline-block;background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.4);color:var(--amarelo);font-family:'Montserrat',sans-serif;font-weight:700;font-size:12px;padding:6px 16px;border-radius:999px;margin-bottom:20px;letter-spacing:.5px}
-.hero h1{font-size:clamp(28px,7vw,48px);font-weight:900;color:var(--branco);line-height:1.1;margin-bottom:12px}
-.hero h1 span{color:var(--amarelo)}
-.hero-sub{font-size:17px;color:rgba(255,255,255,.8);margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.6}
-.hero-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px}
-.pill{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px}
-.hero-cta{display:inline-block;background:var(--amarelo);color:var(--azul);font-family:'Montserrat',sans-serif;font-weight:900;font-size:17px;padding:18px 40px;border-radius:8px;text-decoration:none;letter-spacing:.3px;transition:transform .15s,background .15s}
-.hero-cta:hover{background:var(--amarelo-escuro);transform:translateY(-2px)}
-.hero-cta-sub{display:block;font-size:12px;font-weight:600;opacity:.7;margin-top:4px}
-.numeros{background:var(--amarelo);padding:28px 24px}
-.numeros-grid{display:grid;grid-template-columns:repeat(3,1fr);max-width:640px;margin:0 auto;gap:8px;text-align:center}
-.num-item strong{display:block;font-family:'Montserrat',sans-serif;font-weight:900;font-size:28px;color:var(--azul);line-height:1}
-.num-item span{font-size:12px;font-weight:600;color:var(--azul);opacity:.75;margin-top:3px;display:block}
-.como{background:var(--cinza);padding:56px 24px}
-.section-label{text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;color:var(--amarelo-escuro);margin-bottom:10px;text-transform:uppercase}
-.section-title{text-align:center;font-size:clamp(22px,5vw,32px);font-weight:900;color:var(--azul);margin-bottom:40px;line-height:1.2}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:720px;margin:0 auto}
-.step{background:var(--branco);border-radius:12px;padding:24px 20px;text-align:center;border:1px solid #e0e6f5}
-.step-num{width:40px;height:40px;background:var(--azul);color:var(--amarelo);font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px}
-.step h3{font-size:15px;font-weight:700;color:var(--azul);margin-bottom:8px}
-.step p{font-size:13px;color:var(--texto-muted);line-height:1.5}
-.diferencial{background:var(--azul);padding:56px 24px}
-.diferencial .section-title{color:var(--branco)}
-.dif-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;max-width:720px;margin:0 auto}
-.dif-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:22px 20px}
-.dif-icon{font-size:28px;margin-bottom:12px}
-.dif-card h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;color:var(--amarelo);margin-bottom:6px}
-.dif-card p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5}
-.depos{background:var(--cinza);padding:56px 24px}
-.depo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;max-width:720px;margin:0 auto}
-.depo-card{background:var(--branco);border-radius:12px;padding:22px;border:1px solid #e0e6f5}
-.depo-stars{color:var(--amarelo);font-size:16px;margin-bottom:10px;letter-spacing:2px}
-.depo-text{font-size:14px;color:var(--texto-muted);line-height:1.6;margin-bottom:14px;font-style:italic}
-.depo-author{display:flex;align-items:center;gap:10px}
-.depo-avatar{width:36px;height:36px;border-radius:50%;background:var(--azul);color:var(--amarelo);font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.depo-name{font-size:13px;font-weight:700;color:var(--azul)}
-.depo-info{font-size:12px;color:var(--texto-muted)}
-.form-section{background:var(--branco);padding:56px 24px}
-.form-wrap{max-width:520px;margin:0 auto}
-.form-box{background:var(--azul);border-radius:16px;padding:36px 28px}
-.form-box .section-title{color:var(--branco);margin-bottom:6px;font-size:24px}
-.form-sub{text-align:center;color:rgba(255,255,255,.75);font-size:14px;margin-bottom:28px}
-.form-group{margin-bottom:14px}
-.form-group label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:5px;font-family:'Montserrat',sans-serif}
-.form-group input,.form-group select{width:100%;padding:13px 16px;border-radius:8px;border:none;font-size:14px;font-family:'Open Sans',sans-serif;color:var(--texto);background:var(--branco);outline:none}
-.form-group select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%230B1F6B' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
-.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.form-btn{width:100%;background:var(--amarelo);color:var(--azul);font-family:'Montserrat',sans-serif;font-weight:900;font-size:16px;padding:17px;border:none;border-radius:8px;cursor:pointer;margin-top:6px;letter-spacing:.3px;transition:background .15s,transform .1s}
-.form-btn:hover{background:var(--amarelo-escuro);transform:translateY(-1px)}
-.form-privacy{text-align:center;font-size:11px;color:rgba(255,255,255,.5);margin-top:12px}
-.form-seguro{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:10px;font-size:12px;color:rgba(255,255,255,.6)}
-.faq{background:var(--cinza);padding:56px 24px}
-.faq-list{max-width:640px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
-.faq-item{background:var(--branco);border-radius:10px;border:1px solid #e0e6f5;overflow:hidden}
-.faq-q{padding:16px 20px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;color:var(--azul);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.faq-q::after{content:'＋';font-size:18px;color:var(--amarelo-escuro);flex-shrink:0;font-family:monospace}
-.faq-item.open .faq-q::after{content:'－'}
-.faq-a{display:none;padding:0 20px 16px;font-size:14px;color:var(--texto-muted);line-height:1.6}
-.faq-item.open .faq-a{display:block}
-.cta-final{background:var(--amarelo);padding:48px 24px;text-align:center}
-.cta-final h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(22px,5vw,32px);color:var(--azul);margin-bottom:10px}
-.cta-final p{font-size:15px;color:rgba(11,31,107,.75);margin-bottom:28px}
-.cta-wa{display:inline-flex;align-items:center;gap:12px;background:var(--azul);color:var(--branco);font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;padding:16px 32px;border-radius:8px;text-decoration:none;transition:transform .15s}
-.cta-wa:hover{transform:translateY(-2px)}
-.wa-icon{width:24px;height:24px;fill:#25D366}
-footer{background:var(--azul);padding:24px;text-align:center}
-footer p{font-size:12px;color:rgba(255,255,255,.45)}
+html,body{width:100%;overflow-x:hidden;font-family:'Open Sans',sans-serif;color:#1a1a2e;background:#fff}
+a{text-decoration:none}
+
+/* NAV */
+nav{background:#0B1F6B;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;width:100%;position:sticky;top:0;z-index:100}
+.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;color:#fff}
+.logo span{color:#F5C518}
+.nav-btn{background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;padding:10px 20px;border-radius:6px}
+
+/* HERO */
+.hero{background:#0B1F6B;padding:72px 40px;text-align:center;width:100%}
+.badge{display:inline-block;background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.4);color:#F5C518;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;padding:7px 18px;border-radius:999px;margin-bottom:24px}
+.hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(36px,6vw,60px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
+.hero h1 span{color:#F5C518}
+.hero-p{font-size:18px;color:rgba(255,255,255,.8);margin-bottom:32px;max-width:580px;margin-left:auto;margin-right:auto;line-height:1.6}
+.pills{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-bottom:36px}
+.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px}
+.hero-cta{display:inline-flex;flex-direction:column;align-items:center;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;padding:18px 48px;border-radius:8px}
+.hero-cta small{font-size:12px;font-weight:600;opacity:.7;margin-top:4px}
+
+/* NÚMEROS */
+.nums{background:#F5C518;padding:32px 40px;display:flex;justify-content:center;gap:0;width:100%}
+.num{flex:1;max-width:220px;text-align:center}
+.num strong{display:block;font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:#0B1F6B}
+.num span{font-size:13px;font-weight:600;color:#0B1F6B;opacity:.75}
+
+/* SEÇÕES */
+.sec{padding:64px 40px;width:100%}
+.sec-gray{background:#f4f6fb}
+.sec-dark{background:#0B1F6B}
+.sec-label{display:block;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;color:#d4a800;margin-bottom:10px}
+.sec h2{text-align:center;font-family:'Montserrat',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:900;color:#0B1F6B;margin-bottom:48px;line-height:1.2}
+.sec-dark h2{color:#fff}
+.sec-dark .sec-label{color:rgba(245,197,24,.7)}
+
+/* STEPS */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
+.step{background:#fff;border-radius:14px;padding:28px 24px;text-align:center;border:1px solid #e0e6f5}
+.step-n{width:44px;height:44px;background:#0B1F6B;color:#F5C518;font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+.step h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#0B1F6B;margin-bottom:10px}
+.step p{font-size:14px;color:#5a6282;line-height:1.6}
+
+/* CARDS */
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto}
+.card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:24px}
+.card-icon{font-size:32px;margin-bottom:14px;display:block}
+.card h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;color:#F5C518;margin-bottom:8px}
+.card p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.6}
+
+/* DEPOIMENTOS */
+.depos{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
+.depo{background:#fff;border-radius:14px;padding:24px;border:1px solid #e0e6f5}
+.stars{color:#F5C518;font-size:18px;margin-bottom:12px;display:block;letter-spacing:2px}
+.depo p{font-size:15px;color:#5a6282;line-height:1.6;font-style:italic;margin-bottom:16px}
+.autor{display:flex;align-items:center;gap:12px}
+.av{width:40px;height:40px;border-radius:50%;background:#0B1F6B;color:#F5C518;font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.autor strong{font-size:14px;font-weight:700;color:#0B1F6B;display:block}
+.autor small{font-size:13px;color:#5a6282}
+
+/* FORMULÁRIO */
+.form-box{background:#0B1F6B;border-radius:16px;padding:48px;max-width:600px;margin:0 auto}
+.form-box h2{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:#fff;text-align:center;margin-bottom:8px}
+.form-sub{text-align:center;color:rgba(255,255,255,.75);font-size:15px;margin-bottom:28px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,.85);margin-bottom:6px;font-family:'Montserrat',sans-serif}
+.fg input,.fg select{width:100%;padding:14px 16px;border-radius:8px;border:none;font-size:15px;color:#1a1a2e;background:#fff;outline:none;font-family:'Open Sans',sans-serif}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-btn{width:100%;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:17px;padding:18px;border:none;border-radius:8px;cursor:pointer;margin-top:8px}
+.form-btn:hover{background:#d4a800}
+.form-note{text-align:center;font-size:12px;color:rgba(255,255,255,.5);margin-top:14px}
+
+/* FAQ */
+.faqs{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.faq{background:#fff;border-radius:10px;border:1px solid #e0e6f5;overflow:hidden}
+.fq{padding:18px 24px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;color:#0B1F6B;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.fq span{font-size:20px;color:#d4a800;flex-shrink:0}
+.fa{display:none;padding:0 24px 18px;font-size:14px;color:#5a6282;line-height:1.7}
+
+/* CTA FINAL */
+.cta-final{background:#F5C518;padding:64px 40px;text-align:center;width:100%}
+.cta-final h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(26px,4vw,40px);color:#0B1F6B;margin-bottom:12px}
+.cta-final p{font-size:16px;color:rgba(11,31,107,.75);margin-bottom:32px}
+.wa-btn{display:inline-flex;align-items:center;gap:14px;background:#0B1F6B;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:17px;padding:18px 36px;border-radius:8px}
+.wa-btn:hover{background:#0d2880}
+
+/* FOOTER */
+footer{background:#0B1F6B;padding:28px 40px;text-align:center}
+footer p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.8}
 footer strong{color:rgba(255,255,255,.7)}
-@media(max-width:480px){.form-grid{grid-template-columns:1fr}.num-item strong{font-size:22px}}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav,footer{padding:14px 20px}
+  .hero,.nums,.sec,.cta-final{padding-left:20px;padding-right:20px}
+  .steps,.cards,.depos{grid-template-columns:1fr}
+  .row{grid-template-columns:1fr}
+  .form-box{padding:28px 20px}
+  .cards{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .cards{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+
 <nav>
   <div class="logo">OnliFly<span>.</span>Viagens</div>
-  <a href="#formulario" class="nav-cta">Cotar agora</a>
+  <a href="#formulario" class="nav-btn">Cotar agora</a>
 </nav>
+
 <section class="hero">
-  <div class="hero-badge">✈ Passagens Nacionais com o Menor Preço</div>
+  <div class="badge">✈ Passagens Nacionais com o Menor Preço</div>
   <h1>Viaje mais,<br><span>pague menos.</span></h1>
-  <p class="hero-sub">Encontramos as melhores passagens nacionais para você — com atendimento 100% personalizado e preços que as grandes plataformas não conseguem bater.</p>
-  <div class="hero-pills">
-    <div class="pill"><span>✔</span> Gol, Latam e Azul</div>
-    <div class="pill"><span>✔</span> Atendimento humano</div>
-    <div class="pill"><span>✔</span> Cotação em 30 minutos</div>
+  <p class="hero-p">Encontramos as melhores passagens nacionais para você — com atendimento 100% personalizado e preços que as grandes plataformas não conseguem bater.</p>
+  <div class="pills">
+    <span class="pill">✔ Gol, Latam e Azul</span>
+    <span class="pill">✔ Atendimento humano</span>
+    <span class="pill">✔ Cotação em 30 minutos</span>
   </div>
   <a href="#formulario" class="hero-cta">
     Quero minha cotação gratuita
-    <span class="hero-cta-sub">sem compromisso · resposta em 30 min</span>
+    <small>sem compromisso · resposta em 30 min</small>
   </a>
 </section>
-<div class="numeros">
-  <div class="numeros-grid">
-    <div class="num-item"><strong>+500</strong><span>clientes atendidos</span></div>
-    <div class="num-item"><strong>até 50%</strong><span>de economia</span></div>
-    <div class="num-item"><strong>30 min</strong><span>tempo de resposta</span></div>
-  </div>
+
+<div class="nums">
+  <div class="num"><strong>+500</strong><span>clientes atendidos</span></div>
+  <div class="num"><strong>até 50%</strong><span>de economia</span></div>
+  <div class="num"><strong>30 min</strong><span>tempo de resposta</span></div>
 </div>
-<section class="como">
-  <p class="section-label">Simples assim</p>
-  <h2 class="section-title">Como funciona?</h2>
+
+<section class="sec sec-gray">
+  <span class="sec-label">SIMPLES ASSIM</span>
+  <h2>Como funciona?</h2>
   <div class="steps">
-    <div class="step"><div class="step-num">1</div><h3>Preencha o formulário</h3><p>Informe seu destino, data e número de passageiros. Leva menos de 1 minuto.</p></div>
-    <div class="step"><div class="step-num">2</div><h3>Receba sua cotação</h3><p>Nossa equipe pesquisa e te envia a melhor tarifa disponível direto no WhatsApp em até 30 minutos.</p></div>
-    <div class="step"><div class="step-num">3</div><h3>Aprove e viaje</h3><p>Você aprova o preço, a gente emite a passagem. Seguro, rápido e sem complicação.</p></div>
+    <div class="step"><div class="step-n">1</div><h3>Preencha o formulário</h3><p>Informe seu destino, data e número de passageiros. Leva menos de 1 minuto.</p></div>
+    <div class="step"><div class="step-n">2</div><h3>Receba sua cotação</h3><p>Nossa equipe pesquisa e te envia a melhor tarifa no WhatsApp em até 30 minutos.</p></div>
+    <div class="step"><div class="step-n">3</div><h3>Aprove e viaje</h3><p>Você aprova o preço, a gente emite a passagem. Seguro, rápido e sem complicação.</p></div>
   </div>
 </section>
-<section class="diferencial">
-  <p class="section-label" style="color:rgba(245,197,24,.7)">Por que a OnliFly?</p>
-  <h2 class="section-title">O que nos diferencia das grandes plataformas</h2>
-  <div class="dif-grid">
-    <div class="dif-card"><div class="dif-icon">💰</div><h3>Preço menor garantido</h3><p>Pesquisamos em todas as fontes disponíveis. Se encontrar mais barato em outro lugar, igualamos.</p></div>
-    <div class="dif-card"><div class="dif-icon">🙋</div><h3>Atendimento humano</h3><p>Sem robôs, sem chatbot. Você fala diretamente com quem entende de passagens e resolve na hora.</p></div>
-    <div class="dif-card"><div class="dif-icon">⚡</div><h3>Resposta em 30 minutos</h3><p>Nada de esperar horas. Sua cotação chega rápida para você aproveitar a melhor tarifa antes que mude.</p></div>
-    <div class="dif-card"><div class="dif-icon">🔒</div><h3>Compra 100% segura</h3><p>Emissão direta pelas companhias aéreas. Sua passagem tem garantia e suporte em caso de qualquer imprevisto.</p></div>
+
+<section class="sec sec-dark">
+  <span class="sec-label">POR QUE A ONLIFLY?</span>
+  <h2>O que nos diferencia das grandes plataformas</h2>
+  <div class="cards">
+    <div class="card"><span class="card-icon">💰</span><h3>Preço menor garantido</h3><p>Pesquisamos em todas as fontes. Se encontrar mais barato, igualamos.</p></div>
+    <div class="card"><span class="card-icon">🙋</span><h3>Atendimento humano</h3><p>Sem robôs. Você fala com quem entende de passagens e resolve na hora.</p></div>
+    <div class="card"><span class="card-icon">⚡</span><h3>Resposta em 30 minutos</h3><p>Cotação rápida para aproveitar a melhor tarifa antes que mude.</p></div>
+    <div class="card"><span class="card-icon">🔒</span><h3>Compra 100% segura</h3><p>Emissão direta pelas companhias aéreas com e-ticket oficial no e-mail.</p></div>
   </div>
 </section>
-<section class="depos">
-  <p class="section-label">O que dizem nossos clientes</p>
-  <h2 class="section-title">Quem viajou com a OnliFly</h2>
-  <div class="depo-grid">
-    <div class="depo-card">
-      <div class="depo-stars">★★★★★</div>
-      <p class="depo-text">"Achei que era mentira esse preço, mas veio a passagem certinha! Economizei R$ 280 comparando com o Decolar. Super recomendo!"</p>
-      <div class="depo-author"><div class="depo-avatar">AC</div><div><div class="depo-name">Ana C.</div><div class="depo-info">São Paulo → Recife</div></div></div>
+
+<section class="sec sec-gray">
+  <span class="sec-label">O QUE DIZEM NOSSOS CLIENTES</span>
+  <h2>Quem viajou com a OnliFly</h2>
+  <div class="depos">
+    <div class="depo">
+      <span class="stars">★★★★★</span>
+      <p>"Achei que era mentira esse preço, mas veio a passagem certinha! Economizei R$ 280 comparando com o Decolar. Super recomendo!"</p>
+      <div class="autor"><div class="av">AC</div><div><strong>Ana C.</strong><small>São Paulo → Recife</small></div></div>
     </div>
-    <div class="depo-card">
-      <div class="depo-stars">★★★★★</div>
-      <p class="depo-text">"Atendimento incrível! Me ajudaram a escolher o melhor horário e o preço ficou muito abaixo do que eu esperava. Já indiquei para a família toda."</p>
-      <div class="depo-author"><div class="depo-avatar">MR</div><div><div class="depo-name">Marcos R.</div><div class="depo-info">Fortaleza → Florianópolis</div></div></div>
+    <div class="depo">
+      <span class="stars">★★★★★</span>
+      <p>"Atendimento incrível! O preço ficou muito abaixo do que eu esperava. Já indiquei para a família toda."</p>
+      <div class="autor"><div class="av">MR</div><div><strong>Marcos R.</strong><small>Fortaleza → Florianópolis</small></div></div>
     </div>
   </div>
 </section>
-<section class="form-section" id="formulario">
-  <div class="form-wrap">
-    <div class="form-box">
-      <h2 class="section-title">Quero minha<br>cotação gratuita</h2>
-      <p class="form-sub">Preencha abaixo e receba a melhor tarifa no seu WhatsApp em até 30 minutos.</p>
-      <form onsubmit="enviarWhatsapp(event)">
-        <div class="form-group"><label>Seu nome completo</label><input type="text" id="f-nome" placeholder="Ex: Maria Silva" required></div>
-        <div class="form-group"><label>WhatsApp com DDD</label><input type="tel" id="f-tel" placeholder="(81) 99999-9999" required></div>
-        <div class="form-grid">
-          <div class="form-group"><label>Cidade de origem</label><input type="text" id="f-origem" placeholder="Ex: Recife" required></div>
-          <div class="form-group"><label>Destino</label><input type="text" id="f-destino" placeholder="Ex: São Paulo" required></div>
-        </div>
-        <div class="form-grid">
-          <div class="form-group"><label>Data da viagem</label><input type="date" id="f-data" required></div>
-          <div class="form-group"><label>Nº de passageiros</label>
-            <select id="f-pax">
-              <option value="1">1 passageiro</option>
-              <option value="2">2 passageiros</option>
-              <option value="3">3 passageiros</option>
-              <option value="4">4 passageiros</option>
-              <option value="5+">5 ou mais</option>
-            </select>
-          </div>
-        </div>
-        <button type="submit" class="form-btn">✈ Quero minha cotação agora</button>
-      </form>
-      <p class="form-privacy">🔒 Seus dados são usados apenas para a cotação. Não enviamos spam.</p>
-      <div class="form-seguro">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"><path d="M12 2L4 5v6c0 5.25 3.5 10.15 8 11.35C16.5 21.15 20 16.25 20 11V5l-8-3z"/></svg>
-        Página segura · sem compromisso
+
+<section class="sec" id="formulario">
+  <div class="form-box">
+    <h2>Quero minha<br>cotação gratuita</h2>
+    <p class="form-sub">Preencha abaixo e receba a melhor tarifa no seu WhatsApp em até 30 minutos.</p>
+    <div class="fg"><label>Seu nome completo</label><input type="text" id="f1" placeholder="Ex: Maria Silva"></div>
+    <div class="fg"><label>WhatsApp com DDD</label><input type="tel" id="f2" placeholder="(81) 99999-9999"></div>
+    <div class="row">
+      <div class="fg"><label>Cidade de origem</label><input type="text" id="f3" placeholder="Ex: Recife"></div>
+      <div class="fg"><label>Destino</label><input type="text" id="f4" placeholder="Ex: São Paulo"></div>
+    </div>
+    <div class="row">
+      <div class="fg"><label>Data da viagem</label><input type="date" id="f5"></div>
+      <div class="fg"><label>Passageiros</label>
+        <select id="f6">
+          <option value="1">1 passageiro</option>
+          <option value="2">2 passageiros</option>
+          <option value="3">3 passageiros</option>
+          <option value="4">4 passageiros</option>
+          <option value="5+">5 ou mais</option>
+        </select>
       </div>
     </div>
+    <button class="form-btn" onclick="enviar()">✈ Quero minha cotação agora</button>
+    <p class="form-note">🔒 Seus dados são usados apenas para a cotação. Não enviamos spam.</p>
   </div>
 </section>
-<section class="faq">
-  <p class="section-label">Dúvidas frequentes</p>
-  <h2 class="section-title">Perguntas e respostas</h2>
-  <div class="faq-list">
-    <div class="faq-item"><div class="faq-q">A cotação tem algum custo?</div><div class="faq-a">Não. A cotação é completamente gratuita e sem compromisso. Você só paga se decidir comprar a passagem.</div></div>
-    <div class="faq-item"><div class="faq-q">Como vocês conseguem preços menores que os sites grandes?</div><div class="faq-a">Temos acesso a tarifas especiais e pesquisamos em múltiplas fontes simultaneamente. Além disso, como agência, conseguimos tarifas que não aparecem nas plataformas de busca comum.</div></div>
-    <div class="faq-item"><div class="faq-q">Em quanto tempo recebo a cotação?</div><div class="faq-a">Nossa meta é responder em até 30 minutos. No horário comercial, geralmente respondemos ainda mais rápido.</div></div>
-    <div class="faq-item"><div class="faq-q">A compra é segura?</div><div class="faq-a">Sim. As passagens são emitidas diretamente pelas companhias aéreas (Gol, Latam, Azul). Você recebe o e-ticket oficial no seu e-mail.</div></div>
-    <div class="faq-item"><div class="faq-q">Vocês trabalham com quais companhias aéreas?</div><div class="faq-a">Trabalhamos com todas as principais: Gol, Latam e Azul. Buscamos sempre a melhor combinação de preço e horário para o seu roteiro.</div></div>
+
+<section class="sec sec-gray">
+  <span class="sec-label">DÚVIDAS FREQUENTES</span>
+  <h2>Perguntas e respostas</h2>
+  <div class="faqs">
+    <div class="faq"><div class="fq" onclick="faq(this)">A cotação tem algum custo?<span>＋</span></div><div class="fa">Não. A cotação é completamente gratuita e sem compromisso. Você só paga se decidir comprar a passagem.</div></div>
+    <div class="faq"><div class="fq" onclick="faq(this)">Como conseguem preços menores que os sites grandes?<span>＋</span></div><div class="fa">Temos acesso a tarifas especiais e pesquisamos em múltiplas fontes. Conseguimos tarifas que não aparecem nas plataformas comuns.</div></div>
+    <div class="faq"><div class="fq" onclick="faq(this)">Em quanto tempo recebo a cotação?<span>＋</span></div><div class="fa">Nossa meta é responder em até 30 minutos. No horário comercial, geralmente respondemos ainda mais rápido.</div></div>
+    <div class="faq"><div class="fq" onclick="faq(this)">A compra é segura?<span>＋</span></div><div class="fa">Sim. Passagens emitidas diretamente pelas companhias (Gol, Latam, Azul). Você recebe o e-ticket oficial no e-mail.</div></div>
+    <div class="faq"><div class="fq" onclick="faq(this)">Vocês trabalham com quais companhias?<span>＋</span></div><div class="fa">Trabalhamos com Gol, Latam e Azul. Buscamos sempre a melhor combinação de preço e horário para o seu roteiro.</div></div>
   </div>
 </section>
+
 <section class="cta-final">
   <h2>Pronto para voar<br>pagando menos?</h2>
   <p>Fale agora com a OnliFly Viagens e garanta a melhor tarifa do mercado.</p>
-  <a href="https://wa.me/5581960000521?text=Olá!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20cotar%20uma%20passagem." class="cta-wa">
-    <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <a href="https://wa.me/5581960000521?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20cotar%20uma%20passagem." class="wa-btn">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Falar no WhatsApp agora
   </a>
 </section>
+
 <footer>
   <p><strong>OnliFly Viagens</strong> · Passagens Aéreas Nacionais</p>
-  <p style="margin-top:6px">Atendimento via WhatsApp: (81) 96000-0521</p>
+  <p>Atendimento via WhatsApp: (81) 96000-0521</p>
 </footer>
+
 <script>
-document.querySelectorAll('.faq-q').forEach(q=>{
-  q.addEventListener('click',()=>{
-    const item=q.parentElement;
-    const wasOpen=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-    if(!wasOpen)item.classList.add('open');
-  });
-});
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    e.preventDefault();
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t)t.scrollIntoView({behavior:'smooth'});
-  });
-});
-function enviarWhatsapp(e){
-  e.preventDefault();
-  const nome=document.getElementById('f-nome').value;
-  const tel=document.getElementById('f-tel').value;
-  const origem=document.getElementById('f-origem').value;
-  const destino=document.getElementById('f-destino').value;
-  const data=document.getElementById('f-data').value;
-  const pax=document.getElementById('f-pax').value;
-  const msg=`Olá!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20cotar%20uma%20passagem.%0A%0A*Nome:*%20${encodeURIComponent(nome)}%0A*WhatsApp:*%20${encodeURIComponent(tel)}%0A*Origem:*%20${encodeURIComponent(origem)}%0A*Destino:*%20${encodeURIComponent(destino)}%0A*Data:*%20${encodeURIComponent(data)}%0A*Passageiros:*%20${encodeURIComponent(pax)}`;
-  window.open(`https://wa.me/5581960000521?text=${msg}`,'_blank');
+function enviar(){
+  var n=document.getElementById('f1').value;
+  var t=document.getElementById('f2').value;
+  var o=document.getElementById('f3').value;
+  var d=document.getElementById('f4').value;
+  var dt=document.getElementById('f5').value;
+  var p=document.getElementById('f6').value;
+  if(!n||!t||!o||!d){alert('Por favor preencha todos os campos.');return;}
+  var m='Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens.%0ANome%3A%20'+encodeURIComponent(n)+'%0AWhatsApp%3A%20'+encodeURIComponent(t)+'%0AOrigem%3A%20'+encodeURIComponent(o)+'%0ADestino%3A%20'+encodeURIComponent(d)+'%0AData%3A%20'+encodeURIComponent(dt)+'%0APassageiros%3A%20'+encodeURIComponent(p);
+  window.open('https://wa.me/5581960000521?text='+m,'_blank');
+}
+function faq(el){
+  var a=el.nextElementSibling;
+  var s=el.querySelector('span');
+  if(a.style.display==='block'){a.style.display='none';s.textContent='＋';}
+  else{a.style.display='block';s.textContent='－';}
 }
 </script>
 </body>
