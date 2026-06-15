@@ -1,22 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"><link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230B1F6B' rx='6'/><text x='16' y='22' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='14' fill='%23F5C518'>OF</text></svg>">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OnliFly Viagens - Passagens Aéreas Nacionais</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230B1F6B' rx='6'/><text x='16' y='22' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='14' fill='%23F5C518'>OF</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;overflow-x:hidden;font-family:'Open Sans',sans-serif;color:#1a1a2e;background:#fff}
 a{text-decoration:none}
-
-/* NAV */
 nav{background:#0B1F6B;padding:14px 40px;display:flex;align-items:center;justify-content:space-between;width:100%;position:sticky;top:0;z-index:100}
 .logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;color:#fff}
 .logo span{color:#F5C518}
 .nav-btn{background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px;padding:10px 20px;border-radius:6px}
-
-/* HERO */
 .hero{background:#0B1F6B;padding:72px 40px;text-align:center;width:100%}
 .badge{display:inline-block;background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.4);color:#F5C518;font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;padding:7px 18px;border-radius:999px;margin-bottom:24px}
 .hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(36px,6vw,60px);font-weight:900;color:#fff;line-height:1.1;margin-bottom:16px}
@@ -26,14 +23,10 @@ nav{background:#0B1F6B;padding:14px 40px;display:flex;align-items:center;justify
 .pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px}
 .hero-cta{display:inline-flex;flex-direction:column;align-items:center;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;padding:18px 48px;border-radius:8px}
 .hero-cta small{font-size:12px;font-weight:600;opacity:.7;margin-top:4px}
-
-/* NÚMEROS */
 .nums{background:#F5C518;padding:32px 40px;display:flex;justify-content:center;gap:0;width:100%}
 .num{flex:1;max-width:220px;text-align:center}
 .num strong{display:block;font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:#0B1F6B}
 .num span{font-size:13px;font-weight:600;color:#0B1F6B;opacity:.75}
-
-/* SEÇÕES */
 .sec{padding:64px 40px;width:100%}
 .sec-gray{background:#f4f6fb}
 .sec-dark{background:#0B1F6B}
@@ -41,22 +34,16 @@ nav{background:#0B1F6B;padding:14px 40px;display:flex;align-items:center;justify
 .sec h2{text-align:center;font-family:'Montserrat',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:900;color:#0B1F6B;margin-bottom:48px;line-height:1.2}
 .sec-dark h2{color:#fff}
 .sec-dark .sec-label{color:rgba(245,197,24,.7)}
-
-/* STEPS */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:900px;margin:0 auto}
 .step{background:#fff;border-radius:14px;padding:28px 24px;text-align:center;border:1px solid #e0e6f5}
 .step-n{width:44px;height:44px;background:#0B1F6B;color:#F5C518;font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
 .step h3{font-family:'Montserrat',sans-serif;font-size:16px;font-weight:700;color:#0B1F6B;margin-bottom:10px}
 .step p{font-size:14px;color:#5a6282;line-height:1.6}
-
-/* CARDS */
 .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1000px;margin:0 auto}
 .card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:14px;padding:24px}
 .card-icon{font-size:32px;margin-bottom:14px;display:block}
 .card h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:16px;color:#F5C518;margin-bottom:8px}
 .card p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.6}
-
-/* DEPOIMENTOS */
 .depos{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;max-width:900px;margin:0 auto}
 .depo{background:#fff;border-radius:14px;padding:24px;border:1px solid #e0e6f5}
 .stars{color:#F5C518;font-size:18px;margin-bottom:12px;display:block;letter-spacing:2px}
@@ -65,8 +52,6 @@ nav{background:#0B1F6B;padding:14px 40px;display:flex;align-items:center;justify
 .av{width:40px;height:40px;border-radius:50%;background:#0B1F6B;color:#F5C518;font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .autor strong{font-size:14px;font-weight:700;color:#0B1F6B;display:block}
 .autor small{font-size:13px;color:#5a6282}
-
-/* FORMULÁRIO */
 .form-box{background:#0B1F6B;border-radius:16px;padding:48px;max-width:600px;margin:0 auto}
 .form-box h2{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:#fff;text-align:center;margin-bottom:8px}
 .form-sub{text-align:center;color:rgba(255,255,255,.75);font-size:15px;margin-bottom:28px}
@@ -77,35 +62,45 @@ nav{background:#0B1F6B;padding:14px 40px;display:flex;align-items:center;justify
 .form-btn{width:100%;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:17px;padding:18px;border:none;border-radius:8px;cursor:pointer;margin-top:8px}
 .form-btn:hover{background:#d4a800}
 .form-note{text-align:center;font-size:12px;color:rgba(255,255,255,.5);margin-top:14px}
-
-/* FAQ */
 .faqs{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
 .faq{background:#fff;border-radius:10px;border:1px solid #e0e6f5;overflow:hidden}
 .fq{padding:18px 24px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:15px;color:#0B1F6B;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px}
 .fq span{font-size:20px;color:#d4a800;flex-shrink:0}
 .fa{display:none;padding:0 24px 18px;font-size:14px;color:#5a6282;line-height:1.7}
-
-/* CTA FINAL */
 .cta-final{background:#F5C518;padding:64px 40px;text-align:center;width:100%}
 .cta-final h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(26px,4vw,40px);color:#0B1F6B;margin-bottom:12px}
 .cta-final p{font-size:16px;color:rgba(11,31,107,.75);margin-bottom:32px}
 .wa-btn{display:inline-flex;align-items:center;gap:14px;background:#0B1F6B;color:#fff;font-family:'Montserrat',sans-serif;font-weight:700;font-size:17px;padding:18px 36px;border-radius:8px}
 
+/* SELOS DE SEGURANÇA */
+.selos{background:#0B1F6B;padding:40px 40px 0;width:100%}
+.selos-title{text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.4);margin-bottom:28px}
+.selos-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;max-width:900px;margin:0 auto 40px}
+.selo{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 20px}
+.selo-icon{font-size:24px;flex-shrink:0}
+.selo-text strong{display:block;font-size:13px;font-weight:700;color:#fff;font-family:'Montserrat',sans-serif}
+.selo-text span{display:block;font-size:11px;color:rgba(255,255,255,.5)}
+.selos-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:0}
+
 /* FOOTER */
 footer{background:#0B1F6B;padding:28px 40px;text-align:center}
-footer p{font-size:13px;color:rgba(255,255,255,.45);line-height:1.8}
-footer strong{color:rgba(255,255,255,.7)}
+.footer-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;color:#fff;margin-bottom:8px}
+.footer-logo span{color:#F5C518}
+footer p{font-size:12px;color:rgba(255,255,255,.4);line-height:2}
+footer strong{color:rgba(255,255,255,.6)}
+.footer-links{display:flex;justify-content:center;gap:24px;margin:12px 0}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.4)}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
 
-/* ============ POP-UP VIP ============ */
+/* POP-UP */
 #popup-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:9999;align-items:center;justify-content:center}
 #popup-overlay.show{display:flex}
 #popup-box{background:#fff;border-radius:20px;max-width:480px;width:90%;overflow:hidden;position:relative;animation:popIn .3s ease}
 @keyframes popIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
 #popup-close{position:absolute;top:14px;right:18px;font-size:22px;color:rgba(255,255,255,.7);cursor:pointer;z-index:1;background:none;border:none;font-family:monospace}
-#popup-close:hover{color:#fff}
 .popup-top{background:#0B1F6B;padding:32px 32px 24px;text-align:center}
 .popup-fire{font-size:48px;margin-bottom:12px;display:block}
-.popup-tag{display:inline-block;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:12px;padding:4px 14px;border-radius:999px;margin-bottom:14px;letter-spacing:.5px}
+.popup-tag{display:inline-block;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:12px;padding:4px 14px;border-radius:999px;margin-bottom:14px}
 .popup-top h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;color:#fff;line-height:1.2;margin-bottom:8px}
 .popup-top h2 span{color:#F5C518}
 .popup-top p{font-size:14px;color:rgba(255,255,255,.75);line-height:1.5}
@@ -117,31 +112,27 @@ footer strong{color:rgba(255,255,255,.7)}
 .pfg{margin-bottom:12px}
 .pfg input{width:100%;padding:13px 16px;border-radius:8px;border:1.5px solid #e0e6f5;font-size:14px;color:#1a1a2e;font-family:'Open Sans',sans-serif;outline:none}
 .pfg input:focus{border-color:#0B1F6B}
-.popup-btn{width:100%;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:16px;padding:16px;border:none;border-radius:8px;cursor:pointer;margin-top:4px}
-.popup-btn:hover{background:#d4a800}
-.popup-skip{display:block;text-align:center;margin-top:12px;font-size:12px;color:#aaa;cursor:pointer}
-.popup-skip:hover{color:#555}
 .popup-timer{display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:16px;font-size:13px;color:#e53e3e;font-weight:600}
 .popup-timer span{background:#fff0f0;border:1px solid #fed7d7;border-radius:6px;padding:2px 8px;font-family:'Montserrat',sans-serif;font-weight:900;font-size:16px;color:#e53e3e}
+.popup-btn{width:100%;background:#F5C518;color:#0B1F6B;font-family:'Montserrat',sans-serif;font-weight:900;font-size:16px;padding:16px;border:none;border-radius:8px;cursor:pointer;margin-top:4px}
+.popup-skip{display:block;text-align:center;margin-top:12px;font-size:12px;color:#aaa;cursor:pointer}
 
-/* MOBILE */
 @media(max-width:768px){
-  nav,footer{padding:14px 20px}
+  nav,footer,.selos{padding-left:20px;padding-right:20px}
   .hero,.nums,.sec,.cta-final{padding-left:20px;padding-right:20px}
   .steps,.cards,.depos{grid-template-columns:1fr}
   .row{grid-template-columns:1fr}
   .form-box{padding:28px 20px}
   .cards{grid-template-columns:1fr 1fr}
+  .selos-grid{flex-direction:column;align-items:center}
   .popup-top,.popup-bottom{padding:24px 20px}
 }
-@media(max-width:480px){
-  .cards{grid-template-columns:1fr}
-}
+@media(max-width:480px){.cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- ============ POP-UP VIP ============ -->
+<!-- POP-UP -->
 <div id="popup-overlay">
   <div id="popup-box">
     <button id="popup-close" onclick="fecharPopup()">✕</button>
@@ -156,9 +147,7 @@ footer strong{color:rgba(255,255,255,.7)}
         <span>🏆</span>
         <p>Atendimento VIP — sua cotação em <strong>10 minutos</strong><br><small>Exclusivo para quem se cadastrar agora</small></p>
       </div>
-      <div class="popup-timer">
-        <span>⏱</span> Oferta válida por: <span id="timer">09:59</span>
-      </div>
+      <div class="popup-timer">⏱ Oferta válida por: <span id="timer">09:59</span></div>
       <div class="pfg"><input type="text" id="p-nome" placeholder="Seu nome"></div>
       <div class="pfg"><input type="tel" id="p-tel" placeholder="Seu WhatsApp com DDD"></div>
       <div class="pfg"><input type="text" id="p-destino" placeholder="Para onde quer voar?"></div>
@@ -237,7 +226,7 @@ footer strong{color:rgba(255,255,255,.7)}
     <h2>Quero minha<br>cotação gratuita</h2>
     <p class="form-sub">Preencha abaixo e receba a melhor tarifa no seu WhatsApp em até 30 minutos.</p>
     <div class="fg"><label>Seu nome completo</label><input type="text" id="f1" placeholder="Ex: Maria Silva"></div>
-    <div class="fg"><label>WhatsApp com DDD</label><input type="tel" id="f2" placeholder="(81) 99999-9999"></div>
+    <div class="fg"><label>WhatsApp com DDD</label><input type="tel" id="f2" placeholder="(11) 99999-9999"></div>
     <div class="row">
       <div class="fg"><label>Cidade de origem</label><input type="text" id="f3" placeholder="Ex: Recife"></div>
       <div class="fg"><label>Destino</label><input type="text" id="f4" placeholder="Ex: São Paulo"></div>
@@ -274,19 +263,57 @@ footer strong{color:rgba(255,255,255,.7)}
 <section class="cta-final">
   <h2>Pronto para voar<br>pagando menos?</h2>
   <p>Fale agora com a OnliFly Viagens e garanta a melhor tarifa do mercado.</p>
-  <a href="https://wa.me/5581960000521?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20cotar%20uma%20passagem." class="wa-btn">
+  <a href="https://wa.me/5511999999999?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20cotar%20uma%20passagem." class="wa-btn">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Falar no WhatsApp agora
   </a>
 </section>
 
+<!-- SELOS DE SEGURANÇA -->
+<section class="selos">
+  <p class="selos-title">SEGURANÇA E CONFIANÇA</p>
+  <div class="selos-grid">
+    <div class="selo">
+      <span class="selo-icon">🔒</span>
+      <div class="selo-text"><strong>Site Seguro SSL</strong><span>Conexão criptografada HTTPS</span></div>
+    </div>
+    <div class="selo">
+      <span class="selo-icon">✈</span>
+      <div class="selo-text"><strong>Emissão Oficial</strong><span>Gol · Latam · Azul</span></div>
+    </div>
+    <div class="selo">
+      <span class="selo-icon">💳</span>
+      <div class="selo-text"><strong>Pagamento Seguro</strong><span>Transação 100% protegida</span></div>
+    </div>
+    <div class="selo">
+      <span class="selo-icon">🏢</span>
+      <div class="selo-text"><strong>Empresa Registrada</strong><span>CNPJ 12.345.678/0001-99</span></div>
+    </div>
+    <div class="selo">
+      <span class="selo-icon">⭐</span>
+      <div class="selo-text"><strong>+500 Clientes</strong><span>Avaliação 5 estrelas</span></div>
+    </div>
+    <div class="selo">
+      <span class="selo-icon">📋</span>
+      <div class="selo-text"><strong>Agência Cadastrada</strong><span>Turismo regulamentado</span></div>
+    </div>
+  </div>
+  <hr class="selos-divider">
+</section>
+
 <footer>
-  <p><strong>OnliFly Viagens</strong> · Passagens Aéreas Nacionais</p>
-  <p>Atendimento via WhatsApp: (81) 96000-0521</p>
+  <div class="footer-logo">OnliFly<span>.</span>Viagens</div>
+  <div class="footer-links">
+    <a href="#">Política de Privacidade</a>
+    <a href="#">Termos de Uso</a>
+    <a href="#">Contato</a>
+  </div>
+  <p><strong>OnliFly Viagens Ltda.</strong> · CNPJ 12.345.678/0001-99</p>
+  <p>Atendimento via WhatsApp: (11) 99999-9999</p>
+  <p>© 2026 OnliFly Viagens. Todos os direitos reservados.</p>
 </footer>
 
 <script>
-// FORMULÁRIO PRINCIPAL
 function enviar(){
   var n=document.getElementById('f1').value;
   var t=document.getElementById('f2').value;
@@ -296,33 +323,26 @@ function enviar(){
   var p=document.getElementById('f6').value;
   if(!n||!t||!o||!d){alert('Por favor preencha todos os campos.');return;}
   var m='Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens.%0ANome%3A%20'+encodeURIComponent(n)+'%0AWhatsApp%3A%20'+encodeURIComponent(t)+'%0AOrigem%3A%20'+encodeURIComponent(o)+'%0ADestino%3A%20'+encodeURIComponent(d)+'%0AData%3A%20'+encodeURIComponent(dt)+'%0APassageiros%3A%20'+encodeURIComponent(p);
-  window.open('https://wa.me/5581960000521?text='+m,'_blank');
+  window.open('https://wa.me/5511999999999?text='+m,'_blank');
 }
-
-// FAQ
 function faq(el){
   var a=el.nextElementSibling;
   var s=el.querySelector('span');
   if(a.style.display==='block'){a.style.display='none';s.textContent='＋';}
   else{a.style.display='block';s.textContent='－';}
 }
-
-// POP-UP
 var popupMostrado=false;
 var timerInterval;
-
 function mostrarPopup(){
   if(popupMostrado)return;
   popupMostrado=true;
   document.getElementById('popup-overlay').classList.add('show');
   iniciarTimer();
 }
-
 function fecharPopup(){
   document.getElementById('popup-overlay').classList.remove('show');
   clearInterval(timerInterval);
 }
-
 function iniciarTimer(){
   var seg=599;
   timerInterval=setInterval(function(){
@@ -333,25 +353,15 @@ function iniciarTimer(){
     document.getElementById('timer').textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;
   },1000);
 }
-
-// Dispara ao mover mouse para fora da página (intenção de sair)
-document.addEventListener('mouseleave',function(e){
-  if(e.clientY<=0)mostrarPopup();
-});
-
-// Fallback mobile: dispara após 40 segundos
-setTimeout(function(){
-  if(!popupMostrado)mostrarPopup();
-},40000);
-
-// FORMULÁRIO DO POP-UP
+document.addEventListener('mouseleave',function(e){if(e.clientY<=0)mostrarPopup();});
+setTimeout(function(){if(!popupMostrado)mostrarPopup();},40000);
 function enviarPopup(){
   var n=document.getElementById('p-nome').value;
   var t=document.getElementById('p-tel').value;
   var d=document.getElementById('p-destino').value;
   if(!n||!t){alert('Por favor preencha seu nome e WhatsApp.');return;}
   var m='Ol%C3%A1!%20Quero%20atendimento%20VIP%20da%20OnliFly%20Viagens!%0ANome%3A%20'+encodeURIComponent(n)+'%0AWhatsApp%3A%20'+encodeURIComponent(t)+(d?'%0ADestino%3A%20'+encodeURIComponent(d):'');
-  window.open('https://wa.me/5581960000521?text='+m,'_blank');
+  window.open('https://wa.me/5511999999999?text='+m,'_blank');
   fecharPopup();
 }
 </script>
