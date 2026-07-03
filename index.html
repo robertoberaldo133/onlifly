@@ -20,8 +20,8 @@ fbq('track', 'PageView');
 </noscript>
 <!-- End Meta Pixel Code -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OnliFly Viagens - Passagens Aéreas Nacionais</title>
-<meta name="description" content="Passagens aéreas nacionais com até 50% de economia e atendimento humano em até 30 minutos. Cotação grátis pela OnliFly Viagens.">
+<title>OnliFly Viagens - Passagens Aéreas Nacionais e Internacionais</title>
+<meta name="description" content="Passagens aéreas nacionais e internacionais com até 50% de economia e atendimento humano em até 30 minutos. Cotação grátis pela OnliFly Viagens.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230B1F6B' rx='6'/><text x='16' y='22' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='14' fill='%23F5C518'>OF</text></svg>">
 
 <!-- Fontes carregadas de forma assíncrona para não bloquear a renderização -->
@@ -197,11 +197,11 @@ footer strong{color:rgba(255,255,255,.6)}
 <main id="main-content">
 
 <section class="hero">
-  <div class="badge">✈ Passagens Nacionais com o Menor Preço</div>
+  <div class="badge">✈ Passagens Nacionais e Internacionais com o Menor Preço</div>
   <h1>Viaje mais,<br><span>pague menos.</span></h1>
-  <p class="hero-p">Encontramos as melhores passagens nacionais para você — com atendimento 100% personalizado e preços que as grandes plataformas não conseguem bater.</p>
+  <p class="hero-p">Encontramos as melhores passagens nacionais e internacionais para você — com atendimento 100% personalizado e preços que as grandes plataformas não conseguem bater.</p>
   <div class="pills">
-    <span class="pill">✔ Principais companhias aéreas</span>
+    <span class="pill">✔ Voos nacionais e internacionais</span>
     <span class="pill">✔ Atendimento humano</span>
     <span class="pill">✔ Cotação em 30 minutos</span>
   </div>
@@ -216,6 +216,23 @@ footer strong{color:rgba(255,255,255,.6)}
   <div class="num"><strong>até 50%</strong><span>de economia</span></div>
   <div class="num"><strong>30 min</strong><span>tempo de resposta</span></div>
 </div>
+
+<section class="sec">
+  <span class="sec-label">ONDE VOCÊ QUER IR?</span>
+  <h2>Voos nacionais e internacionais</h2>
+  <div class="cards" style="grid-template-columns:repeat(2,1fr);max-width:720px">
+    <div class="card" style="background:#f4f6fb;border:1px solid #e0e6f5">
+      <span class="card-icon">🇧🇷</span>
+      <h3 style="color:#0B1F6B">Destinos Nacionais</h3>
+      <p style="color:#5a6282">São Paulo, Rio de Janeiro, Fortaleza, Salvador, Recife, Maceió, Natal, Foz do Iguaçu, Porto Alegre, Brasília e muito mais. Cobrimos o Brasil inteiro.</p>
+    </div>
+    <div class="card" style="background:#f4f6fb;border:1px solid #e0e6f5">
+      <span class="card-icon">🌍</span>
+      <h3 style="color:#0B1F6B">Destinos Internacionais</h3>
+      <p style="color:#5a6282">Europa, América do Norte, América do Sul, Caribe e além. Encontramos as melhores tarifas para o destino internacional que você sempre sonhou.</p>
+    </div>
+  </div>
+</section>
 
 <section class="sec sec-gray">
   <span class="sec-label">SIMPLES ASSIM</span>
@@ -241,10 +258,10 @@ footer strong{color:rgba(255,255,255,.6)}
 <section class="sec" id="formulario">
   <div class="form-box">
     <h2>Quero minha<br>cotação gratuita</h2>
-    <p class="form-sub">Preencha abaixo e receba a melhor tarifa no seu WhatsApp em até 30 minutos.</p>
+    <p class="form-sub">Nacional ou internacional — preencha abaixo e receba a melhor tarifa no seu WhatsApp em até 30 minutos.</p>
     <div class="fg"><label for="f1">Seu nome completo</label><input type="text" id="f1" placeholder="Ex: Maria Silva"></div>
     <div class="fg"><label for="f2">WhatsApp com DDD</label><input type="tel" id="f2" placeholder="(11) 99999-9999"></div>
-    <div class="fg"><label for="f3">Destino</label><input type="text" id="f3" placeholder="Ex: São Paulo"></div>
+    <div class="fg"><label for="f3">Destino</label><input type="text" id="f3" placeholder="Ex: São Paulo, Lisboa, Orlando..."></div>
     <button class="form-btn" onclick="enviar()">✈ Quero minha cotação agora</button>
     <p class="form-note">🔒 Seus dados são usados apenas para a cotação. Não enviamos spam.</p>
   </div>
@@ -272,14 +289,18 @@ footer strong{color:rgba(255,255,255,.6)}
     </div>
     <div class="faq">
       <button type="button" class="fq" aria-expanded="false" aria-controls="faq-a5" onclick="faq(this)">Vocês trabalham com quais companhias?<span aria-hidden="true">＋</span></button>
-      <div class="fa" id="faq-a5">Trabalhamos com as principais companhias aéreas nacionais. Buscamos sempre a melhor combinação de preço e horário para o seu roteiro.</div>
+      <div class="fa" id="faq-a5">Trabalhamos com as principais companhias aéreas nacionais e internacionais. Buscamos sempre a melhor combinação de preço e horário para o seu roteiro — seja dentro do Brasil ou para qualquer destino no mundo.</div>
+    </div>
+    <div class="faq">
+      <button type="button" class="fq" aria-expanded="false" aria-controls="faq-a6" onclick="faq(this)">Vocês emitem passagens internacionais?<span aria-hidden="true">＋</span></button>
+      <div class="fa" id="faq-a6">Sim! Atendemos tanto destinos nacionais quanto internacionais. Basta informar o destino desejado no formulário ou via WhatsApp, e nossa equipe busca as melhores tarifas disponíveis para você.</div>
     </div>
   </div>
 </section>
 
 <section class="cta-final">
   <h2>Pronto para voar<br>pagando menos?</h2>
-  <p>Fale agora com a OnliFly Viagens e garanta a melhor tarifa do mercado.</p>
+  <p>Nacional ou internacional — fale agora com a OnliFly Viagens e garanta a melhor tarifa do mercado.</p>
   <a href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20cotar%20uma%20passagem." class="wa-btn">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
     Falar no WhatsApp agora
