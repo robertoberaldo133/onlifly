@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pré-Reserva Confirmada · Pacote Vale Nevado · OnliFly Viagens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0B1F6B;
+    --gold: #F5C518;
+    --white: #ffffff;
+    --light: #F4F6FB;
+    --mid: #6b7280;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--navy);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 20px;
+    max-width: 480px;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+  }
+
+  .card-header {
+    background: var(--navy);
+    padding: 28px 32px 24px;
+    text-align: center;
+  }
+
+  .logo {
+    font-size: 20px;
+    font-weight: 900;
+    margin-bottom: 20px;
+  }
+  .logo .onli { color: var(--white); }
+  .logo .sep { color: var(--gold); margin: 0 2px; }
+  .logo .viagens { color: var(--gold); }
+
+  .check-wrap {
+    width: 80px;
+    height: 80px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .check-wrap svg {
+    width: 40px;
+    height: 40px;
+    stroke: var(--navy);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    stroke-dasharray: 60;
+    stroke-dashoffset: 60;
+    animation: draw 0.6s 0.4s ease forwards;
+  }
+
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  .status-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .status-title {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .status-subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(245,197,24,0.8);
+  }
+
+  .card-body { padding: 28px 32px; }
+
+  .cadastur-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(245,197,24,0.12);
+    border: 1px solid rgba(245,197,24,0.3);
+    border-radius: 20px;
+    padding: 5px 12px;
+    margin-bottom: 20px;
+  }
+  .cadastur-badge span {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.5px;
+  }
+
+  .pacote-box {
+    background: var(--navy);
+    border-radius: 12px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+
+  .pacote-box p.titulo {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .pacote-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 7px;
+  }
+
+  .pacote-item .ic { font-size: 13px; margin-top: 1px; }
+
+  .pacote-item p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  .valor-box {
+    background: var(--light);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .valor-box .label {
+    font-size: 12px;
+    color: var(--mid);
+    font-weight: 600;
+  }
+
+  .valor-box .valor {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--navy);
+  }
+
+  .valor-box .parcel {
+    font-size: 10px;
+    color: var(--mid);
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .highlight {
+    border-left: 3px solid var(--gold);
+    padding-left: 14px;
+    margin-bottom: 20px;
+  }
+
+  .highlight p {
+    font-size: 12px;
+    color: var(--mid);
+    line-height: 1.7;
+  }
+
+  .steps-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--mid);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .step-num {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 1px;
+  }
+
+  .step p {
+    font-size: 13px;
+    color: var(--navy);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+
+  .step p span {
+    color: var(--mid);
+    font-weight: 400;
+    display: block;
+    font-size: 12px;
+  }
+
+  .divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 20px 0;
+  }
+
+  .btn-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--navy);
+    color: var(--white);
+    text-decoration: none;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+
+  .btn-wa:hover { background: #0a1a5a; }
+
+  .btn-wa svg { width: 20px; height: 20px; fill: var(--gold); }
+
+  .card-footer {
+    background: var(--navy);
+    padding: 16px 32px;
+    text-align: center;
+  }
+
+  .card-footer p {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.8;
+  }
+
+  .card-footer a { color: var(--gold); text-decoration: none; }
+
+  @media (max-width: 480px) {
+    .card-body { padding: 22px 20px; }
+    .card-header { padding: 22px 20px 20px; }
+    .card-footer { padding: 14px 20px; }
+    .status-title { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <div class="card-header">
+    <div class="logo">
+      <span class="onli">OnliFly</span><span class="sep">•</span><span class="viagens">Viagens</span>
+    </div>
+
+    <div class="check-wrap">
+      <svg viewBox="0 0 24 24"><polyline points="4 13 9 18 20 7"/></svg>
+    </div>
+
+    <p class="status-label">Pré-Reserva Confirmada</p>
+    <h1 class="status-title">Pacote Vale Nevado</h1>
+    <p class="status-subtitle">🏔️ Santiago do Chile · Ski Day Completo</p>
+  </div>
+
+  <div class="card-body">
+
+    <div class="cadastur-badge">
+      <span>✅ Agência certificada · Cadastur · Ministério do Turismo</span>
+    </div>
+
+    <div class="pacote-box">
+      <p class="titulo">O que está incluso no seu pacote</p>
+      <div class="pacote-item"><span class="ic">✈️</span><p>Passagem aérea ida e volta com bagagem</p></div>
+      <div class="pacote-item"><span class="ic">🏨</span><p>Nodo Hotel Santiago 4★ · café da manhã incluso</p></div>
+      <div class="pacote-item"><span class="ic">🚐</span><p>Transporte van 4x4 com guia bilíngue Peter</p></div>
+      <div class="pacote-item"><span class="ic">🎿</span><p>Ski Day completo · pass, equipamentos, aula e seguro</p></div>
+      <div class="pacote-item"><span class="ic">🧤</span><p>Acessórios extras · luvas, óculos e camada térmica</p></div>
+    </div>
+
+    <div class="valor-box">
+      <div>
+        <p class="label">Total para 2 pessoas</p>
+        <p class="parcel">Cartão: R$ 5.699 em até 10x sem juros</p>
+      </div>
+      <div style="text-align:right">
+        <p class="valor">R$ 4.890</p>
+        <p class="parcel">PIX à vista</p>
+      </div>
+    </div>
+
+    <p class="steps-title">Passageiros</p>
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <p>Alex Cosmo Dias dos Santos
+        <span>Passageiro principal</span>
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <p>Fernanda Rodrigues Alves Dias
+        <span>Passageiro 2</span>
+      </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="highlight">
+      <p>Qualquer dúvida, entre em contato com seu consultor Pedro diretamente pelo WhatsApp. Ele está à disposição para te ajudar em cada etapa.</p>
+    </div>
+
+  </div>
+
+  <div class="card-footer">
+    <p>OnliFly Viagens · CNPJ 68.218.547/0001-00 · Cadastur válido até 28/07/2028<br>
+    <a href="https://www.onliflyviagens.com.br">onliflyviagens.com.br</a> · (47) 99661-8052</p>
+  </div>
+
+</div>
+
+</body>
+</html>
