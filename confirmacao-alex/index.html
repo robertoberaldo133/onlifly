@@ -3,303 +3,167 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
 <title>Pré-Reserva Confirmada · Pacote Vale Nevado · OnliFly Viagens</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230B1F6B' rx='6'/><text x='16' y='22' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='14' fill='%23F5C518'>OF</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
-  :root {
-    --navy: #0B1F6B;
-    --gold: #F5C518;
-    --white: #ffffff;
-    --light: #F4F6FB;
-    --mid: #6b7280;
-  }
+body{
+  font-family:'Open Sans',sans-serif;
+  background:#060B24;
+  color:#fff;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:32px 16px;
+  position:relative;
+  overflow-x:hidden;
+}
+.grid-bg{
+  position:fixed;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);
+  background-size:44px 44px;
+  -webkit-mask-image:radial-gradient(ellipse 700px 500px at 50% 0%,#000 0%,transparent 75%);
+  mask-image:radial-gradient(ellipse 700px 500px at 50% 0%,#000 0%,transparent 75%);
+  pointer-events:none;
+}
+.glow{
+  position:fixed;top:-160px;left:50%;transform:translateX(-50%);
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(245,197,24,.14),transparent 70%);
+  pointer-events:none;
+}
 
-  body {
-    font-family: 'Montserrat', sans-serif;
-    background: var(--navy);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px 16px;
-  }
+.card{
+  position:relative;z-index:2;
+  background:linear-gradient(160deg,#0E1548,#0B1230);
+  border:1px solid rgba(245,197,24,.25);
+  border-radius:28px;
+  max-width:500px;width:100%;
+  overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.45);
+}
 
-  .card {
-    background: var(--white);
-    border-radius: 20px;
-    max-width: 480px;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
-  }
+.card-header{padding:34px 34px 28px;text-align:center;border-bottom:1px solid rgba(255,255,255,.07)}
 
-  .card-header {
-    background: var(--navy);
-    padding: 28px 32px 24px;
-    text-align: center;
-  }
+.logo{
+  font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;
+  color:#fff;display:inline-flex;align-items:baseline;letter-spacing:-.2px;margin-bottom:24px;
+}
+.logo .idot{position:relative;display:inline-block}
+.logo .idot::after{content:'';position:absolute;top:.20em;left:50%;transform:translateX(-50%);width:.17em;height:.17em;border-radius:50%;background:#F5C518}
+.logo .gold{color:#F5C518}
 
-  .logo {
-    font-size: 20px;
-    font-weight: 900;
-    margin-bottom: 20px;
-  }
-  .logo .onli { color: var(--white); }
-  .logo .sep { color: var(--gold); margin: 0 2px; }
-  .logo .viagens { color: var(--gold); }
+.check-wrap{
+  width:76px;height:76px;
+  background:linear-gradient(135deg,#F5C518,#D9A70F);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;
+  box-shadow:0 16px 36px rgba(245,197,24,.28);
+  animation:pop .5s cubic-bezier(.175,.885,.32,1.275) both;
+}
+@keyframes pop{0%{transform:scale(0);opacity:0}100%{transform:scale(1);opacity:1}}
+.check-wrap svg{
+  width:36px;height:36px;stroke:#0B1F6B;stroke-width:3;
+  stroke-linecap:round;stroke-linejoin:round;fill:none;
+  stroke-dasharray:60;stroke-dashoffset:60;
+  animation:draw .6s .4s ease forwards;
+}
+@keyframes draw{to{stroke-dashoffset:0}}
 
-  .check-wrap {
-    width: 80px;
-    height: 80px;
-    background: var(--gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 16px;
-    animation: pop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
-  }
+.status-label{
+  font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:1.8px;color:#F5C518;text-transform:uppercase;margin-bottom:8px;
+}
+.status-title{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:900;color:#fff;line-height:1.15;margin-bottom:10px;letter-spacing:-.5px}
+.status-sub{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:rgba(255,255,255,.6)}
 
-  @keyframes pop {
-    0% { transform: scale(0); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
-  }
+.card-body{padding:28px 34px}
 
-  .check-wrap svg {
-    width: 40px;
-    height: 40px;
-    stroke: var(--navy);
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
-    stroke-dasharray: 60;
-    stroke-dashoffset: 60;
-    animation: draw 0.6s 0.4s ease forwards;
-  }
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(245,197,24,.12);border:1px solid rgba(245,197,24,.3);
+  border-radius:999px;padding:7px 14px;margin-bottom:24px;
+}
+.badge span{font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;color:#F5C518;letter-spacing:.4px}
 
-  @keyframes draw { to { stroke-dashoffset: 0; } }
+.bloco{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:20px 22px;margin-bottom:16px;
+}
+.bloco-titulo{
+  font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:1.4px;color:#F5C518;text-transform:uppercase;margin-bottom:14px;
+}
+.item{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.item:last-child{margin-bottom:0}
+.item svg{flex-shrink:0;margin-top:2px}
+.item p{font-size:13.5px;color:rgba(255,255,255,.8);font-weight:500;line-height:1.55}
 
-  .status-label {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
+.valor-box{
+  background:rgba(255,255,255,.05);border:1px solid rgba(245,197,24,.22);
+  border-radius:16px;padding:20px 22px;margin-bottom:16px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+.valor-box .label{font-size:12px;color:rgba(255,255,255,.6);font-weight:600}
+.valor-box .parcel{font-size:11.5px;color:rgba(255,255,255,.45);margin-top:4px}
+.valor-box .valor{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:#F5C518;line-height:1}
+.valor-box .valor-sub{font-size:11.5px;color:rgba(255,255,255,.45);margin-top:4px}
 
-  .status-title {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--white);
-    line-height: 1.2;
-    margin-bottom: 6px;
-  }
+.pax{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.pax:last-child{margin-bottom:0}
+.pax-num{
+  width:28px;height:28px;min-width:28px;
+  background:rgba(245,197,24,.14);border:1px solid rgba(245,197,24,.32);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;color:#F5C518;
+}
+.pax p{font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;color:#fff;line-height:1.4}
+.pax p span{display:block;font-family:'Open Sans',sans-serif;font-size:12px;color:rgba(255,255,255,.5);font-weight:400}
 
-  .status-subtitle {
-    font-size: 13px;
-    font-weight: 600;
-    color: rgba(245,197,24,0.8);
-  }
+.nota{border-left:2px solid rgba(245,197,24,.5);padding-left:14px;margin:22px 0}
+.nota p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.7}
 
-  .card-body { padding: 28px 32px; }
+.btn-wa{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;
+  background:linear-gradient(135deg,#F5C518,#D9A70F);color:#0B1F6B;
+  text-decoration:none;padding:16px 20px;border-radius:999px;
+  font-family:'Montserrat',sans-serif;font-size:15px;font-weight:800;
+  box-shadow:0 14px 30px rgba(245,197,24,.22);
+  transition:filter .2s;
+}
+.btn-wa:hover{filter:brightness(1.05)}
 
-  .cadastur-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(245,197,24,0.12);
-    border: 1px solid rgba(245,197,24,0.3);
-    border-radius: 20px;
-    padding: 5px 12px;
-    margin-bottom: 20px;
-  }
-  .cadastur-badge span {
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--gold);
-    letter-spacing: 0.5px;
-  }
+.card-footer{padding:20px 34px;text-align:center;border-top:1px solid rgba(255,255,255,.07);background:rgba(0,0,0,.15)}
+.card-footer p{font-size:10.5px;color:rgba(255,255,255,.4);line-height:1.9}
+.card-footer a{color:#F5C518;text-decoration:none}
 
-  .pacote-box {
-    background: var(--navy);
-    border-radius: 12px;
-    padding: 18px 20px;
-    margin-bottom: 16px;
-  }
-
-  .pacote-box p.titulo {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 10px;
-  }
-
-  .pacote-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    margin-bottom: 7px;
-  }
-
-  .pacote-item .ic { font-size: 13px; margin-top: 1px; }
-
-  .pacote-item p {
-    font-size: 12px;
-    color: rgba(255,255,255,0.85);
-    font-weight: 500;
-    line-height: 1.5;
-  }
-
-  .valor-box {
-    background: var(--light);
-    border-radius: 12px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .valor-box .label {
-    font-size: 12px;
-    color: var(--mid);
-    font-weight: 600;
-  }
-
-  .valor-box .valor {
-    font-size: 22px;
-    font-weight: 900;
-    color: var(--navy);
-  }
-
-  .valor-box .parcel {
-    font-size: 10px;
-    color: var(--mid);
-    font-weight: 500;
-    margin-top: 2px;
-  }
-
-  .highlight {
-    border-left: 3px solid var(--gold);
-    padding-left: 14px;
-    margin-bottom: 20px;
-  }
-
-  .highlight p {
-    font-size: 12px;
-    color: var(--mid);
-    line-height: 1.7;
-  }
-
-  .steps-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--mid);
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .step {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-
-  .step-num {
-    width: 26px;
-    height: 26px;
-    min-width: 26px;
-    background: var(--gold);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--navy);
-    margin-top: 1px;
-  }
-
-  .step p {
-    font-size: 13px;
-    color: var(--navy);
-    font-weight: 600;
-    line-height: 1.5;
-  }
-
-  .step p span {
-    color: var(--mid);
-    font-weight: 400;
-    display: block;
-    font-size: 12px;
-  }
-
-  .divider {
-    height: 1px;
-    background: #e5e7eb;
-    margin: 20px 0;
-  }
-
-  .btn-wa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    background: var(--navy);
-    color: var(--white);
-    text-decoration: none;
-    padding: 14px 20px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 700;
-    transition: background 0.2s;
-  }
-
-  .btn-wa:hover { background: #0a1a5a; }
-
-  .btn-wa svg { width: 20px; height: 20px; fill: var(--gold); }
-
-  .card-footer {
-    background: var(--navy);
-    padding: 16px 32px;
-    text-align: center;
-  }
-
-  .card-footer p {
-    font-size: 10px;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.8;
-  }
-
-  .card-footer a { color: var(--gold); text-decoration: none; }
-
-  @media (max-width: 480px) {
-    .card-body { padding: 22px 20px; }
-    .card-header { padding: 22px 20px 20px; }
-    .card-footer { padding: 14px 20px; }
-    .status-title { font-size: 18px; }
-  }
+@media(max-width:480px){
+  body{padding:20px 12px}
+  .card-header{padding:28px 22px 24px}
+  .card-body{padding:24px 22px}
+  .card-footer{padding:18px 22px}
+  .status-title{font-size:22px}
+  .valor-box{flex-direction:column;align-items:flex-start;gap:10px}
+}
 </style>
 </head>
 <body>
 
+<div class="grid-bg"></div>
+<div class="glow"></div>
+
 <div class="card">
 
   <div class="card-header">
-    <div class="logo">
-      <span class="onli">OnliFly</span><span class="sep">•</span><span class="viagens">Viagens</span>
-    </div>
+    <div class="logo">Onl<span class="idot">ı</span>Fly<span class="gold">.</span><span class="gold">Viagens</span></div>
 
     <div class="check-wrap">
       <svg viewBox="0 0 24 24"><polyline points="4 13 9 18 20 7"/></svg>
@@ -307,22 +171,41 @@
 
     <p class="status-label">Pré-Reserva Confirmada</p>
     <h1 class="status-title">Pacote Vale Nevado</h1>
-    <p class="status-subtitle">🏔️ Santiago do Chile · Ski Day Completo</p>
+    <p class="status-sub">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21 12 3l4 18M4 21 8 9l1.5 4M20 21 16 9l-1.5 4"/></svg>
+      Santiago do Chile · Ski Day Completo
+    </p>
   </div>
 
   <div class="card-body">
 
-    <div class="cadastur-badge">
-      <span>✅ Agência certificada · Cadastur · Ministério do Turismo</span>
+    <div class="badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12.5 11 15l4-5"/><circle cx="12" cy="12" r="9"/></svg>
+      <span>Agência certificada · Cadastur · Ministério do Turismo</span>
     </div>
 
-    <div class="pacote-box">
-      <p class="titulo">O que está incluso no seu pacote</p>
-      <div class="pacote-item"><span class="ic">✈️</span><p>Passagem aérea ida e volta com bagagem</p></div>
-      <div class="pacote-item"><span class="ic">🏨</span><p>Nodo Hotel Santiago 4★ · café da manhã incluso</p></div>
-      <div class="pacote-item"><span class="ic">🚐</span><p>Transporte van 4x4 com guia bilíngue Peter</p></div>
-      <div class="pacote-item"><span class="ic">🎿</span><p>Ski Day completo · pass, equipamentos, aula e seguro</p></div>
-      <div class="pacote-item"><span class="ic">🧤</span><p>Acessórios extras · luvas, óculos e camada térmica</p></div>
+    <div class="bloco">
+      <p class="bloco-titulo">O que está incluso no seu pacote</p>
+      <div class="item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2 3 8l6.5 4.5-3 3.5H3l-1 3 3-1 1.5-3.5L11 20l2-1.8z"/></svg>
+        <p>Passagem aérea ida e volta com bagagem</p>
+      </div>
+      <div class="item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13M9 21v-6h6v6"/></svg>
+        <p>Nodo Hotel Santiago 4★ · café da manhã incluso</p>
+      </div>
+      <div class="item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17V7a2 2 0 0 1 2-2h9l5 5v7"/><circle cx="7.5" cy="17.5" r="2"/><circle cx="16.5" cy="17.5" r="2"/></svg>
+        <p>Transporte van 4x4 com guia bilíngue Peter</p>
+      </div>
+      <div class="item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21 12 3l4 18M4 21 8 9l1.5 4M20 21 16 9l-1.5 4"/></svg>
+        <p>Ski Day completo · pass, equipamentos, aula e seguro</p>
+      </div>
+      <div class="item">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8zM3 8l2-4h14l2 4M12 4v17"/></svg>
+        <p>Acessórios extras · luvas, óculos e camada térmica</p>
+      </div>
     </div>
 
     <div class="valor-box">
@@ -332,31 +215,30 @@
       </div>
       <div style="text-align:right">
         <p class="valor">R$ 4.890</p>
-        <p class="parcel">PIX à vista</p>
+        <p class="valor-sub">PIX à vista</p>
       </div>
     </div>
 
-    <p class="steps-title">Passageiros</p>
-
-    <div class="step">
-      <div class="step-num">1</div>
-      <p>Alex Cosmo Dias dos Santos
-        <span>Passageiro principal</span>
-      </p>
+    <div class="bloco">
+      <p class="bloco-titulo">Passageiros</p>
+      <div class="pax">
+        <div class="pax-num">1</div>
+        <p>Alex Cosmo Dias dos Santos<span>Passageiro principal</span></p>
+      </div>
+      <div class="pax">
+        <div class="pax-num">2</div>
+        <p>Fernanda Rodrigues Alves Dias<span>Passageiro 2</span></p>
+      </div>
     </div>
 
-    <div class="step">
-      <div class="step-num">2</div>
-      <p>Fernanda Rodrigues Alves Dias
-        <span>Passageiro 2</span>
-      </p>
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="highlight">
+    <div class="nota">
       <p>Qualquer dúvida, entre em contato com seu consultor Pedro diretamente pelo WhatsApp. Ele está à disposição para te ajudar em cada etapa.</p>
     </div>
+
+    <a class="btn-wa" href="https://wa.me/5547996618052?text=Ol%C3%A1%20Pedro!%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20pr%C3%A9-reserva%20do%20Pacote%20Vale%20Nevado.">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="#0B1F6B"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Falar com o consultor Pedro
+    </a>
 
   </div>
 
