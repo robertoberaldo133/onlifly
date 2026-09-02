@@ -60,7 +60,7 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .nav-btn{padding:11px 24px;font-size:14px}
 .nav-phone{font-size:14px;color:rgba(255,255,255,.55);font-weight:600;font-family:'Open Sans',sans-serif}
 
-.hero{position:relative;padding:64px 40px 84px;overflow:hidden}
+.hero{position:relative;padding:72px 40px 110px;overflow:hidden}
 .hero-glow{position:absolute;top:-120px;right:-80px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(245,197,24,.16),transparent 70%);pointer-events:none}
 .hero-inner{position:relative;z-index:2;display:flex;gap:40px;align-items:flex-start;max-width:1312px;margin:0 auto}
 .hero-text{flex:1;max-width:600px;padding-top:20px}
@@ -68,11 +68,14 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .hero h1{font-family:'Montserrat',sans-serif;font-size:clamp(38px,5vw,62px);font-weight:900;line-height:1.05;color:#fff;margin-bottom:20px;letter-spacing:-1.5px}
 .hero h1 span{color:#F5C518}
 .hero-p{font-size:17px;color:rgba(255,255,255,.62);margin-bottom:30px;max-width:480px;line-height:1.65}
+.hero-p strong{color:#fff;font-weight:700}
 .pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px}
 .pill-outline{color:rgba(255,255,255,.85);font-size:13px;font-weight:600;padding:8px 16px;font-family:'Open Sans',sans-serif}
 .hero-ctas{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .hero-cta{flex-direction:column;font-size:16px;padding:17px 34px}
 .hero-cta small{font-size:11.5px;font-weight:600;opacity:.75;margin-top:3px;font-family:'Open Sans',sans-serif}
+.hero-proof{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:26px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.34)}
+.hero-proof span{color:rgba(245,197,24,.5)}
 .hero-visual{flex:1;position:relative;height:520px;min-width:380px}
 .hv-main{position:absolute;top:20px;left:20px;width:400px;border-radius:24px;padding:26px}
 .hv-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
@@ -91,7 +94,7 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .num strong{display:block;font-family:'Montserrat',sans-serif;font-weight:900;font-size:32px;color:#0B1F6B}
 .num span{font-size:13px;font-weight:600;color:#0B1F6B;opacity:.8}
 
-.sec{padding:80px 40px;width:100%;position:relative}
+.sec{padding:120px 40px;width:100%;position:relative}
 .sec-inner{max-width:1312px;margin:0 auto;position:relative;z-index:2}
 .sec-label{display:block;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:2.2px;color:#F5C518;margin-bottom:12px}
 .sec h2{text-align:center;font-family:'Montserrat',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:900;color:#fff;margin-bottom:48px;line-height:1.2;letter-spacing:-.5px}
@@ -152,12 +155,12 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .fq span{font-size:20px;color:#F5C518;flex-shrink:0}
 .fa{display:none;padding:0 24px 18px;font-size:14px;color:rgba(255,255,255,.6);line-height:1.7}
 
-.cta-final{background:linear-gradient(135deg,#F5C518,#D9A70F);padding:70px 40px;text-align:center;width:100%}
+.cta-final{background:linear-gradient(135deg,#F5C518,#D9A70F);padding:96px 40px;text-align:center;width:100%}
 .cta-final h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(26px,4vw,40px);color:#0B1F6B;margin-bottom:12px}
 .cta-final p{font-size:16px;color:rgba(11,31,107,.75);margin-bottom:32px}
 .wa-btn{display:inline-flex;align-items:center;gap:14px;background:#0B1F6B;color:#fff;font-size:17px;padding:18px 36px}
 
-.selos{padding:70px 40px 0;width:100%;position:relative}
+.selos{padding:90px 40px 0;width:100%;position:relative}
 .selos-title{text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:2px;color:rgba(255,255,255,.35);margin-bottom:28px}
 .selos-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;max-width:900px;margin:0 auto 40px}
 .selo{display:flex;align-items:center;gap:10px;border-radius:12px;padding:12px 20px}
@@ -205,6 +208,8 @@ footer strong{color:rgba(255,255,255,.55)}
 @media(max-width:768px){
   nav,footer,.selos{padding-left:20px;padding-right:20px}
   .hero,.nums,.sec,.cta-final{padding-left:20px;padding-right:20px}
+  .sec{padding-top:72px;padding-bottom:72px}
+  .cta-final{padding-top:64px;padding-bottom:64px}
   .steps,.dest-grid{grid-template-columns:1fr}
   .form-box{padding:28px 20px}
   .selos-grid{flex-direction:column;align-items:center}
@@ -291,7 +296,7 @@ footer strong{color:rgba(255,255,255,.55)}
         Passagens Nacionais e Internacionais com o Menor Preço
       </span>
       <h1>Viaje mais,<br><span>pague menos.</span></h1>
-      <p class="hero-p">Encontramos as melhores passagens nacionais e internacionais para você — com atendimento 100% personalizado e preços que as grandes plataformas não conseguem bater.</p>
+      <p class="hero-p">Encontramos as melhores passagens nacionais e internacionais para você — com <strong>atendimento 100% personalizado</strong> e preços que as grandes plataformas não conseguem bater.</p>
       <div class="pills">
         <span class="pill pill-outline glass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Voos nacionais e internacionais</span>
         <span class="pill pill-outline glass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Atendimento humano</span>
@@ -304,6 +309,7 @@ footer strong{color:rgba(255,255,255,.55)}
         </a>
         <a href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20cotar%20uma%20passagem." class="pill glass" style="color:#fff;font-size:15px;padding:17px 26px">Falar no WhatsApp</a>
       </div>
+      <p class="hero-proof">Agência Cadastur<span>·</span>Emissão oficial<span>·</span>Pagamento seguro</p>
     </div>
 
     <div class="hero-visual">
