@@ -215,6 +215,23 @@ footer strong{color:rgba(255,255,255,.55)}
   .vn-right{text-align:left}
   .nav-phone{display:none}
 }
+
+/* telas muito estreitas: evita a logo encostar no botao */
+@media(max-width:420px){
+  nav{padding:14px 16px}
+  .logo{font-size:18px}
+  .nav-btn{padding:10px 16px;font-size:13px}
+}
+/* popup nunca pode passar da altura da tela */
+#popup-overlay{padding:16px;overflow-y:auto}
+#popup-box{max-height:calc(100vh - 32px);overflow-y:auto}
+@media(max-height:700px){
+  .popup-top{padding:22px 24px 16px}
+  .popup-bottom{padding:20px 24px}
+  .popup-top h2{font-size:21px}
+  .popup-benefit{margin-bottom:14px}
+  .popup-timer{margin-bottom:12px}
+}
 </style>
 </head>
 <body>
