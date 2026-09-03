@@ -91,7 +91,7 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .hero-cta small{font-size:11.5px;font-weight:600;opacity:.75;margin-top:3px;font-family:'Open Sans',sans-serif}
 .hero-proof{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:26px;font-family:'Montserrat',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:rgba(255,255,255,.34)}
 .hero-proof span{color:rgba(245,197,24,.5)}
-.hero-visual{flex:1;position:relative;height:520px;min-width:380px}
+.hero-visual{flex:1;position:relative;height:620px;min-width:380px}
 .hv-main{position:absolute;top:20px;left:20px;width:400px;border-radius:24px;padding:26px}
 .hv-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
 .hv-tag{background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.35);color:#F5C518;font-size:11px;letter-spacing:1px;padding:6px 14px}
@@ -103,6 +103,12 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .hv-mini{position:absolute;width:195px;border-radius:18px;padding:18px}
 .hv-mini-label{font-size:11px;color:rgba(255,255,255,.5);letter-spacing:.5px;margin-bottom:8px}
 .hv-mini-num{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;color:#fff}
+.hv-brand{position:absolute;width:405px;border-radius:20px;padding:20px 22px;background:linear-gradient(135deg,#F5C518,#D9A70F);box-shadow:0 18px 38px rgba(245,197,24,.20)}
+.hv-brand-logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:19px;color:#0B1F6B;display:inline-flex;align-items:baseline;letter-spacing:-.2px;margin-bottom:7px}
+.hv-brand-logo .idot{position:relative;display:inline-block}
+.hv-brand-logo .idot::after{content:'';position:absolute;top:.20em;left:50%;transform:translateX(-50%);width:.17em;height:.17em;border-radius:50%;background:#fff}
+.hv-brand-logo .sep{color:#fff;margin:0 4px}
+.hv-brand p{font-size:13px;line-height:1.5;color:rgba(11,31,107,.8);font-weight:600}
 
 .sec{padding:120px 40px;width:100%;position:relative}
 .sec-inner{max-width:1312px;margin:0 auto;position:relative;z-index:2}
@@ -217,6 +223,7 @@ footer strong{color:rgba(255,255,255,.55)}
   .hero-visual::-webkit-scrollbar{display:none}
   .hv-main{display:none}
   .hv-mini{position:static;flex:0 0 auto;width:168px;scroll-snap-align:start}
+  .hv-brand{position:static;flex:0 0 auto;width:250px;scroll-snap-align:start}
   .ps-wrap{flex-direction:column}
 }
 @media(max-width:768px){
@@ -385,6 +392,10 @@ footer strong{color:rgba(255,255,255,.55)}
       <div class="glass hv-mini" style="top:370px;left:210px">
         <div class="hv-mini-label">AGÊNCIA CERTIFICADA</div>
         <div class="hv-mini-num" style="color:#F5C518">Cadastur</div>
+      </div>
+      <div class="hv-brand" style="top:480px;left:0">
+        <div class="hv-brand-logo">Onl<span class="idot">ı</span>Fly<span class="sep">•</span>Viagens</div>
+        <p>Curadoria, praticidade e atenção em cada etapa da sua viagem.</p>
       </div>
     </div>
   </div>
