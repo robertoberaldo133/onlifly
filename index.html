@@ -115,10 +115,6 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .sec-label{display:block;text-align:center;font-family:'Montserrat',sans-serif;font-weight:700;font-size:11px;letter-spacing:2.2px;color:#F5C518;margin-bottom:12px}
 .sec h2{text-align:center;font-family:'Montserrat',sans-serif;font-size:clamp(26px,4vw,36px);font-weight:900;color:#fff;margin-bottom:48px;line-height:1.2;letter-spacing:-.5px}
 
-.dest-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:760px;margin:0 auto}
-.dest-card{border-radius:20px;padding:32px}
-.dest-card h3{font-family:'Montserrat',sans-serif;font-weight:700;font-size:17px;color:#fff;margin:16px 0 10px}
-.dest-card p{font-size:14px;color:rgba(255,255,255,.6);line-height:1.65}
 
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .step{border-radius:20px;padding:32px}
@@ -140,21 +136,35 @@ nav{background:rgba(6,11,36,.85);backdrop-filter:blur(10px);-webkit-backdrop-fil
 .ps-check strong{display:block;font-family:'Montserrat',sans-serif;font-size:15px;color:#fff;margin-bottom:2px}
 .ps-check span{font-size:13.5px;color:rgba(255,255,255,.55)}
 
-.vn-card{max-width:1000px;margin:0 auto;background:linear-gradient(160deg,#0E1548,#0B1230);border:1px solid rgba(245,197,24,.25);border-radius:28px;padding:52px 56px;position:relative;overflow:hidden}
-.vn-glow{position:absolute;top:-140px;right:-100px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(245,197,24,.12),transparent 70%);pointer-events:none}
-.vn-inner{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap}
-.vn-left{flex:1;min-width:320px}
-.vn-tag{background:rgba(245,197,24,.15);border:1px solid rgba(245,197,24,.35);color:#F5C518;font-size:11px;letter-spacing:1.5px;padding:7px 16px;margin-bottom:20px}
-.vn-left h2{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(24px,3.2vw,34px);color:#fff;margin:0 0 14px;line-height:1.15;text-align:left}
-.vn-left p{font-size:15px;color:rgba(255,255,255,.6);line-height:1.65;margin:0 0 20px;max-width:420px}
-.vn-tags{display:flex;gap:10px;flex-wrap:wrap}
-.vn-tag-sm{color:rgba(255,255,255,.8);font-size:12px;padding:7px 14px;font-family:'Open Sans',sans-serif;font-weight:600}
-.vn-right{text-align:right;flex-shrink:0}
-.vn-price{font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(30px,3vw,42px);color:#F5C518;line-height:1}
-.vn-sub{font-size:12px;color:rgba(255,255,255,.5);margin:6px 0 4px}
-.vn-sub2{font-size:12px;color:rgba(255,255,255,.4);margin-bottom:18px}
-.vn-cta{font-size:15px;padding:16px 32px}
-.vn-deadline{font-size:11px;color:rgba(255,255,255,.35);margin-top:12px}
+/* vitrine de destinos */
+.dest-showcase{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.dcard{position:relative;border-radius:22px;overflow:hidden;min-height:450px;display:flex;
+  flex-direction:column;justify-content:flex-end;border:1px solid rgba(255,255,255,.10);
+  text-decoration:none;isolation:isolate;transition:border-color .3s ease,transform .3s ease}
+.dcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  transition:transform .6s cubic-bezier(.2,.7,.3,1)}
+.dcard::after{content:'';position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(6,11,36,.14) 0%,rgba(6,11,36,.52) 46%,rgba(6,11,36,.95) 100%)}
+.dcard:hover{border-color:rgba(245,197,24,.45);transform:translateY(-4px)}
+.dcard:hover img{transform:scale(1.06)}
+.dcard:focus-visible{outline:2px solid #F5C518;outline-offset:3px}
+.dcard-in{position:relative;z-index:2;padding:28px 24px 26px;display:flex;flex-direction:column;gap:11px}
+.dcard-tag{align-self:flex-start;background:rgba(245,197,24,.16);border:1px solid rgba(245,197,24,.42);
+  color:#F5C518;font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:1.6px;
+  padding:6px 13px;border-radius:999px;text-transform:uppercase}
+.dcard h3{font-family:'Montserrat',sans-serif;font-weight:900;font-size:25px;color:#fff;
+  letter-spacing:-.6px;margin:0;line-height:1.1}
+.dcard p{font-size:13.5px;line-height:1.62;color:rgba(255,255,255,.78);margin:0}
+.dcard-cta{display:inline-flex;align-items:center;gap:8px;margin-top:3px;color:#F5C518;
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px}
+.dcard-cta svg{transition:transform .3s ease}
+.dcard:hover .dcard-cta svg{transform:translateX(4px)}
+.dest-foot{text-align:center;margin-top:30px;font-size:14.5px;color:rgba(255,255,255,.55);
+  line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto}
+.dest-foot strong{color:rgba(255,255,255,.88);font-weight:600}
+@media(max-width:1100px){.dest-showcase{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){.dcard,.dcard img,.dcard-cta svg{transition:none}
+  .dcard:hover{transform:none}.dcard:hover img{transform:none}}
 
 .form-box{max-width:600px;margin:0 auto;border-radius:24px;padding:48px;border-color:rgba(245,197,24,.25)!important}
 .form-box h2{font-family:'Montserrat',sans-serif;font-size:28px;font-weight:900;color:#fff;text-align:center;margin-bottom:8px}
@@ -234,14 +244,13 @@ footer strong{color:rgba(255,255,255,.55)}
   .sec h2{margin-bottom:32px}
   .cta-final{padding-top:56px;padding-bottom:56px}
   .selos{padding-top:60px}
-  .steps,.dest-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
   .form-box{padding:28px 20px}
   .selos-grid{flex-direction:column;align-items:center}
   .popup-top,.popup-bottom{padding:24px 20px}
-  .vn-card{padding:36px 24px}
-  .vn-inner{flex-direction:column}
-  .vn-left{min-width:0}
-  .vn-right{text-align:left}
+  .dest-showcase{grid-template-columns:1fr;gap:14px}
+  .dcard{min-height:330px}
+  .dcard h3{font-size:23px}
   .nav-phone{display:none}
 }
 
@@ -345,10 +354,10 @@ footer strong{color:rgba(255,255,255,.55)}
     <div class="hero-text">
       <span class="pill glass badge">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2 3 8l6.5 4.5-3 3.5H3l-1 3 3-1 1.5-3.5L11 20l2-1.8z"/></svg>
-        Passagens Nacionais e Internacionais com o Menor Preço
+        Passagens Nacionais e Internacionais · Agência Cadastur
       </span>
       <h1>Viaje mais,<br><span>pague menos.</span></h1>
-      <p class="hero-p">Encontramos as melhores passagens nacionais e internacionais para você — com <strong>atendimento 100% personalizado</strong> e preços que as grandes plataformas não conseguem bater.</p>
+      <p class="hero-p">Um consultor busca a sua passagem nas principais companhias aéreas parceiras, compara bagagem, escalas e regras de remarcação, e devolve a cotação <strong>por escrito em até 30 minutos</strong>. Grátis e sem compromisso.</p>
       <div class="pills">
         <span class="pill pill-outline glass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Voos nacionais e internacionais</span>
         <span class="pill pill-outline glass"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Atendimento humano</span>
@@ -370,14 +379,14 @@ footer strong{color:rgba(255,255,255,.55)}
           <span class="pill hv-tag">OFERTA ATIVA</span>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2 3 8l6.5 4.5-3 3.5H3l-1 3 3-1 1.5-3.5L11 20l2-1.8z"/></svg>
         </div>
-        <div class="hv-route"><span>Você</span><span>Santiago, Chile</span></div>
+        <div class="hv-route"><span>Você</span><span>Europa, Grécia, Dubai, Miami</span></div>
         <div class="hv-line"><div class="hv-dot" style="left:0"></div><div class="hv-dot" style="right:0"></div></div>
         <div style="display:flex;align-items:flex-end;justify-content:space-between">
           <div>
-            <div class="hv-price-label">PACOTE VALE NEVADO</div>
-            <div class="hv-price">R$ 4.890</div>
+            <div class="hv-price-label">JANELA DE COMPRA ABERTA</div>
+            <div class="hv-price">até 50% off</div>
           </div>
-          <a href="#vale-nevado" class="pill" style="background:#fff;color:#0B1F6B;font-size:12px;padding:10px 18px">Ver pacote</a>
+          <a href="#destinos" class="pill" style="background:#fff;color:#0B1F6B;font-size:12px;padding:10px 18px">Ver destinos</a>
         </div>
       </div>
       <div class="glass hv-mini" style="top:225px;left:0">
@@ -404,49 +413,62 @@ footer strong{color:rgba(255,255,255,.55)}
   </div>
 </section>
 
-<section class="sec" id="vale-nevado">
-  <div class="sec-inner">
-    <div class="vn-card">
-      <div class="vn-glow"></div>
-      <div class="vn-inner">
-        <div class="vn-left">
-          <span class="pill vn-tag">OFERTA EM DESTAQUE</span>
-          <h2>Pacote Vale Nevado · Chile</h2>
-          <p>4 dias no Chile com 1 dia de Ski Day completo, hospedagem 4 estrelas com café da manhã, transporte van 4x4 e guia bilíngue.</p>
-          <div class="vn-tags">
-            <span class="pill glass vn-tag-sm">Ski Day completo</span>
-            <span class="pill glass vn-tag-sm">Guia bilíngue</span>
-            <span class="pill glass vn-tag-sm">Transporte van 4x4</span>
-          </div>
-        </div>
-        <div class="vn-right">
-          <div class="vn-price">R$ 4.890</div>
-          <div class="vn-sub">PIX à vista · 2 pessoas</div>
-          <div class="vn-sub2">ou R$ 5.699 em até 10x sem juros</div>
-          <a href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OnliFly%20Viagens%20e%20quero%20saber%20mais%20sobre%20o%20Pacote%20Vale%20Nevado." class="pill btn-gold vn-cta">Quero essa oferta</a>
-          <div class="vn-deadline">Oferta válida até 20/09/2026</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="sec">
+<section class="sec" id="destinos">
   <div class="sec-inner">
     <span class="sec-label">ONDE VOCÊ QUER IR?</span>
-    <h2>Voos nacionais e internacionais</h2>
-    <div class="dest-grid">
-      <div class="glass dest-card">
-        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0 1 19 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg></div>
-        <h3>Destinos Nacionais</h3>
-        <p>São Paulo, Rio de Janeiro, Fortaleza, Salvador, Recife, Maceió, Natal, Foz do Iguaçu, Porto Alegre, Brasília e muito mais. Cobrimos o Brasil inteiro.</p>
-      </div>
-      <div class="glass dest-card">
-        <div class="icon-badge"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.8 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.8-3.8-9S9.5 5.5 12 3z"/></svg></div>
-        <h3>Destinos Internacionais</h3>
-        <p>Europa, América do Norte, América do Sul, Caribe e além. Encontramos as melhores tarifas para o destino internacional que você sempre sonhou.</p>
-      </div>
+    <h2>Quatro destinos com a janela de compra aberta agora</h2>
+    <div class="dest-showcase">
+
+      <a class="dcard" href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20cota%C3%A7%C3%A3o%20para%20a%20Europa.">
+        <img src="site-img/europa.jpg" alt="Bondinho amarelo numa rua de Lisboa ao entardecer" loading="lazy" width="760" height="950">
+        <div class="dcard-in">
+          <span class="dcard-tag">Setembro e outubro</span>
+          <h3>Europa</h3>
+          <p>O verão europeu acabou. As multidões foram embora, os hotéis esvaziaram e as tarifas caíram &mdash; com o clima ainda bom para caminhar o dia inteiro.</p>
+          <span class="dcard-cta">Cotar Europa
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="dcard" href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20cota%C3%A7%C3%A3o%20para%20a%20Gr%C3%A9cia.">
+        <img src="site-img/grecia.jpg" alt="Casas brancas e cúpulas azuis de Santorini ao pôr do sol" loading="lazy" width="760" height="950">
+        <div class="dcard-in">
+          <span class="dcard-tag">Temporada 2027</span>
+          <h3>Grécia</h3>
+          <p>Julho e agosto são o pico: ilha lotada e tarifa no topo. Quem fecha agora viaja em maio, com o mar já bom e Oia sem fila.</p>
+          <span class="dcard-cta">Cotar Grécia
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="dcard" href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20cota%C3%A7%C3%A3o%20para%20Dubai.">
+        <img src="site-img/dubai.jpg" alt="Skyline de Dubai ao entardecer refletido na água" loading="lazy" width="760" height="950">
+        <div class="dcard-in">
+          <span class="dcard-tag">Antes da alta</span>
+          <h3>Dubai</h3>
+          <p>A melhor época vai de novembro a março, quando o calor dá trégua &mdash; e é justamente a mais cara. Fechar antes é comprar na frente da curva.</p>
+          <span class="dcard-cta">Cotar Dubai
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a class="dcard" href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20cota%C3%A7%C3%A3o%20para%20Miami.">
+        <img src="site-img/miami.jpg" alt="Calçadão de South Beach em Miami com palmeiras ao pôr do sol" loading="lazy" width="760" height="950">
+        <div class="dcard-in">
+          <span class="dcard-tag">Antes do fim de ano</span>
+          <h3>Miami</h3>
+          <p>A temporada de furacões está acabando e o turista de fim de ano ainda não chegou. Quando a alta começa, tudo sobe de uma vez.</p>
+          <span class="dcard-cta">Cotar Miami
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#F5C518" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
     </div>
+    <p class="dest-foot">Estes são os destinos com melhor janela de compra hoje. <strong>Emitimos para o Brasil inteiro e para qualquer destino internacional</strong> &mdash; conte para onde você quer ir e a gente busca.</p>
   </div>
 </section>
 
