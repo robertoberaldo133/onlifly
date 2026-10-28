@@ -120,7 +120,8 @@ ul.lst li b{color:var(--ink)}
   letter-spacing:-1px;line-height:1.05}
 .valor .p{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13.5px;
   color:var(--navy);margin-top:3px}
-.valor .pb{font-size:11.5px;color:var(--ink2);margin-top:3px}
+.valor .pb{font-size:11.5px;color:var(--ink2);margin-top:3px;line-height:1.55}
+.valor .pb s{color:var(--muted)}
 .valor .pc{font-size:11.5px;color:var(--ink2);margin-top:2px}
 
 /* certificado Cadastur, em pagina propria no PDF */
@@ -276,8 +277,9 @@ ul.lst li b{color:var(--ink)}
 
       <fieldset>
         <legend>Valor</legend>
-        <div class="row c2">
+        <div class="row c3">
           <div><label for="total">Só a passagem (R$)</label><input id="total"></div>
+          <div><label for="desc">Desconto %</label><input id="desc" value="39,5"></div>
           <div><label for="parc">Parcelar em até</label><input id="parc" value="10"></div>
         </div>
         <div class="row"><div><label for="inclui">O que está incluso</label><input id="inclui" value="Passagem aérea ida e volta, taxas e bagagem descrita acima"></div></div>
@@ -689,7 +691,7 @@ function moeda(n){ return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maxi
    da agencia e ficam */
 function limpaCampos(){
   Array.prototype.forEach.call($('f').querySelectorAll('input,textarea'), function(el){
-    if(el.id === 'parc' || el.id === 'consultor' || el.id === 'regras' || el.id === 'inclui') return;
+    if(el.id === 'parc' || el.id === 'desc' || el.id === 'consultor' || el.id === 'regras' || el.id === 'inclui') return;
     el.value = '';
   });
 }
@@ -806,7 +808,11 @@ function render(){
   $('bl_rec').style.display = rec ? '' : 'none';
   txt('o_rec', rec);
 
-  var passagem = parseFloat(String($('total').value||'').replace(/\./g,'').replace(',','.'));
+  var cheia = parseFloat(String($('total').value||'').replace(/\./g,'').replace(',','.'));
+  var pct = parseFloat(String($('desc').value||'').replace(',','.'));
+  /* o desconto incide sobre a passagem; a taxa de despacho entra pelo valor cheio */
+  var temDesc = isFinite(cheia) && isFinite(pct) && pct > 0;
+  var passagem = temDesc ? Math.round(cheia * (1 - pct/100) * 100)/100 : cheia;
   var vmala = parseFloat(String($('b_valor').value||'').replace(/\./g,'').replace(',','.'));
   var c = contaMalas(), malas = c.total;
   var bagagem = (isFinite(vmala) && malas > 0) ? malas * vmala : 0;
@@ -820,14 +826,19 @@ function render(){
     : '—';
 
   txt('o_total', isFinite(passagem) ? moeda(geral) : '—');
-  if(isFinite(passagem) && bagagem > 0){
-    $('o_detalhe').style.display = '';
-    txt('o_detalhe', 'Passagem R$ ' + moeda(passagem) + ' · ' + malas +
-      (malas > 1 ? ' despachos de bagagem' : ' despacho de bagagem') + ' R$ ' + moeda(bagagem));
-  } else {
-    $('o_detalhe').style.display = 'none';
-    txt('o_detalhe', '');
+
+  var linhas = [];
+  if(temDesc){
+    var antes = cheia + bagagem;
+    linhas.push('De <s>R$ ' + moeda(antes) + '</s> · economia de R$ ' +
+      moeda(antes - geral) + ' (' + String($('desc').value).replace('.',',') + '%)');
   }
+  if(isFinite(passagem) && bagagem > 0){
+    linhas.push('Passagem R$ ' + moeda(passagem) + ' · ' + malas +
+      (malas > 1 ? ' despachos de bagagem' : ' despacho de bagagem') + ' R$ ' + moeda(bagagem));
+  }
+  $('o_detalhe').style.display = linhas.length ? '' : 'none';
+  $('o_detalhe').innerHTML = linhas.join('<br>');
   txt('o_pagto', pagamento(parseInt($('parc').value,10)));
 
   txt('o_inclui', $('inclui').value || '—');
@@ -854,7 +865,7 @@ var EXEMPLO = [
    ali mesmo. Em aba anonima o acesso falha, e ai so volta ao padrao.
    O mesmo vale para a bagagem: a selecao fica fixa entre uma cotacao e outra e
    o consultor so mexe quando o caso muda. */
-var LEMBRAR = ['consultor','b_desp','b_qtd','b_trecho','b_pax','b_valor'];
+var LEMBRAR = ['consultor','b_desp','b_qtd','b_trecho','b_pax','b_valor','desc'];
 LEMBRAR.forEach(function(id){
   try{
     var salvo = localStorage.getItem('onlifly-' + id);
