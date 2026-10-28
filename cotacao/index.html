@@ -520,37 +520,41 @@ function bagagemTexto(linhas){
 }
 
 /* Bagagem de mao NAO e igual em todas as companhias: a TAP libera 10 kg de mao
-   com item pessoal de so 2 kg, enquanto GOL e LATAM dao 12 kg mais 10 kg.
-   Num trecho com duas companhias vale a menor, porque e conferida em cada portao. */
+   com item pessoal de so 2 kg, a Emirates conta tudo numa peca so, e a American
+   nao publica limite de peso. Num trecho com duas companhias vale a menor,
+   porque a bagagem e conferida em cada portao.
+   kg serve so para ordenar da mais restritiva para a mais generosa. */
 var BAGMAO = {
-  'GOL':   {mao:12, pessoal:10},
-  'LATAM': {mao:12, pessoal:10},
-  'Azul':  {mao:10, pessoal:10},
-  'TAP Air Portugal': {mao:10, pessoal:2}
+  'GOL':   {kg:12, txt:'1 mala de mão de 12 kg e 1 item pessoal de 10 kg por passageiro'},
+  'LATAM': {kg:12, txt:'1 mala de mão de 12 kg e 1 item pessoal de 10 kg por passageiro'},
+  'Azul':  {kg:10, txt:'1 mala de mão de 10 kg e 1 item pessoal por passageiro'},
+  'TAP Air Portugal': {kg:10, txt:'1 mala de mão de 10 kg e 1 item pessoal de 2 kg por passageiro'},
+  'Air Europa':       {kg:10, txt:'1 mala de mão de 10 kg e 1 item pessoal por passageiro'},
+  /* regra oficial da Emirates: 10 kg nos voos que saem do Brasil, 7 kg nos demais */
+  'Emirates': {kg:7, txt:'1 peça de mão de 10 kg saindo do Brasil e 7 kg nos demais trechos, contando bolsa e mochila'},
+  'American Airlines': {kg:99, txt:'1 mala de mão e 1 item pessoal por passageiro, sem limite de peso'}
 };
 var BR = ['GRU','CGH','VCP','GIG','SDU','BSB','CNF','PLU','SSA','REC','FOR','NAT','MCZ',
   'JPA','AJU','SLZ','BEL','MAO','CWB','FLN','NVT','POA','IGU','VIX','CGB','CGR','GYN',
   'THE','PMW'];
 
 function bagagemDeMao(cias){
-  var mao = null, pes = null, i, r;
+  var pior = null, i, r;
   for(i=0;i<cias.length;i++){
     r = BAGMAO[cias[i]];
-    if(!r) return null;
-    if(mao === null || r.mao < mao) mao = r.mao;
-    if(pes === null || r.pessoal < pes) pes = r.pessoal;
+    if(!r) return null;                     /* companhia fora da tabela: nao inventa */
+    if(!pior || r.kg < pior.kg) pior = r;
   }
-  if(mao === null) return null;
-  return '1 mala de mão de ' + mao + ' kg e 1 item pessoal de ' + pes + ' kg por passageiro';
+  return pior ? pior.txt : null;
 }
 
 function limitesDiferentes(cias){
-  var vistos = {}, i, r;
+  var vistos = {}, i, r, n = 0, k;
   for(i=0;i<cias.length;i++){
     r = BAGMAO[cias[i]];
-    if(r) vistos[r.mao + '/' + r.pessoal] = 1;
+    if(r) vistos[r.txt] = 1;
   }
-  var n = 0, k; for(k in vistos) n++;
+  for(k in vistos) n++;
   return n > 1;
 }
 
