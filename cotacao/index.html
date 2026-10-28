@@ -343,7 +343,9 @@ var AERO = {GRU:'São Paulo',CGH:'São Paulo',VCP:'Campinas',GIG:'Rio de Janeiro
   FOR:'Fortaleza',NAT:'Natal',MCZ:'Maceió',JPA:'João Pessoa',AJU:'Aracaju',SLZ:'São Luís',
   BEL:'Belém',MAO:'Manaus',CWB:'Curitiba',FLN:'Florianópolis',NVT:'Navegantes',
   POA:'Porto Alegre',IGU:'Foz do Iguaçu',VIX:'Vitória',CGB:'Cuiabá',CGR:'Campo Grande',
-  GYN:'Goiânia',THE:'Teresina',PMW:'Palmas',
+  GYN:'Goiânia',THE:'Teresina',PMW:'Palmas',JJD:'Jericoacoara',BPS:'Porto Seguro',
+  IOS:'Ilhéus',FEN:'Fernando de Noronha',JPR:'Ji-Paraná',MCP:'Macapá',PVH:'Porto Velho',
+  RBR:'Rio Branco',BVB:'Boa Vista',
   LIS:'Lisboa',OPO:'Porto',MAD:'Madri',BCN:'Barcelona',CDG:'Paris',ORY:'Paris',
   FCO:'Roma',MXP:'Milão',LIN:'Milão',VCE:'Veneza',NAP:'Nápoles',FLR:'Florença',
   ATH:'Atenas',JTR:'Santorini',JMK:'Mykonos',HER:'Creta',
@@ -395,17 +397,25 @@ function dataDe(l){
 
 /* ===================== leitor ===================== */
 function ler(txt){
-  var L = txt.split(/\r?\n/).map(function(s){ return s.trim() });
-  var secao = null, datas = {}, pontos = {ida:[],volta:[]}, cias = {ida:[],volta:[]},
-      paradas = {ida:[],volta:[]}, bag = [], sobra = [],
+  /* tira marcador de lista, que a pagina as vezes cola junto */
+  var L = txt.split(/\r?\n/).map(function(s){ return s.replace(/^[•·*•]+\s*/,'').trim() });
+  var secao = null, nTrecho = 0,
+      datas = {}, pontos = {ida:[],volta:[],extra:[]}, cias = {ida:[],volta:[],extra:[]},
+      paradas = {ida:[],volta:[],extra:[]}, bag = [], sobra = [],
       total = null, iTotal = -1, pax = '', cliente = '';
 
   for(var i=0;i<L.length;i++){
     var l = L[i];
     if(!l) continue;
 
-    if(/^voo de ida|^ida$|^trecho de ida/i.test(l)){ secao='ida'; continue }
-    if(/^voo de volta|^voo de regresso|^volta$|^trecho de volta/i.test(l)){ secao='volta'; continue }
+    if(/^voo de ida|^ida$|^trecho de ida/i.test(l)){ secao='ida'; nTrecho=Math.max(nTrecho,1); continue }
+    if(/^voo de volta|^voo de regresso|^volta$|^trecho de volta/i.test(l)){ secao='volta'; nTrecho=Math.max(nTrecho,2); continue }
+    /* itinerario multi-trecho: a pagina numera "Voo 1", "Voo 2", ... */
+    if(/^(voo|trecho)\s*\d+\b/i.test(l)){
+      nTrecho++;
+      secao = nTrecho === 1 ? 'ida' : (nTrecho === 2 ? 'volta' : 'extra');
+      continue;
+    }
 
     var d = dataDe(l);
     if(d){ if(secao && !datas[secao]) datas[secao]=d; else sobra.push(l); continue }
@@ -479,7 +489,8 @@ function ler(txt){
   return {
     ida: trecho(pontos.ida, cias.ida, paradas.ida, datas.ida),
     volta: trecho(pontos.volta, cias.volta, paradas.volta, datas.volta),
-    cliente: cliente, pax: pax, bag: bag, total: total, sobra: sobra
+    cliente: cliente, pax: pax, bag: bag, total: total, sobra: sobra,
+    demais: nTrecho > 2 ? nTrecho - 2 : 0
   };
 }
 
@@ -536,7 +547,7 @@ var BAGMAO = {
 };
 var BR = ['GRU','CGH','VCP','GIG','SDU','BSB','CNF','PLU','SSA','REC','FOR','NAT','MCZ',
   'JPA','AJU','SLZ','BEL','MAO','CWB','FLN','NVT','POA','IGU','VIX','CGB','CGR','GYN',
-  'THE','PMW'];
+  'THE','PMW','JJD','BPS','IOS','FEN','JPR','MCP','PVH','RBR','BVB'];
 
 function bagagemDeMao(cias){
   var pior = null, i, r;
@@ -591,20 +602,22 @@ function aplicar(){
 
   if(!r.ida) av.push('Não encontrei nenhum voo. Confira se copiou o bloco inteiro da página.');
   if(r.ida && !r.volta) av.push('Só encontrei a ida. Se a viagem tem volta, copie a página inteira.');
+  if(r.demais) av.push('O itinerário tem ' + (r.demais + 2) + ' trechos e a cotação mostra 2. ' +
+    'Monte uma cotação por par de trechos, ou me peça para incluir os demais.');
   if(r.ida && r.ida.data) av.push('Confira o ano das datas: a pesquisa não informa, eu deduzi pelo calendário.');
   if(!r.cliente) av.push('Nome do cliente não encontrado. Digite abaixo.');
   if(r.total === null) av.push('Valor não encontrado. Digite abaixo.');
-  var bt = bags.join(' ');
-  if(!bags.length){
-    av.push('Bagagem não encontrada. Preencha antes de enviar.');
-  } else {
-    if(/apenas/i.test(bt))
-      av.push('A bagagem despachada não vale para todos. Deixe claro na cotação para quem vale.');
-    else if(!/\d+\s*(kg|quilo)/i.test(bt))
-      av.push('A bagagem não diz quantos quilos. Complete antes de enviar.');
-    if(!/m[ãa]o/i.test(bt))
-      av.push('Falta a bagagem de mão. Não conheço o limite dessa companhia, preencha à mão.');
-  }
+  /* despachada e mao sao conferidas separado: a de mao vem da tabela de companhias
+     e nao pode mascarar a falta da despachada */
+  var desp = bags.filter(function(l){ return /despachad/i.test(l) }).join(' ');
+  if(!desp)
+    av.push('A pesquisa não diz nada sobre bagagem despachada. Confirme e preencha antes de enviar.');
+  else if(/apenas/i.test(desp))
+    av.push('A bagagem despachada não vale para todos. Deixe claro na cotação para quem vale.');
+  else if(!/\d+\s*(kg|quilo)/i.test(desp))
+    av.push('A bagagem despachada não diz quantos quilos. Complete antes de enviar.');
+  if(!/m[ãa]o/i.test(bags.join(' ')))
+    av.push('Falta a bagagem de mão. Não conheço o limite dessa companhia, preencha à mão.');
   if(bm && limitesDiferentes(cias))
     av.push('As companhias do trecho têm limites de mão diferentes. Usei o menor, que é o que vale no portão.');
   var dest = r.ida ? r.ida.destino : null;
