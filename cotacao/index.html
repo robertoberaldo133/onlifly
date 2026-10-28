@@ -1,0 +1,719 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cotação OnliFly</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Open+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root{
+  --navy:#0B1F6B; --deep:#071238; --gold:#B8890A; --gold-lt:#FBF2D6;
+  --ink:#16203C; --ink2:#44527A; --muted:#78839F; --line:#D9DFEE; --bg:#EEF1F8;
+  --warn:#8A5A00; --warn-bg:#FFF6E0; --warn-br:#F0D28A;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Open Sans',system-ui,sans-serif;font-size:14px;line-height:1.5}
+
+.app{display:grid;grid-template-columns:420px 1fr;gap:22px;padding:22px;align-items:start}
+.app>*{min-width:0}
+.col{position:sticky;top:22px;max-height:calc(100vh - 44px);overflow-y:auto;
+  display:flex;flex-direction:column;gap:14px}
+
+.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:20px}
+.card h2{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;color:var(--navy);
+  margin:0 0 4px;letter-spacing:-.2px}
+.card .hint{font-size:12px;color:var(--muted);margin:0 0 12px}
+
+#bruto{width:100%;min-height:180px;resize:vertical;border:1px solid var(--line);
+  border-radius:4px;padding:10px;font-family:'IBM Plex Mono',monospace;font-size:12px;
+  line-height:1.55;color:var(--ink);background:#FBFCFE}
+#bruto:focus{outline:2px solid var(--gold);outline-offset:-1px}
+
+fieldset{border:0;padding:0;margin:0 0 16px}
+legend{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--gold);padding:0;margin-bottom:8px}
+label{display:block;font-size:11px;font-weight:700;color:var(--ink2);margin:0 0 3px}
+input,textarea,select{width:100%;min-width:0;border:1px solid var(--line);border-radius:4px;
+  padding:7px 9px;font-family:inherit;font-size:13px;color:var(--ink);background:#fff}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--gold);outline-offset:-1px;border-color:var(--gold)}
+textarea{resize:vertical;min-height:52px}
+.row{display:grid;gap:8px;margin-bottom:8px}
+.row.c2{grid-template-columns:1fr 1fr}
+.row.c3{grid-template-columns:1fr 1fr 1fr}
+.acts{display:flex;gap:8px}
+button{flex:1;border:0;border-radius:999px;padding:11px;cursor:pointer;
+  font-family:'Montserrat',sans-serif;font-weight:800;font-size:12.5px;letter-spacing:.3px}
+.b1{background:var(--navy);color:#fff}
+.b2{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.avisos{background:var(--warn-bg);border:1px solid var(--warn-br);border-radius:6px;
+  padding:12px 14px;font-size:12.5px;color:var(--warn)}
+.avisos b{display:block;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.8px;
+  text-transform:uppercase;margin-bottom:6px}
+.avisos ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px}
+.avisos.ok{background:#EAF6EE;border-color:#B4DCC2;color:#1E6B3A}
+details.sobra{font-size:12px;color:var(--muted);margin-top:10px}
+details.sobra summary{cursor:pointer;font-weight:700}
+details.sobra pre{white-space:pre-wrap;word-break:break-word;font-family:'IBM Plex Mono',monospace;
+  font-size:10.5px;background:#F6F8FC;border-radius:4px;padding:8px;margin:7px 0 0;max-height:170px;overflow:auto}
+
+/* ---------- cotação ---------- */
+.sheet{background:#fff;border:1px solid var(--line);border-radius:6px;
+  padding:34px 38px 30px;max-width:780px}
+.top{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+  border-bottom:2.5px solid var(--navy);padding-bottom:14px;margin-bottom:20px}
+.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:21px;color:var(--navy);
+  letter-spacing:-.5px;display:inline-flex;align-items:baseline}
+.logo .idot{position:relative;display:inline-block}
+.logo .idot::after{content:'';position:absolute;top:.20em;left:50%;transform:translateX(-50%);
+  width:.17em;height:.17em;border-radius:50%;background:#E0A800}
+.logo .sep{color:#E0A800;margin:0 .26em}
+.logo .g{color:var(--gold)}
+.top .meta{text-align:right;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+  color:var(--muted);line-height:1.7}
+.top .meta b{color:var(--ink)}
+
+h1{font-family:'Montserrat',sans-serif;font-size:25px;font-weight:900;color:var(--navy);
+  margin:0 0 3px;letter-spacing:-.6px}
+.para{font-size:13px;color:var(--ink2);margin:0 0 20px}
+.para b{color:var(--navy)}
+
+.sec{margin-bottom:18px;page-break-inside:avoid}
+.sec-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line);
+  padding-bottom:5px;margin-bottom:10px}
+
+.voo{display:grid;grid-template-columns:62px minmax(0,1fr);gap:12px;margin-bottom:12px}
+.voo .dia{font-family:'Montserrat',sans-serif;font-weight:900;font-size:11px;color:#fff;
+  background:var(--navy);border-radius:4px;padding:8px 4px;text-align:center;line-height:1.25;
+  align-self:start}
+.voo .dia small{display:block;font-weight:700;font-size:9px;opacity:.75;letter-spacing:.5px}
+.rota{font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;color:var(--ink);
+  letter-spacing:-.3px;margin-bottom:2px}
+.det{font-size:12.5px;color:var(--ink2)}
+.det span{color:var(--muted)}
+
+ul.lst{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:5px}
+ul.lst li{font-size:12.5px;color:var(--ink2)}
+ul.lst li b{color:var(--ink)}
+
+.rec{background:#F6F8FC;border-left:3px solid var(--gold);border-radius:0 5px 5px 0;
+  padding:11px 14px;font-size:12.5px;color:var(--ink2);page-break-inside:avoid;margin:0}
+.rec b{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:1.2px;
+  text-transform:uppercase;color:var(--gold);display:block;margin-bottom:3px}
+
+.valor{background:var(--gold-lt);border:1.5px solid #E6D08C;border-radius:6px;
+  padding:16px 20px;display:flex;align-items:center;justify-content:space-between;
+  gap:18px;flex-wrap:wrap;page-break-inside:avoid}
+.valor .k{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:1.4px;
+  text-transform:uppercase;color:var(--gold)}
+.valor .v{font-family:'Montserrat',sans-serif;font-weight:900;font-size:30px;color:var(--navy);
+  letter-spacing:-1px;line-height:1.05}
+.valor .p{font-size:12.5px;color:var(--ink2);margin-top:2px}
+.valor .p b{color:var(--navy)}
+
+.obs{font-size:11.5px;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);
+  margin-top:18px;padding-top:12px}
+.rod{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+  border-top:2px solid var(--navy);margin-top:16px;padding-top:12px;flex-wrap:wrap}
+.rod .a{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);line-height:1.7}
+.rod .a b{color:var(--ink)}
+.rod .wa{font-family:'Montserrat',sans-serif;font-weight:900;font-size:13px;color:var(--navy)}
+
+@media(max-width:980px){
+  .app{grid-template-columns:1fr;padding:12px;gap:14px}
+  .col{position:static;max-height:none;overflow:visible}
+  .card{padding:16px}
+  /* 16px evita o zoom automatico do Safari ao tocar num campo */
+  input,textarea,select{font-size:16px;padding:9px 10px}
+  #bruto{font-size:13px}
+  .row.c3{grid-template-columns:1fr 1fr}
+  .sheet{padding:22px 20px 20px}
+  .top{flex-wrap:wrap;gap:10px}
+  .top .meta{text-align:left;font-size:9.5px;word-break:break-word}
+  h1{font-size:21px}
+  .rota{font-size:14px}
+  .valor{padding:14px 16px}
+  .valor .v{font-size:26px}
+  .valor>div:last-child{text-align:left!important}
+  .rod{flex-direction:column;align-items:flex-start}
+  .obs,.rod .a{word-break:break-word}
+}
+
+@media print{
+  @page{ size:A4; margin:12mm }
+  body{background:#fff}
+  .app{display:block;padding:0}
+  .col{display:none}
+  .sheet{border:0;border-radius:0;padding:0;max-width:none}
+}
+</style>
+
+<div class="app">
+
+  <div class="col">
+
+    <!-- ===== COLAR ===== -->
+    <div class="card">
+      <h2>Colar a pesquisa</h2>
+      <p class="hint">Selecione tudo na página do voo, copie e cole aqui. Depois do texto, acrescente o valor, o nome do cliente, quantas pessoas e a bagagem.</p>
+      <textarea id="bruto" spellcheck="false" placeholder="Cole aqui o bloco copiado da pesquisa de voos."></textarea>
+      <div class="acts" style="margin-top:10px">
+        <button type="button" class="b1" id="ler">Montar cotação</button>
+        <button type="button" class="b2" id="exemplo">Ver exemplo</button>
+      </div>
+      <div id="avisos" style="margin-top:12px"></div>
+      <div id="sobra"></div>
+    </div>
+
+    <!-- ===== REVISAR ===== -->
+    <form class="card" id="f" autocomplete="off">
+      <h2>Conferir e ajustar</h2>
+      <p class="hint">Tudo abaixo vem preenchido pela leitura. Corrija o que precisar antes de gerar o PDF.</p>
+
+      <fieldset>
+        <legend>Cliente</legend>
+        <div class="row c2">
+          <div><label for="cliente">Nome</label><input id="cliente"></div>
+          <div><label for="pax">Passageiros</label><input id="pax"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Ida</legend>
+        <div class="row c2">
+          <div><label for="i_data">Data</label><input id="i_data"></div>
+          <div><label for="i_cia">Companhia</label><input id="i_cia"></div>
+        </div>
+        <div class="row c2">
+          <div><label for="i_de">Origem</label><input id="i_de"></div>
+          <div><label for="i_para">Destino</label><input id="i_para"></div>
+        </div>
+        <div class="row c3">
+          <div><label for="i_sai">Saída</label><input id="i_sai"></div>
+          <div><label for="i_cheg">Chegada</label><input id="i_cheg"></div>
+          <div><label for="i_esc">Escalas</label><input id="i_esc"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Volta</legend>
+        <div class="row c2">
+          <div><label for="v_data">Data</label><input id="v_data"></div>
+          <div><label for="v_cia">Companhia</label><input id="v_cia"></div>
+        </div>
+        <div class="row c2">
+          <div><label for="v_de">Origem</label><input id="v_de"></div>
+          <div><label for="v_para">Destino</label><input id="v_para"></div>
+        </div>
+        <div class="row c3">
+          <div><label for="v_sai">Saída</label><input id="v_sai"></div>
+          <div><label for="v_cheg">Chegada</label><input id="v_cheg"></div>
+          <div><label for="v_esc">Escalas</label><input id="v_esc"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Bagagem</legend>
+        <div class="row"><div><label for="bag">Uma linha por item</label><textarea id="bag"></textarea></div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Regras da tarifa</legend>
+        <div class="row"><div><label for="regras">Remarcação e cancelamento</label><textarea id="regras">Remarcação permitida mediante taxa da companhia mais diferença tarifária
+Cancelamento com retenção, conforme regra da tarifa
+Nome do passageiro não pode ser alterado após a emissão</textarea></div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Valor</legend>
+        <div class="row c3">
+          <div><label for="total">Total à vista (R$)</label><input id="total"></div>
+          <div><label for="parc">Parcelas</label><input id="parc" value="10"></div>
+          <div><label for="juros">Juros % ao mês</label><input id="juros" value="" placeholder="0 = sem juros"></div>
+        </div>
+        <div class="row"><div><label for="inclui">O que está incluso</label><input id="inclui" value="Passagem aérea ida e volta, taxas e bagagem descrita acima"></div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Recomendação do consultor</legend>
+        <div class="row"><div><label for="rec">Por que você indica esta opção (vazio não aparece na cotação)</label><textarea id="rec" placeholder="Ex.: escolhi esta porque a conexão é curta e você chega de manhã, com o dia inteiro livre."></textarea></div></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Validade</legend>
+        <div class="row c2">
+          <div><label for="valid">Tarifa consultada em</label><input id="valid"></div>
+          <div><label for="consultor">Consultor</label><input id="consultor" value="Pedro Fabretti"></div>
+        </div>
+      </fieldset>
+
+      <div class="acts">
+        <button type="button" class="b1" id="imprimir">Salvar em PDF</button>
+        <button type="button" class="b2" id="limpar">Limpar tudo</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ===== COTAÇÃO ===== -->
+  <div class="sheet" id="sheet">
+    <div class="top">
+      <span class="logo">Onl<span class="idot">ı</span>Fly<span class="sep">•</span><span class="g">Viagens</span></span>
+      <div class="meta">
+        CNPJ <b>68.218.547/0001-00</b><br>
+        Cadastur válido até <b>28/07/2028</b><br>
+        WhatsApp <b>(47) 99661-8052</b>
+      </div>
+    </div>
+
+    <h1 id="o_titulo">Cotação</h1>
+    <p class="para">Para <b id="o_cliente">—</b> · <span id="o_pax">—</span></p>
+
+    <div class="sec">
+      <div class="sec-t">Voos</div>
+      <div class="voo">
+        <div class="dia"><span id="o_i_d">--</span><small id="o_i_m"></small><small>IDA</small></div>
+        <div>
+          <div class="rota"><span id="o_i_de">—</span> → <span id="o_i_para">—</span></div>
+          <div class="det"><span>Saída</span> <b id="o_i_sai">—</b> · <span>Chegada</span> <b id="o_i_cheg">—</b></div>
+          <div class="det"><span id="o_i_cia">—</span> · <span id="o_i_esc">—</span></div>
+        </div>
+      </div>
+      <div class="voo" id="bl_volta">
+        <div class="dia"><span id="o_v_d">--</span><small id="o_v_m"></small><small>VOLTA</small></div>
+        <div>
+          <div class="rota"><span id="o_v_de">—</span> → <span id="o_v_para">—</span></div>
+          <div class="det"><span>Saída</span> <b id="o_v_sai">—</b> · <span>Chegada</span> <b id="o_v_cheg">—</b></div>
+          <div class="det"><span id="o_v_cia">—</span> · <span id="o_v_esc">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec"><div class="sec-t">Bagagem inclusa</div><ul class="lst" id="o_bag"></ul></div>
+    <div class="sec"><div class="sec-t">Regras da tarifa</div><ul class="lst" id="o_regras"></ul></div>
+    <div class="sec" id="bl_rec"><p class="rec"><b>Por que recomendo esta opção</b><span id="o_rec"></span></p></div>
+
+    <div class="valor">
+      <div>
+        <div class="k"><span id="o_rot">Total para</span> <span id="o_pax2">—</span></div>
+        <div class="v">R$ <span id="o_total">—</span></div>
+        <div class="p" id="o_pagto">—</div>
+      </div>
+      <div style="text-align:right">
+        <div class="k">Inclui</div>
+        <div style="font-size:12.5px;color:var(--ink2);max-width:230px" id="o_inclui"></div>
+      </div>
+    </div>
+
+    <p class="obs">Tarifa consultada em <b id="o_valid">—</b> e sujeita a alteração e disponibilidade até a emissão. Valores em reais. Antes de emitir confirmaremos nome completo exatamente como no passaporte, número e validade do documento e data de nascimento. Após a emissão, correção de nome pode não ser possível.</p>
+
+    <div class="rod">
+      <div class="a">
+        Cotação feita por <b id="o_consultor">—</b><br>
+        OnliFly Viagens · R. Felix Gaya, 221, Centro · Navegantes/SC<br>
+        Agência registrada no Ministério do Turismo
+      </div>
+      <div class="wa">Dúvidas? (47) 99661-8052</div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+var $ = function(id){ return document.getElementById(id); };
+
+/* ===================== tabelas ===================== */
+var MES_N = ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+var MES = {jan:1,fev:2,mar:3,abr:4,mai:5,jun:6,jul:7,ago:8,set:9,out:10,nov:11,dez:12,
+           feb:2,apr:4,may:5,aug:8,sep:9,oct:10,dec:12};
+
+var CIA = {G3:'GOL',LA:'LATAM',JJ:'LATAM',AD:'Azul',TP:'TAP Air Portugal',IB:'Iberia',
+  UX:'Air Europa',AF:'Air France',KL:'KLM',LH:'Lufthansa',LX:'Swiss',AZ:'ITA Airways',
+  EK:'Emirates',QR:'Qatar Airways',EY:'Etihad Airways',TK:'Turkish Airlines',A3:'Aegean',
+  AA:'American Airlines',UA:'United',DL:'Delta',CM:'Copa Airlines',AV:'Avianca',
+  AR:'Aerolineas Argentinas',BA:'British Airways',AC:'Air Canada',AT:'Royal Air Maroc',
+  SN:'Brussels Airlines',OS:'Austrian',AY:'Finnair',ET:'Ethiopian',MS:'EgyptAir',
+  SQ:'Singapore Airlines',H2:'Sky Airline',JA:'JetSmart'};
+
+var AERO = {GRU:'São Paulo',CGH:'São Paulo',VCP:'Campinas',GIG:'Rio de Janeiro',SDU:'Rio de Janeiro',
+  BSB:'Brasília',CNF:'Belo Horizonte',PLU:'Belo Horizonte',SSA:'Salvador',REC:'Recife',
+  FOR:'Fortaleza',NAT:'Natal',MCZ:'Maceió',JPA:'João Pessoa',AJU:'Aracaju',SLZ:'São Luís',
+  BEL:'Belém',MAO:'Manaus',CWB:'Curitiba',FLN:'Florianópolis',NVT:'Navegantes',
+  POA:'Porto Alegre',IGU:'Foz do Iguaçu',VIX:'Vitória',CGB:'Cuiabá',CGR:'Campo Grande',
+  GYN:'Goiânia',THE:'Teresina',PMW:'Palmas',
+  LIS:'Lisboa',OPO:'Porto',MAD:'Madri',BCN:'Barcelona',CDG:'Paris',ORY:'Paris',
+  FCO:'Roma',MXP:'Milão',LIN:'Milão',VCE:'Veneza',NAP:'Nápoles',FLR:'Florença',
+  ATH:'Atenas',JTR:'Santorini',JMK:'Mykonos',HER:'Creta',
+  LHR:'Londres',LGW:'Londres',FRA:'Frankfurt',MUC:'Munique',AMS:'Amsterdã',ZRH:'Zurique',
+  BRU:'Bruxelas',VIE:'Viena',PRG:'Praga',BUD:'Budapeste',CPH:'Copenhague',
+  IST:'Istambul',DXB:'Dubai',AUH:'Abu Dhabi',DOH:'Doha',CMN:'Casablanca',CAI:'Cairo',
+  JNB:'Joanesburgo',CPT:'Cidade do Cabo',
+  MIA:'Miami',MCO:'Orlando',FLL:'Fort Lauderdale',JFK:'Nova York',EWR:'Nova York',
+  LGA:'Nova York',LAX:'Los Angeles',LAS:'Las Vegas',SFO:'São Francisco',ORD:'Chicago',
+  IAD:'Washington',BOS:'Boston',ATL:'Atlanta',DFW:'Dallas',IAH:'Houston',
+  CUN:'Cancún',MEX:'Cidade do México',PTY:'Cidade do Panamá',BOG:'Bogotá',LIM:'Lima',
+  SCL:'Santiago',EZE:'Buenos Aires',AEP:'Buenos Aires',MVD:'Montevidéu',ASU:'Assunção',
+  SJU:'San Juan',PUJ:'Punta Cana',HAV:'Havana',
+  NRT:'Tóquio',HND:'Tóquio',ICN:'Seul',PEK:'Pequim',PVG:'Xangai',BKK:'Bangkok',
+  SIN:'Singapura',SYD:'Sydney',AKL:'Auckland'};
+
+/* linhas da pesquisa de voos que nunca entram na cotação */
+var LIXO = [/^tempo de viagem/i,/^estimativa de emiss/i,/^potencial de aquecimento/i,
+  /^espa[çc]o para as pernas/i,/^wi-?fi/i,/^sa[íi]da usb/i,/^tomada/i,/^streaming/i,
+  /^v[íi]deo sob demanda/i,/^econ[ôo]mica$/i,/^executiva$/i,/^primeira classe$/i,
+  /^premium/i,/^boeing/i,/^airbus/i,/^embraer/i,/^avi[ãa]o e tripula/i,
+  /^monitorar/i,/^ida e volta/i,/^somente ida/i,/^durante a noite$/i,
+  /menos emiss[õo]es$/i,/^selecionar$/i,/^escolher$/i,/^dura[çc][ãa]o/i,
+  /^aeroporto/i,/^separado por/i,/^voo operado por/i,/^classe/i,/^assento/i];
+
+function ehLixo(l){ for(var i=0;i<LIXO.length;i++){ if(LIXO[i].test(l)) return true } return false }
+function semAcento(s){ return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase() }
+function cidade(cod){ return AERO[cod] || cod }
+function local(cod){ return AERO[cod] ? AERO[cod]+' ('+cod+')' : cod }
+function z2(n){ n = String(n); return n.length < 2 ? '0'+n : n }
+
+/* "1h 45 min" -> "1h45" ; "10h" -> "10h" ; "45 min" -> "45min" */
+function dur(s){
+  var h = s.match(/(\d+)\s*h/), m = s.match(/(\d+)\s*min/);
+  if(h && m) return h[1]+'h'+z2(m[1]);
+  if(h) return h[1]+'h';
+  if(m) return m[1]+'min';
+  return s.trim();
+}
+
+/* "seg., 28 de dez." | "28/12/2026" -> {d,m,a} */
+function dataDe(l){
+  var a = l.match(/(\d{1,2})\s*\/\s*(\d{1,2})(?:\s*\/\s*(\d{2,4}))?\s*$/);
+  if(a) return {d:+a[1], m:+a[2], a: a[3] ? (+a[3] < 100 ? 2000 + +a[3] : +a[3]) : null};
+  var b = semAcento(l).match(/(\d{1,2})\s*de\s*([a-z]{3})/);
+  if(b && MES[b[2]]) return {d:+b[1], m:MES[b[2]], a:null};
+  return null;
+}
+
+/* ===================== leitor ===================== */
+function ler(txt){
+  var L = txt.split(/\r?\n/).map(function(s){ return s.trim() });
+  var secao = null, datas = {}, pontos = {ida:[],volta:[]}, cias = {ida:[],volta:[]},
+      paradas = {ida:[],volta:[]}, bag = [], sobra = [],
+      total = null, iTotal = -1, pax = '', cliente = '';
+
+  for(var i=0;i<L.length;i++){
+    var l = L[i];
+    if(!l) continue;
+
+    if(/^voo de ida|^ida$|^trecho de ida/i.test(l)){ secao='ida'; continue }
+    if(/^voo de volta|^voo de regresso|^volta$|^trecho de volta/i.test(l)){ secao='volta'; continue }
+
+    var d = dataDe(l);
+    if(d){ if(secao && !datas[secao]) datas[secao]=d; else sobra.push(l); continue }
+
+    /* horario "21:05" ou "00:25+1" seguido do aeroporto "(NAT)" */
+    var t = l.match(/^(\d{1,2}):(\d{2})\s*(\+\d)?$/);
+    if(t){
+      var cod = null;
+      for(var j=i+1;j<L.length && j<i+6;j++){
+        if(/^\d{1,2}:\d{2}/.test(L[j])) break;
+        var m = L[j].match(/\(([A-Z]{3})\)\s*$/);
+        if(m){ cod = m[1]; i = j; break }
+      }
+      if(cod && secao) pontos[secao].push({h:z2(t[1])+':'+t[2], mais:t[3]||'', cod:cod});
+      continue;
+    }
+
+    var p = l.match(/^parada de\s+(.+)$/i);
+    if(p){ if(secao) paradas[secao].push(dur(p[1])); continue }
+
+    /* numero do voo: "G3 1913" | "TP 28" */
+    var f = l.match(/^([A-Z][A-Z0-9])\s?(\d{1,4})$/);
+    if(f){ if(secao) cias[secao].push(CIA[f[1]] || f[1]); continue }
+
+    if(/bagagem/i.test(l)){ bag.push(l); continue }
+
+    var px = l.match(/(\d+)\s*(pessoas?|passageiros?|adultos?|pax)\b/i);
+    if(px && !pax){ pax = px[0].replace(/\s+/g,' ').toLowerCase(); continue }
+
+    /* valor solto: "5.522,5" | "R$ 5.522,50" */
+    var vl = l.match(/^R?\$?\s*(\d{1,3}(?:\.\d{3})*(?:,\d{1,2})?|\d{3,7}(?:,\d{1,2})?)$/);
+    if(vl){
+      var n = parseFloat(vl[1].replace(/\./g,'').replace(',','.'));
+      if(isFinite(n) && n >= 200){ if(total===null || n>total){ total=n; iTotal=i } continue }
+    }
+
+    if(ehLixo(l)) continue;
+    sobra.push(l);
+  }
+
+  /* nome do cliente: primeira linha so de letras logo depois do valor */
+  if(iTotal >= 0){
+    for(var k=iTotal+1;k<L.length && k<iTotal+6;k++){
+      var c = L[k];
+      if(!c || /\d/.test(c) || ehLixo(c)) continue;
+      if(/bagagem|pessoa|passageiro|adulto/i.test(c)) continue;
+      if(!/^[A-Za-zÀ-ÿ'´`^~.\- ]{4,60}$/.test(c)) continue;
+      if(c.split(/\s+/).length < 2) continue;
+      var conhecido = false, x;
+      for(x in CIA){ if(semAcento(CIA[x]) === semAcento(c)) conhecido = true }
+      for(x in AERO){ if(semAcento(AERO[x]) === semAcento(c)) conhecido = true }
+      if(conhecido) continue;
+      cliente = c;
+      var pos = sobra.indexOf(c); if(pos >= 0) sobra.splice(pos,1);
+      break;
+    }
+  }
+
+  /* ano: a pesquisa nao informa. Ida = proxima ocorrencia futura; volta rola o ano se preciso */
+  var hoje = new Date(); hoje.setHours(0,0,0,0);
+  if(datas.ida && !datas.ida.a){
+    datas.ida.a = hoje.getFullYear();
+    if(new Date(datas.ida.a, datas.ida.m-1, datas.ida.d) < hoje) datas.ida.a++;
+  }
+  if(datas.volta && !datas.volta.a){
+    datas.volta.a = datas.ida ? datas.ida.a : hoje.getFullYear();
+    if(datas.ida && (datas.volta.m < datas.ida.m ||
+       (datas.volta.m === datas.ida.m && datas.volta.d < datas.ida.d))) datas.volta.a++;
+  }
+
+  return {
+    ida: trecho(pontos.ida, cias.ida, paradas.ida, datas.ida),
+    volta: trecho(pontos.volta, cias.volta, paradas.volta, datas.volta),
+    cliente: cliente, pax: pax, bag: bag, total: total, sobra: sobra
+  };
+}
+
+/* junta as pernas de um sentido num trecho so */
+function trecho(pts, cs, pds, dt){
+  if(!pts.length) return null;
+  var ini = pts[0], fim = pts[pts.length-1];
+  var pernas = Math.floor(pts.length / 2), esc, i;
+  if(pernas <= 1){
+    esc = 'Voo direto';
+  } else {
+    var n = pernas - 1, onde = [];
+    for(i=0;i<n;i++){
+      var meio = pts[i*2+1] ? cidade(pts[i*2+1].cod) : '';
+      onde.push(meio + (pds[i] ? ' · ' + pds[i] : ''));
+    }
+    esc = n + (n > 1 ? ' escalas · ' : ' escala · ') + onde.join(' · ');
+  }
+  var u = [];
+  for(i=0;i<cs.length;i++){ if(u.indexOf(cs[i]) < 0) u.push(cs[i]) }
+  return {
+    data: dt, de: local(ini.cod), para: local(fim.cod), destino: fim.cod,
+    sai: ini.h, cheg: fim.h + (fim.mais ? ' ' + fim.mais : ''),
+    cia: u.join(' e '), cias: u, esc: esc
+  };
+}
+
+/* ===================== aplicar ===================== */
+
+/* Na pesquisa, "Bagagem despachada inclusa" quer dizer 23 kg para todos os
+   passageiros. Quando vale so para parte do grupo, o texto traz "apenas para". */
+function bagagemTexto(linhas){
+  return linhas.map(function(l){
+    if(/bagagem\s+despachada\s+inclusa/i.test(l) && !/apenas/i.test(l))
+      return '1 mala despachada de 23 kg por passageiro';
+    return l;
+  });
+}
+
+/* Bagagem de mao NAO e igual em todas as companhias: a TAP libera 10 kg de mao
+   com item pessoal de so 2 kg, enquanto GOL e LATAM dao 12 kg mais 10 kg.
+   Num trecho com duas companhias vale a menor, porque e conferida em cada portao. */
+var BAGMAO = {
+  'GOL':   {mao:12, pessoal:10},
+  'LATAM': {mao:12, pessoal:10},
+  'Azul':  {mao:10, pessoal:10},
+  'TAP Air Portugal': {mao:10, pessoal:2}
+};
+var BR = ['GRU','CGH','VCP','GIG','SDU','BSB','CNF','PLU','SSA','REC','FOR','NAT','MCZ',
+  'JPA','AJU','SLZ','BEL','MAO','CWB','FLN','NVT','POA','IGU','VIX','CGB','CGR','GYN',
+  'THE','PMW'];
+
+function bagagemDeMao(cias){
+  var mao = null, pes = null, i, r;
+  for(i=0;i<cias.length;i++){
+    r = BAGMAO[cias[i]];
+    if(!r) return null;
+    if(mao === null || r.mao < mao) mao = r.mao;
+    if(pes === null || r.pessoal < pes) pes = r.pessoal;
+  }
+  if(mao === null) return null;
+  return '1 mala de mão de ' + mao + ' kg e 1 item pessoal de ' + pes + ' kg por passageiro';
+}
+
+function limitesDiferentes(cias){
+  var vistos = {}, i, r;
+  for(i=0;i<cias.length;i++){
+    r = BAGMAO[cias[i]];
+    if(r) vistos[r.mao + '/' + r.pessoal] = 1;
+  }
+  var n = 0, k; for(k in vistos) n++;
+  return n > 1;
+}
+
+function fmtD(d){ return d ? z2(d.d)+'/'+z2(d.m)+'/'+d.a : '' }
+function moeda(n){ return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) }
+
+function aplicar(){
+  var r = ler($('bruto').value), av = [];
+
+  ['ida','volta'].forEach(function(s){
+    var p = s === 'ida' ? 'i' : 'v', t = r[s];
+    if(!t) return;
+    $(p+'_data').value = fmtD(t.data);
+    $(p+'_cia').value  = t.cia;
+    $(p+'_de').value   = t.de;
+    $(p+'_para').value = t.para;
+    $(p+'_sai').value  = t.sai;
+    $(p+'_cheg').value = t.cheg;
+    $(p+'_esc').value  = t.esc;
+  });
+
+  if(r.cliente) $('cliente').value = r.cliente;
+  if(r.pax)     $('pax').value = r.pax;
+  var cias = [];
+  ['ida','volta'].forEach(function(s){ if(r[s]) cias = cias.concat(r[s].cias) });
+  var bags = bagagemTexto(r.bag);
+  var bm = bagagemDeMao(cias);
+  if(bm && !/m[ãa]o/i.test(bags.join(' '))) bags.unshift(bm);
+  if(bags.length) $('bag').value = bags.join('\n');
+  if(r.total !== null) $('total').value = moeda(r.total);
+
+  var h = new Date();
+  $('valid').value = z2(h.getDate())+'/'+z2(h.getMonth()+1)+'/'+h.getFullYear();
+
+  if(!r.ida) av.push('Não encontrei nenhum voo. Confira se copiou o bloco inteiro da página.');
+  if(r.ida && !r.volta) av.push('Só encontrei a ida. Se a viagem tem volta, copie a página inteira.');
+  if(r.ida && r.ida.data) av.push('Confira o ano das datas: a pesquisa não informa, eu deduzi pelo calendário.');
+  if(!r.cliente) av.push('Nome do cliente não encontrado. Digite abaixo.');
+  if(r.total === null) av.push('Valor não encontrado. Digite abaixo.');
+  var bt = bags.join(' ');
+  if(!bags.length){
+    av.push('Bagagem não encontrada. Preencha antes de enviar.');
+  } else {
+    if(/apenas/i.test(bt))
+      av.push('A bagagem despachada não vale para todos. Deixe claro na cotação para quem vale.');
+    else if(!/\d+\s*(kg|quilo)/i.test(bt))
+      av.push('A bagagem não diz quantos quilos. Complete antes de enviar.');
+    if(!/m[ãa]o/i.test(bt))
+      av.push('Falta a bagagem de mão. Não conheço o limite dessa companhia, preencha à mão.');
+  }
+  if(bm && limitesDiferentes(cias))
+    av.push('As companhias do trecho têm limites de mão diferentes. Usei o menor, que é o que vale no portão.');
+  var dest = r.ida ? r.ida.destino : null;
+  if(dest && BR.indexOf(dest) < 0 && (cias.indexOf('GOL') >= 0 || cias.indexOf('LATAM') >= 0))
+    av.push('Voo internacional: na tarifa Basic da GOL e da LATAM a mala de mão não vem inclusa. Confirme a tarifa.');
+
+  var box = $('avisos');
+  if(av.length){
+    box.className = 'avisos';
+    box.innerHTML = '<b>Confira antes de enviar</b><ul>' +
+      av.map(function(a){ return '<li>'+a+'</li>' }).join('') + '</ul>';
+  } else {
+    box.className = 'avisos ok';
+    box.innerHTML = '<b>Tudo certo</b>Li todos os campos. Confira a cotação e gere o PDF.';
+  }
+
+  var sb = $('sobra');
+  if(r.sobra.length){
+    sb.innerHTML = '<details class="sobra"><summary>'+r.sobra.length+
+      ' linhas que eu ignorei</summary><pre></pre></details>';
+    sb.querySelector('pre').textContent = r.sobra.join('\n');
+  } else { sb.innerHTML = '' }
+
+  render();
+}
+
+/* ===================== cotação ===================== */
+function lista(el, texto){
+  el.innerHTML = '';
+  String(texto||'').split('\n').map(function(l){ return l.trim() }).filter(Boolean)
+    .forEach(function(l){ var li = document.createElement('li'); li.textContent = l; el.appendChild(li) });
+}
+function txt(id,v){ var e = $(id); if(e) e.textContent = v }
+function pct(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) }
+
+/* parcela pela tabela Price. Numa venda a prazo a cotacao precisa
+   mostrar a taxa e o total a prazo, nao so o valor da parcela. */
+function pagamento(tv, n, j){
+  if(!isFinite(tv) || !(n > 0)) return '—';
+  /* sem taxa repassada a cotacao so mostra a parcela; condicoes o vendedor trata na conversa */
+  if(!isFinite(j) || j <= 0) return 'ou ' + n + 'x de R$ ' + moeda(tv/n) + ' no cartão';
+  /* arredonda a parcela antes de somar, senao o total impresso nao bate
+     com parcela x numero de parcelas, e o cliente faz essa conta */
+  var pm = Math.round(tv * j / (1 - Math.pow(1 + j, -n)) * 100) / 100;
+  return 'ou ' + n + 'x de R$ ' + moeda(pm) + ' no cartão · juros de ' + pct(j*100) +
+         '% ao mês · total a prazo R$ ' + moeda(pm * n);
+}
+
+function render(){
+  var destino = ($('i_para').value || '').replace(/\s*\([^)]*\)\s*/,'').trim();
+  txt('o_titulo','Cotação' + (destino ? ' · ' + destino : ''));
+  txt('o_cliente', $('cliente').value || '—');
+  txt('o_pax', $('pax').value || '—');
+  txt('o_pax2', $('pax').value || '—');
+
+  ['i','v'].forEach(function(p){
+    var dd = ($(p+'_data').value||'').match(/(\d{1,2})\s*\/\s*(\d{1,2})/);
+    txt('o_'+p+'_d', dd ? z2(dd[1]) : '--');
+    txt('o_'+p+'_m', dd ? (MES_N[+dd[2]-1] || '') : '');
+    ['de','para','sai','cheg','cia','esc'].forEach(function(k){
+      txt('o_'+p+'_'+k, $(p+'_'+k).value || '—');
+    });
+  });
+  $('bl_volta').style.display = ($('v_de').value || $('v_data').value) ? '' : 'none';
+
+  lista($('o_bag'), $('bag').value);
+  lista($('o_regras'), $('regras').value);
+
+  var rec = $('rec').value.trim();
+  $('bl_rec').style.display = rec ? '' : 'none';
+  txt('o_rec', rec);
+
+  var tv = parseFloat(String($('total').value||'').replace(/\./g,'').replace(',','.'));
+  var n = parseInt($('parc').value,10);
+  var j = parseFloat(String($('juros').value||'').replace(',','.')) / 100;
+  txt('o_total', isFinite(tv) ? moeda(tv) : '—');
+  txt('o_rot', (isFinite(j) && j > 0) ? 'Total à vista para' : 'Total para');
+  txt('o_pagto', pagamento(tv, n, j));
+
+  txt('o_inclui', $('inclui').value || '—');
+  txt('o_valid', $('valid').value || '—');
+  txt('o_consultor', $('consultor').value || '—');
+}
+
+/* ===================== eventos ===================== */
+var EXEMPLO = [
+'Voo de ida','seg., 28 de dez.','21:05','Aeroporto Internacional de Natal (NAT)',
+'Tempo de viagem: 1h 35 min','22:40','Aeroporto Internacional de Salvador (SSA)','',
+'Gol','G3 1913','Econômica','Boeing 737','Parada de 1h 45 min','Salvador','(SSA)',
+'00:25+1','Aeroporto Internacional de Salvador (SSA)','Tempo de viagem: 8h 5 min',
+'Durante a noite','11:30+1','Aeroporto Humberto Delgado (LIS)','','Tap Air Portugal','TP 28',
+'Voo de volta','dom., 24 de jan.','12:15','Aeroporto Humberto Delgado (LIS)',
+'Tempo de viagem: 10h','19:15','Aeroporto Internacional do Rio de Janeiro (GIG)','',
+'Gol','G3 7021','Parada de 2h 25 min','Rio de Janeiro','(GIG)',
+'21:40','Aeroporto Internacional do Rio de Janeiro (GIG)','Tempo de viagem: 3h 5 min',
+'00:45+1','Aeroporto Internacional de Natal (NAT)','','Gol','G3 1834','',
+'5.522,5','Maria Judite','1 pessoa','Bagagem despachada inclusa'
+].join('\n');
+
+$('f').addEventListener('input', render);
+$('ler').addEventListener('click', aplicar);
+$('imprimir').addEventListener('click', function(){ window.print() });
+$('exemplo').addEventListener('click', function(){ $('bruto').value = EXEMPLO; aplicar() });
+$('limpar').addEventListener('click', function(){
+  $('bruto').value = '';
+  Array.prototype.forEach.call($('f').querySelectorAll('input,textarea'), function(el){
+    if(el.id === 'parc' || el.id === 'juros' || el.id === 'consultor' ||
+       el.id === 'regras' || el.id === 'inclui') return;
+    el.value = '';
+  });
+  $('avisos').innerHTML = ''; $('sobra').innerHTML = '';
+  render();
+});
+
+render();
+})();
+</script>
