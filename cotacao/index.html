@@ -319,7 +319,7 @@ ul.lst li b{color:var(--ink)}
     </div>
 
     <h1 id="o_titulo">Cotação</h1>
-    <p class="para">Para <b id="o_cliente">—</b> · <span id="o_pax">—</span></p>
+    <p class="para"><span id="o_para">Para <b id="o_cliente">—</b> · </span><span id="o_pax">—</span></p>
 
     <div class="sec">
       <div class="sec-t">Voos</div>
@@ -656,6 +656,8 @@ var BAGMAO = {
   'Azul':  {kg:10, txt:'1 mala de mão de 10 kg e 1 item pessoal por passageiro'},
   'TAP Air Portugal': {kg:10, txt:'1 mala de mão de 10 kg e 1 item pessoal de 2 kg por passageiro'},
   'Air Europa':       {kg:10, txt:'1 mala de mão de 10 kg e 1 item pessoal por passageiro'},
+  /* Light internacional nas Americas passou a incluir 10 kg de mao em jan/2026 */
+  'Avianca':          {kg:10, txt:'1 mala de mão de 10 kg e 1 item pessoal por passageiro'},
   /* regra oficial da Emirates: 10 kg nos voos que saem do Brasil, 7 kg nos demais */
   'Emirates': {kg:7, txt:'1 peça de mão de 10 kg saindo do Brasil e 7 kg nos demais trechos, contando bolsa e mochila'},
   'American Airlines': {kg:99, txt:'1 mala de mão e 1 item pessoal por passageiro, sem limite de peso'}
@@ -787,6 +789,8 @@ function pagamento(n){
 function render(){
   var destino = ($('i_para').value || '').replace(/\s*\([^)]*\)\s*/,'').trim();
   txt('o_titulo','Cotação' + (destino ? ' · ' + destino : ''));
+  /* sem nome a cotacao nao imprime "Para —", so os passageiros */
+  $('o_para').style.display = $('cliente').value.trim() ? '' : 'none';
   txt('o_cliente', $('cliente').value || '—');
   txt('o_pax', $('pax').value || '—');
   txt('o_pax2', $('pax').value || '—');
