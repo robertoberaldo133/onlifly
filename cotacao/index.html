@@ -827,12 +827,8 @@ function render(){
 
   txt('o_total', isFinite(passagem) ? moeda(geral) : '—');
 
+  /* o desconto e precificacao interna: a cotacao mostra so o que o cliente paga */
   var linhas = [];
-  if(temDesc){
-    var antes = cheia + bagagem;
-    linhas.push('De <s>R$ ' + moeda(antes) + '</s> · economia de R$ ' +
-      moeda(antes - geral) + ' (' + String($('desc').value).replace('.',',') + '%)');
-  }
   if(isFinite(passagem) && bagagem > 0){
     linhas.push('Passagem R$ ' + moeda(passagem) + ' · ' + malas +
       (malas > 1 ? ' despachos de bagagem' : ' despacho de bagagem') + ' R$ ' + moeda(bagagem));
