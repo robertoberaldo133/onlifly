@@ -159,7 +159,7 @@ ul.lst li b{color:var(--ink)}
     <!-- ===== COLAR ===== -->
     <div class="card">
       <h2>Colar a pesquisa</h2>
-      <p class="hint">Selecione tudo na página do voo, copie e cole aqui. Depois do texto, acrescente o valor, o nome do cliente, quantas pessoas e a bagagem.</p>
+      <p class="hint">Selecione tudo na página do voo, copie e cole aqui. Depois do texto, acrescente em linhas separadas: <b>Cliente: nome do passageiro</b>, quantas pessoas, o valor e a bagagem.</p>
       <textarea id="bruto" spellcheck="false" placeholder="Cole aqui o bloco copiado da pesquisa de voos."></textarea>
       <div class="acts" style="margin-top:10px">
         <button type="button" class="b1" id="ler">Montar cotação</button>
@@ -223,9 +223,7 @@ ul.lst li b{color:var(--ink)}
 
       <fieldset>
         <legend>Regras da tarifa</legend>
-        <div class="row"><div><label for="regras">Remarcação e cancelamento</label><textarea id="regras">Remarcação permitida mediante taxa da companhia mais diferença tarifária
-Cancelamento com retenção, conforme regra da tarifa
-Nome do passageiro não pode ser alterado após a emissão</textarea></div></div>
+        <div class="row"><div><label for="regras">Remarcação e cancelamento</label><textarea id="regras">Seguro de cancelamento e remarcação de acordo com a companhia, verifique com o seu consultor</textarea></div></div>
       </fieldset>
 
       <fieldset>
@@ -395,6 +393,36 @@ function dataDe(l){
   return null;
 }
 
+/* Palavras que aparecem no texto da pesquisa e nunca compoem um nome de cliente */
+var NAO_NOME = new RegExp(['viagem','voo','aeroporto','econ[ôo]mica','executiva','primeira',
+  'monitorar','pre[çc]o','alerta','bagagem','pessoa','passageiro','adulto','crian[çc]a',
+  'beb[êe]','escala','parada','dura[çc][ãa]o','classe','cidade','ida','volta','direto',
+  'durante','noite','assento','tripula','operado','emiss','conex'].join('|'), 'i');
+var CONECTOR = ['de','da','do','das','dos','e','di','du','del','la','van','von'];
+
+function maiuscula(w){
+  var c = w.charAt(0);
+  return c === c.toUpperCase() && c !== c.toLowerCase();
+}
+
+function pareceNome(s){
+  if(!s || /\d/.test(s) || ehLixo(s) || NAO_NOME.test(s)) return false;
+  if(!/^[A-Za-zÀ-ÿ'´`^~.\- ]{4,60}$/.test(s)) return false;
+  var p = s.split(/\s+/), i, w, nomes = 0;
+  if(p.length < 2 || p.length > 6) return false;
+  for(i=0;i<p.length;i++){
+    w = p[i];
+    if(CONECTOR.indexOf(w.toLowerCase()) >= 0) continue;
+    if(!maiuscula(w)) return false;   /* palavra solta em minuscula: e frase, nao nome */
+    nomes++;
+  }
+  if(nomes < 2) return false;
+  var x;
+  for(x in CIA){ if(semAcento(CIA[x]) === semAcento(s)) return false }
+  for(x in AERO){ if(semAcento(AERO[x]) === semAcento(s)) return false }
+  return true;
+}
+
 /* ===================== leitor ===================== */
 function ler(txt){
   /* tira marcador de lista, que a pagina as vezes cola junto */
@@ -402,7 +430,7 @@ function ler(txt){
   var secao = null, nTrecho = 0,
       datas = {}, pontos = {ida:[],volta:[],extra:[]}, cias = {ida:[],volta:[],extra:[]},
       paradas = {ida:[],volta:[],extra:[]}, bag = [], sobra = [],
-      total = null, iTotal = -1, pax = '', cliente = '';
+      total = null, pax = '', cliente = '';
 
   for(var i=0;i<L.length;i++){
     var l = L[i];
@@ -416,6 +444,10 @@ function ler(txt){
       secao = nTrecho === 1 ? 'ida' : (nTrecho === 2 ? 'volta' : 'extra');
       continue;
     }
+
+    /* jeito mais seguro de informar o cliente: "Cliente: Maria Judite" */
+    var nm = l.match(/^(?:cliente|passageiro|nome)\s*:\s*(.+)$/i);
+    if(nm){ cliente = nm[1].trim(); continue }
 
     var d = dataDe(l);
     if(d){ if(secao && !datas[secao]) datas[secao]=d; else sobra.push(l); continue }
@@ -445,32 +477,22 @@ function ler(txt){
     var px = l.match(/(\d+)\s*(pessoas?|passageiros?|adultos?|pax)\b/i);
     if(px && !pax){ pax = px[0].replace(/\s+/g,' ').toLowerCase(); continue }
 
-    /* valor solto: "5.522,5" | "R$ 5.522,50" */
-    var vl = l.match(/^R?\$?\s*(\d{1,3}(?:\.\d{3})*(?:,\d{1,2})?|\d{3,7}(?:,\d{1,2})?)$/);
+    /* valor: "5.522,5" | "R$ 5.522,50" | "Valor: 5.000" | "Total R$ 9480,00" */
+    var vl = l.match(/^(?:(?:valor|total|pre[çc]o)\s*:?\s*)?R?\$?\s*(\d{1,3}(?:\.\d{3})*(?:,\d{1,2})?|\d{3,7}(?:,\d{1,2})?)$/i);
     if(vl){
       var n = parseFloat(vl[1].replace(/\./g,'').replace(',','.'));
-      if(isFinite(n) && n >= 200){ if(total===null || n>total){ total=n; iTotal=i } continue }
+      if(isFinite(n) && n >= 200){ if(total===null || n>total){ total=n } continue }
     }
 
     if(ehLixo(l)) continue;
     sobra.push(l);
   }
 
-  /* nome do cliente: primeira linha so de letras logo depois do valor */
-  if(iTotal >= 0){
-    for(var k=iTotal+1;k<L.length && k<iTotal+6;k++){
-      var c = L[k];
-      if(!c || /\d/.test(c) || ehLixo(c)) continue;
-      if(/bagagem|pessoa|passageiro|adulto/i.test(c)) continue;
-      if(!/^[A-Za-zÀ-ÿ'´`^~.\- ]{4,60}$/.test(c)) continue;
-      if(c.split(/\s+/).length < 2) continue;
-      var conhecido = false, x;
-      for(x in CIA){ if(semAcento(CIA[x]) === semAcento(c)) conhecido = true }
-      for(x in AERO){ if(semAcento(AERO[x]) === semAcento(c)) conhecido = true }
-      if(conhecido) continue;
-      cliente = c;
-      var pos = sobra.indexOf(c); if(pos >= 0) sobra.splice(pos,1);
-      break;
+  /* Sem rotulo, o nome e procurado entre as linhas que sobraram, de tras para a
+     frente: quem digita o cliente escreve depois de colar o itinerario. */
+  if(!cliente){
+    for(var k=sobra.length-1;k>=0;k--){
+      if(pareceNome(sobra[k])){ cliente = sobra[k]; sobra.splice(k,1); break }
     }
   }
 
@@ -572,8 +594,20 @@ function limitesDiferentes(cias){
 function fmtD(d){ return d ? z2(d.d)+'/'+z2(d.m)+'/'+d.a : '' }
 function moeda(n){ return n.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) }
 
+/* campos da cotacao atual; parcelas, consultor, regras e o "inclui" sao politica
+   da agencia e ficam */
+function limpaCampos(){
+  Array.prototype.forEach.call($('f').querySelectorAll('input,textarea'), function(el){
+    if(el.id === 'parc' || el.id === 'consultor' || el.id === 'regras' || el.id === 'inclui') return;
+    el.value = '';
+  });
+}
+
 function aplicar(){
   var r = ler($('bruto').value), av = [];
+  /* zera antes de preencher: sem isso o nome ou o valor do cliente anterior
+     fica no formulario quando a pesquisa nova nao traz aquele dado */
+  limpaCampos();
 
   ['ida','volta'].forEach(function(s){
     var p = s === 'ida' ? 'i' : 'v', t = r[s];
@@ -712,11 +746,7 @@ $('imprimir').addEventListener('click', function(){ window.print() });
 $('exemplo').addEventListener('click', function(){ $('bruto').value = EXEMPLO; aplicar() });
 $('limpar').addEventListener('click', function(){
   $('bruto').value = '';
-  Array.prototype.forEach.call($('f').querySelectorAll('input,textarea'), function(el){
-    if(el.id === 'parc' || el.id === 'consultor' ||
-       el.id === 'regras' || el.id === 'inclui') return;
-    el.value = '';
-  });
+  limpaCampos();
   $('avisos').innerHTML = ''; $('sobra').innerHTML = '';
   render();
 });
