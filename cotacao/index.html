@@ -111,8 +111,9 @@ ul.lst li b{color:var(--ink)}
   text-transform:uppercase;color:var(--gold)}
 .valor .v{font-family:'Montserrat',sans-serif;font-weight:900;font-size:30px;color:var(--navy);
   letter-spacing:-1px;line-height:1.05}
-.valor .p{font-size:12.5px;color:var(--ink2);margin-top:2px}
-.valor .p b{color:var(--navy)}
+.valor .p{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13.5px;
+  color:var(--navy);margin-top:3px}
+.valor .pc{font-size:11.5px;color:var(--ink2);margin-top:2px}
 
 .obs{font-size:11.5px;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);
   margin-top:18px;padding-top:12px}
@@ -229,10 +230,9 @@ Nome do passageiro não pode ser alterado após a emissão</textarea></div></div
 
       <fieldset>
         <legend>Valor</legend>
-        <div class="row c3">
-          <div><label for="total">Total à vista (R$)</label><input id="total"></div>
-          <div><label for="parc">Parcelas</label><input id="parc" value="10"></div>
-          <div><label for="juros">Juros % ao mês</label><input id="juros" value="" placeholder="0 = sem juros"></div>
+        <div class="row c2">
+          <div><label for="total">Total (R$)</label><input id="total"></div>
+          <div><label for="parc">Parcelar em até</label><input id="parc" value="10"></div>
         </div>
         <div class="row"><div><label for="inclui">O que está incluso</label><input id="inclui" value="Passagem aérea ida e volta, taxas e bagagem descrita acima"></div></div>
       </fieldset>
@@ -297,9 +297,10 @@ Nome do passageiro não pode ser alterado após a emissão</textarea></div></div
 
     <div class="valor">
       <div>
-        <div class="k"><span id="o_rot">Total para</span> <span id="o_pax2">—</span></div>
+        <div class="k">Total para <span id="o_pax2">—</span></div>
         <div class="v">R$ <span id="o_total">—</span></div>
         <div class="p" id="o_pagto">—</div>
+        <div class="pc">Consulte as condições de parcelamento com o seu consultor.</div>
       </div>
       <div style="text-align:right">
         <div class="k">Inclui</div>
@@ -633,19 +634,10 @@ function lista(el, texto){
     .forEach(function(l){ var li = document.createElement('li'); li.textContent = l; el.appendChild(li) });
 }
 function txt(id,v){ var e = $(id); if(e) e.textContent = v }
-function pct(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) }
-
-/* parcela pela tabela Price. Numa venda a prazo a cotacao precisa
-   mostrar a taxa e o total a prazo, nao so o valor da parcela. */
-function pagamento(tv, n, j){
-  if(!isFinite(tv) || !(n > 0)) return '—';
-  /* sem taxa repassada a cotacao so mostra a parcela; condicoes o vendedor trata na conversa */
-  if(!isFinite(j) || j <= 0) return 'ou ' + n + 'x de R$ ' + moeda(tv/n) + ' no cartão';
-  /* arredonda a parcela antes de somar, senao o total impresso nao bate
-     com parcela x numero de parcelas, e o cliente faz essa conta */
-  var pm = Math.round(tv * j / (1 - Math.pow(1 + j, -n)) * 100) / 100;
-  return 'ou ' + n + 'x de R$ ' + moeda(pm) + ' no cartão · juros de ' + pct(j*100) +
-         '% ao mês · total a prazo R$ ' + moeda(pm * n);
+/* A cotacao nao fixa o valor da parcela: ele depende de maquininha e bandeira,
+   e as condicoes o consultor trata na conversa. */
+function pagamento(n){
+  return n > 0 ? 'ou em até ' + n + 'x no cartão' : '—';
 }
 
 function render(){
@@ -674,10 +666,8 @@ function render(){
 
   var tv = parseFloat(String($('total').value||'').replace(/\./g,'').replace(',','.'));
   var n = parseInt($('parc').value,10);
-  var j = parseFloat(String($('juros').value||'').replace(',','.')) / 100;
   txt('o_total', isFinite(tv) ? moeda(tv) : '—');
-  txt('o_rot', (isFinite(j) && j > 0) ? 'Total à vista para' : 'Total para');
-  txt('o_pagto', pagamento(tv, n, j));
+  txt('o_pagto', pagamento(n));
 
   txt('o_inclui', $('inclui').value || '—');
   txt('o_valid', $('valid').value || '—');
@@ -706,7 +696,7 @@ $('exemplo').addEventListener('click', function(){ $('bruto').value = EXEMPLO; a
 $('limpar').addEventListener('click', function(){
   $('bruto').value = '';
   Array.prototype.forEach.call($('f').querySelectorAll('input,textarea'), function(el){
-    if(el.id === 'parc' || el.id === 'juros' || el.id === 'consultor' ||
+    if(el.id === 'parc' || el.id === 'consultor' ||
        el.id === 'regras' || el.id === 'inclui') return;
     el.value = '';
   });
