@@ -194,7 +194,7 @@ ul.lst li b{color:var(--ink)}
             <option value="sim">Sim</option>
             <option value="nao">Não</option>
           </select></div>
-          <div><label for="b_qtd">Quantas malas</label><select id="b_qtd">
+          <div><label for="b_qtd">Malas por passageiro</label><select id="b_qtd">
             <option>1</option><option>2</option><option>3</option><option>4</option>
           </select></div>
         </div>
@@ -621,9 +621,10 @@ function textoDespachada(){
   return s;
 }
 
-/* quantas malas a cotacao cobra: por passageiro, cobrindo ida e volta */
-function nMalas(){
-  if($('b_desp').value === 'nao') return 0;
+/* Cada despacho e uma cobranca: malas por passageiro x passageiros x sentidos.
+   Ida e volta sao dois despaches, como as companhias cobram. */
+function contaMalas(){
+  if($('b_desp').value === 'nao') return {total:0};
   var q = parseInt($('b_qtd').value, 10) || 1, px = $('b_pax').value, n;
   if(px === 'todos'){
     var m = String($('pax').value || '').match(/\d+/);
@@ -631,7 +632,8 @@ function nMalas(){
   } else {
     n = parseInt(px, 10) || 1;
   }
-  return q * n;
+  var sentidos = $('b_trecho').value === 'ambos' ? 2 : 1;
+  return {porPax:q, pax:n, sentidos:sentidos, total:q * n * sentidos};
 }
 
 function montaBagagem(){
@@ -806,18 +808,22 @@ function render(){
 
   var passagem = parseFloat(String($('total').value||'').replace(/\./g,'').replace(',','.'));
   var vmala = parseFloat(String($('b_valor').value||'').replace(/\./g,'').replace(',','.'));
-  var malas = nMalas();
+  var c = contaMalas(), malas = c.total;
   var bagagem = (isFinite(vmala) && malas > 0) ? malas * vmala : 0;
   var geral = (isFinite(passagem) ? passagem : 0) + bagagem;
 
+  /* mostra a conta inteira, para o consultor conferir de onde veio o numero */
   $('b_soma').value = bagagem > 0
-    ? malas + ' x R$ ' + moeda(vmala) + ' = R$ ' + moeda(bagagem) : '—';
+    ? c.porPax + ' x ' + c.pax + ' pax x ' + c.sentidos +
+      (c.sentidos > 1 ? ' trechos' : ' trecho') + ' = ' + malas +
+      (malas > 1 ? ' despachos' : ' despacho') + ' · R$ ' + moeda(bagagem)
+    : '—';
 
   txt('o_total', isFinite(passagem) ? moeda(geral) : '—');
   if(isFinite(passagem) && bagagem > 0){
     $('o_detalhe').style.display = '';
     txt('o_detalhe', 'Passagem R$ ' + moeda(passagem) + ' · ' + malas +
-      (malas > 1 ? ' malas despachadas' : ' mala despachada') + ' R$ ' + moeda(bagagem));
+      (malas > 1 ? ' despachos de bagagem' : ' despacho de bagagem') + ' R$ ' + moeda(bagagem));
   } else {
     $('o_detalhe').style.display = 'none';
     txt('o_detalhe', '');
