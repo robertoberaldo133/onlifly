@@ -48,6 +48,13 @@ button{flex:1;border:0;border-radius:999px;padding:11px;cursor:pointer;
 .b2{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
 button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
+/* bloco de bagagem: e o que o consultor mais mexe, entao fica destacado */
+.bagbox{background:var(--gold-lt);border:1.5px solid #E6D08C;border-radius:6px;
+  padding:14px 14px 6px;margin-bottom:16px}
+.bagbox legend{margin:0 0 8px;padding:0}
+.bagbox label{color:#6B5410}
+#bag{min-height:68px}
+
 .avisos{background:var(--warn-bg);border:1px solid var(--warn-br);border-radius:6px;
   padding:12px 14px;font-size:12.5px;color:var(--warn)}
 .avisos b{display:block;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.8px;
@@ -122,6 +129,10 @@ ul.lst li b{color:var(--ink)}
 .rod .a{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);line-height:1.7}
 .rod .a b{color:var(--ink)}
 .rod .wa{font-family:'Montserrat',sans-serif;font-weight:900;font-size:13px;color:var(--navy)}
+.cad{background:var(--navy);color:rgba(255,255,255,.80);font-family:'IBM Plex Mono',monospace;
+  font-size:9.5px;line-height:1.6;padding:9px 14px;border-radius:4px;margin:12px 0 0;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;page-break-inside:avoid}
+.cad b{color:#F0C73F}
 
 @media(max-width:980px){
   .app{grid-template-columns:1fr;padding:12px;gap:14px}
@@ -216,9 +227,31 @@ ul.lst li b{color:var(--ink)}
         </div>
       </fieldset>
 
-      <fieldset>
-        <legend>Bagagem</legend>
-        <div class="row"><div><label for="bag">Uma linha por item</label><textarea id="bag"></textarea></div></div>
+      <fieldset class="bagbox">
+        <legend>Bagagem despachada</legend>
+        <div class="row c2">
+          <div><label for="b_desp">Tem despachada?</label><select id="b_desp">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+          </select></div>
+          <div><label for="b_qtd">Quantas malas</label><select id="b_qtd">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+          </select></div>
+        </div>
+        <div class="row c2">
+          <div><label for="b_trecho">Em quais trechos</label><select id="b_trecho">
+            <option value="ambos">Ida e volta</option>
+            <option value="ida">Somente na ida</option>
+            <option value="volta">Somente na volta</option>
+          </select></div>
+          <div><label for="b_pax">Para quantos passageiros</label><select id="b_pax">
+            <option value="todos">Todos</option>
+            <option value="1">1</option><option value="2">2</option>
+            <option value="3">3</option><option value="4">4</option>
+            <option value="5">5</option><option value="6">6</option>
+          </select></div>
+        </div>
+        <div class="row"><div><label for="bag">Como vai sair na cotação</label><textarea id="bag"></textarea></div></div>
       </fieldset>
 
       <fieldset>
@@ -264,7 +297,6 @@ ul.lst li b{color:var(--ink)}
       <span class="logo">Onl<span class="idot">ı</span>Fly<span class="sep">•</span><span class="g">Viagens</span></span>
       <div class="meta">
         CNPJ <b>68.218.547/0001-00</b><br>
-        Cadastur válido até <b>28/07/2028</b><br>
         WhatsApp <b>(47) 99661-8052</b>
       </div>
     </div>
@@ -314,11 +346,15 @@ ul.lst li b{color:var(--ink)}
     <div class="rod">
       <div class="a">
         Cotação feita por <b id="o_consultor">—</b><br>
-        OnliFly Viagens · R. Felix Gaya, 221, Centro · Navegantes/SC<br>
-        Agência registrada no Ministério do Turismo
+        OnliFly Viagens · R. Felix Gaya, 221, Centro · Navegantes/SC
       </div>
       <div class="wa">Dúvidas? (47) 99661-8052</div>
     </div>
+
+    <p class="cad">
+      <span>Qualquer dúvida, consulte seu consultor de viagens.</span>
+      <span><b>Cadastur ativo</b> — Registro nº 68.218.547/0001-00, válido até 28/07/2028</span>
+    </p>
   </div>
 </div>
 
@@ -545,14 +581,30 @@ function trecho(pts, cs, pds, dt){
 
 /* ===================== aplicar ===================== */
 
-/* Na pesquisa, "Bagagem despachada inclusa" quer dizer 23 kg para todos os
-   passageiros. Quando vale so para parte do grupo, o texto traz "apenas para". */
-function bagagemTexto(linhas){
-  return linhas.map(function(l){
-    if(/bagagem\s+despachada\s+inclusa/i.test(l) && !/apenas/i.test(l))
-      return '1 mala despachada de 23 kg por passageiro';
-    return l;
-  });
+/* A despachada vem dos seletores, nao do texto da pesquisa: cada cliente combina
+   malas, trechos e passageiros de um jeito. 23 kg e o padrao da economica; caso
+   fuja disso, o consultor corrige direto no campo de texto. */
+var maoAtual = '', extrasAtual = [];
+
+function textoDespachada(){
+  if($('b_desp').value === 'nao') return 'Sem bagagem despachada inclusa';
+  var q = parseInt($('b_qtd').value, 10) || 1,
+      tr = $('b_trecho').value,
+      px = $('b_pax').value,
+      s = q + (q > 1 ? ' malas despachadas' : ' mala despachada') + ' de 23 kg';
+  s += px === 'todos' ? ' por passageiro'
+     : ' para ' + px + (px === '1' ? ' passageiro' : ' passageiros');
+  s += tr === 'ida'   ? ', somente na ida'
+     : tr === 'volta' ? ', somente na volta'
+     : ', na ida e na volta';
+  return s;
+}
+
+function montaBagagem(){
+  var l = [];
+  if(maoAtual) l.push(maoAtual);
+  l.push(textoDespachada());
+  $('bag').value = l.concat(extrasAtual).join('\n');
 }
 
 /* Bagagem de mao NAO e igual em todas as companhias: a TAP libera 10 kg de mao
@@ -628,10 +680,16 @@ function aplicar(){
   if(r.pax)     $('pax').value = r.pax;
   var cias = [];
   ['ida','volta'].forEach(function(s){ if(r[s]) cias = cias.concat(r[s].cias) });
-  var bags = bagagemTexto(r.bag);
-  var bm = bagagemDeMao(cias);
-  if(bm && !/m[ãa]o/i.test(bags.join(' '))) bags.unshift(bm);
-  if(bags.length) $('bag').value = bags.join('\n');
+  maoAtual = bagagemDeMao(cias) || '';
+  /* a frase padrao da pesquisa so liga o seletor; o resto vira observacao */
+  var temDesp = false;
+  extrasAtual = [];
+  r.bag.forEach(function(l){
+    if(/bagagem\s+despachada\s+inclusa/i.test(l) && !/apenas|^sem\b/i.test(l)){ temDesp = true; return }
+    extrasAtual.push(l);
+  });
+  if(temDesp) $('b_desp').value = 'sim';
+  montaBagagem();
   if(r.total !== null) $('total').value = moeda(r.total);
 
   var h = new Date();
@@ -644,18 +702,12 @@ function aplicar(){
   if(r.ida && r.ida.data) av.push('Confira o ano das datas: a pesquisa não informa, eu deduzi pelo calendário.');
   if(!r.cliente) av.push('Nome do cliente não encontrado. Digite abaixo.');
   if(r.total === null) av.push('Valor não encontrado. Digite abaixo.');
-  /* despachada e mao sao conferidas separado: a de mao vem da tabela de companhias
-     e nao pode mascarar a falta da despachada */
-  var desp = bags.filter(function(l){ return /despachad/i.test(l) }).join(' ');
-  if(!desp)
-    av.push('A pesquisa não diz nada sobre bagagem despachada. Confirme e preencha antes de enviar.');
-  else if(/apenas/i.test(desp))
-    av.push('A bagagem despachada não vale para todos. Deixe claro na cotação para quem vale.');
-  else if(!/\d+\s*(kg|quilo)/i.test(desp))
-    av.push('A bagagem despachada não diz quantos quilos. Complete antes de enviar.');
-  if(!/m[ãa]o/i.test(bags.join(' ')))
+  /* o risco e prometer despachada que a tarifa nao tem, entao so esse lado avisa */
+  if(!temDesp && $('b_desp').value === 'sim')
+    av.push('A pesquisa não menciona bagagem despachada, mas a seleção está em Sim. Confirme na tarifa.');
+  if(!maoAtual)
     av.push('Falta a bagagem de mão. Não conheço o limite dessa companhia, preencha à mão.');
-  if(bm && limitesDiferentes(cias))
+  if(maoAtual && limitesDiferentes(cias))
     av.push('As companhias do trecho têm limites de mão diferentes. Usei o menor, que é o que vale no portão.');
   var dest = r.ida ? r.ida.destino : null;
   if(dest && BR.indexOf(dest) < 0 && (cias.indexOf('GOL') >= 0 || cias.indexOf('LATAM') >= 0))
@@ -744,13 +796,20 @@ var EXEMPLO = [
 ].join('\n');
 
 /* cada um usa o proprio aparelho, entao a escolha do consultor fica guardada
-   ali mesmo. Em aba anonima o acesso falha, e ai so volta ao padrao. */
-try{
-  var salvo = localStorage.getItem('onlifly-consultor');
-  if(salvo) $('consultor').value = salvo;
-}catch(e){}
-$('consultor').addEventListener('change', function(){
-  try{ localStorage.setItem('onlifly-consultor', this.value) }catch(e){}
+   ali mesmo. Em aba anonima o acesso falha, e ai so volta ao padrao.
+   O mesmo vale para a bagagem: a selecao fica fixa entre uma cotacao e outra e
+   o consultor so mexe quando o caso muda. */
+var LEMBRAR = ['consultor','b_desp','b_qtd','b_trecho','b_pax'];
+LEMBRAR.forEach(function(id){
+  try{
+    var salvo = localStorage.getItem('onlifly-' + id);
+    if(salvo) $(id).value = salvo;
+  }catch(e){}
+  $(id).addEventListener('change', function(){
+    try{ localStorage.setItem('onlifly-' + id, this.value) }catch(e){}
+    if(id !== 'consultor') montaBagagem();
+    render();
+  });
 });
 
 $('f').addEventListener('input', render);
@@ -760,6 +819,8 @@ $('exemplo').addEventListener('click', function(){ $('bruto').value = EXEMPLO; a
 $('limpar').addEventListener('click', function(){
   $('bruto').value = '';
   limpaCampos();
+  maoAtual = ''; extrasAtual = [];
+  montaBagagem();
   $('avisos').innerHTML = ''; $('sobra').innerHTML = '';
   render();
 });
