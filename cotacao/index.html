@@ -120,7 +120,14 @@ ul.lst li b{color:var(--ink)}
   letter-spacing:-1px;line-height:1.05}
 .valor .p{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13.5px;
   color:var(--navy);margin-top:3px}
+.valor .pb{font-size:11.5px;color:var(--ink2);margin-top:3px}
 .valor .pc{font-size:11.5px;color:var(--ink2);margin-top:2px}
+
+/* certificado Cadastur, em pagina propria no PDF */
+.cert{margin-top:16px}
+.cert img{width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--line)}
+.cert figcaption{font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:var(--muted);
+  margin-top:6px;text-align:center}
 
 .obs{font-size:11.5px;color:var(--muted);line-height:1.6;border-top:1px solid var(--line);
   margin-top:18px;padding-top:12px}
@@ -160,6 +167,9 @@ ul.lst li b{color:var(--ink)}
   .app{display:block;padding:0}
   .col{display:none}
   .sheet{border:0;border-radius:0;padding:0;max-width:none}
+  /* o certificado sai numa folha so dele, como na cotacao modelo */
+  .cert{page-break-before:always;margin-top:0}
+  .cert img{border:0}
 }
 </style>
 
@@ -200,6 +210,10 @@ ul.lst li b{color:var(--ink)}
             <option value="3">3</option><option value="4">4</option>
             <option value="5">5</option><option value="6">6</option>
           </select></div>
+        </div>
+        <div class="row c2">
+          <div><label for="b_valor">Valor por mala (R$)</label><input id="b_valor" value="169,90"></div>
+          <div><label>Adicional de bagagem</label><input id="b_soma" readonly tabindex="-1"></div>
         </div>
         <div class="row"><div><label for="bag">Como vai sair na cotação</label><textarea id="bag"></textarea></div></div>
       </fieldset>
@@ -263,7 +277,7 @@ ul.lst li b{color:var(--ink)}
       <fieldset>
         <legend>Valor</legend>
         <div class="row c2">
-          <div><label for="total">Total (R$)</label><input id="total"></div>
+          <div><label for="total">Só a passagem (R$)</label><input id="total"></div>
           <div><label for="parc">Parcelar em até</label><input id="parc" value="10"></div>
         </div>
         <div class="row"><div><label for="inclui">O que está incluso</label><input id="inclui" value="Passagem aérea ida e volta, taxas e bagagem descrita acima"></div></div>
@@ -333,6 +347,7 @@ ul.lst li b{color:var(--ink)}
       <div>
         <div class="k">Total para <span id="o_pax2">—</span></div>
         <div class="v">R$ <span id="o_total">—</span></div>
+        <div class="pb" id="o_detalhe"></div>
         <div class="p" id="o_pagto">—</div>
         <div class="pc">Consulte as condições de parcelamento com o seu consultor.</div>
       </div>
@@ -356,6 +371,11 @@ ul.lst li b{color:var(--ink)}
       <span>Qualquer dúvida, consulte seu consultor de viagens.</span>
       <span><b>Cadastur ativo</b> — Registro nº 68.218.547/0001-00, válido até 28/07/2028</span>
     </p>
+
+    <figure class="cert">
+      <img src="cadastur.jpg" alt="Certificado Cadastur da OnliFly Viagens, cadastro 68.218.547/0001-00, válido de 28/07/2026 a 28/07/2028">
+      <figcaption>Autenticidade verificável pelo QR Code ou em cadastur.turismo.gov.br</figcaption>
+    </figure>
   </div>
 </div>
 
@@ -601,6 +621,19 @@ function textoDespachada(){
   return s;
 }
 
+/* quantas malas a cotacao cobra: por passageiro, cobrindo ida e volta */
+function nMalas(){
+  if($('b_desp').value === 'nao') return 0;
+  var q = parseInt($('b_qtd').value, 10) || 1, px = $('b_pax').value, n;
+  if(px === 'todos'){
+    var m = String($('pax').value || '').match(/\d+/);
+    n = m ? parseInt(m[0], 10) : 1;
+  } else {
+    n = parseInt(px, 10) || 1;
+  }
+  return q * n;
+}
+
 function montaBagagem(){
   var l = [];
   if(maoAtual) l.push(maoAtual);
@@ -771,10 +804,25 @@ function render(){
   $('bl_rec').style.display = rec ? '' : 'none';
   txt('o_rec', rec);
 
-  var tv = parseFloat(String($('total').value||'').replace(/\./g,'').replace(',','.'));
-  var n = parseInt($('parc').value,10);
-  txt('o_total', isFinite(tv) ? moeda(tv) : '—');
-  txt('o_pagto', pagamento(n));
+  var passagem = parseFloat(String($('total').value||'').replace(/\./g,'').replace(',','.'));
+  var vmala = parseFloat(String($('b_valor').value||'').replace(/\./g,'').replace(',','.'));
+  var malas = nMalas();
+  var bagagem = (isFinite(vmala) && malas > 0) ? malas * vmala : 0;
+  var geral = (isFinite(passagem) ? passagem : 0) + bagagem;
+
+  $('b_soma').value = bagagem > 0
+    ? malas + ' x R$ ' + moeda(vmala) + ' = R$ ' + moeda(bagagem) : '—';
+
+  txt('o_total', isFinite(passagem) ? moeda(geral) : '—');
+  if(isFinite(passagem) && bagagem > 0){
+    $('o_detalhe').style.display = '';
+    txt('o_detalhe', 'Passagem R$ ' + moeda(passagem) + ' · ' + malas +
+      (malas > 1 ? ' malas despachadas' : ' mala despachada') + ' R$ ' + moeda(bagagem));
+  } else {
+    $('o_detalhe').style.display = 'none';
+    txt('o_detalhe', '');
+  }
+  txt('o_pagto', pagamento(parseInt($('parc').value,10)));
 
   txt('o_inclui', $('inclui').value || '—');
   txt('o_valid', $('valid').value || '—');
@@ -800,16 +848,18 @@ var EXEMPLO = [
    ali mesmo. Em aba anonima o acesso falha, e ai so volta ao padrao.
    O mesmo vale para a bagagem: a selecao fica fixa entre uma cotacao e outra e
    o consultor so mexe quando o caso muda. */
-var LEMBRAR = ['consultor','b_desp','b_qtd','b_trecho','b_pax'];
+var LEMBRAR = ['consultor','b_desp','b_qtd','b_trecho','b_pax','b_valor'];
 LEMBRAR.forEach(function(id){
   try{
     var salvo = localStorage.getItem('onlifly-' + id);
     if(salvo) $(id).value = salvo;
   }catch(e){}
-  $(id).addEventListener('change', function(){
-    try{ localStorage.setItem('onlifly-' + id, this.value) }catch(e){}
-    if(id !== 'consultor') montaBagagem();
-    render();
+  ['change','input'].forEach(function(ev){
+    $(id).addEventListener(ev, function(){
+      try{ localStorage.setItem('onlifly-' + id, this.value) }catch(e){}
+      if(id !== 'consultor') montaBagagem();
+      render();
+    });
   });
 });
 
