@@ -244,7 +244,10 @@ ul.lst li b{color:var(--ink)}
         <legend>Validade</legend>
         <div class="row c2">
           <div><label for="valid">Tarifa consultada em</label><input id="valid"></div>
-          <div><label for="consultor">Consultor</label><input id="consultor" value="Pedro Fabretti"></div>
+          <div><label for="consultor">Consultor</label><select id="consultor">
+            <option>Pedro Fabretti</option>
+            <option>Juliana</option>
+          </select></div>
         </div>
       </fieldset>
 
@@ -739,6 +742,16 @@ var EXEMPLO = [
 '00:45+1','Aeroporto Internacional de Natal (NAT)','','Gol','G3 1834','',
 '5.522,5','Maria Judite','1 pessoa','Bagagem despachada inclusa'
 ].join('\n');
+
+/* cada um usa o proprio aparelho, entao a escolha do consultor fica guardada
+   ali mesmo. Em aba anonima o acesso falha, e ai so volta ao padrao. */
+try{
+  var salvo = localStorage.getItem('onlifly-consultor');
+  if(salvo) $('consultor').value = salvo;
+}catch(e){}
+$('consultor').addEventListener('change', function(){
+  try{ localStorage.setItem('onlifly-consultor', this.value) }catch(e){}
+});
 
 $('f').addEventListener('input', render);
 $('ler').addEventListener('click', aplicar);
