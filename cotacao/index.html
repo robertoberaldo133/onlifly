@@ -50,7 +50,7 @@ button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
 
 /* bloco de bagagem: e o que o consultor mais mexe, entao fica destacado */
 .bagbox{background:var(--gold-lt);border:1.5px solid #E6D08C;border-radius:6px;
-  padding:14px 14px 6px;margin-bottom:16px}
+  padding:14px 14px 6px;margin:14px 0 0}
 .bagbox legend{margin:0 0 8px;padding:0}
 .bagbox label{color:#6B5410}
 #bag{min-height:68px}
@@ -176,6 +176,34 @@ ul.lst li b{color:var(--ink)}
         <button type="button" class="b1" id="ler">Montar cotação</button>
         <button type="button" class="b2" id="exemplo">Ver exemplo</button>
       </div>
+
+      <fieldset class="bagbox">
+        <legend>Bagagem despachada</legend>
+        <div class="row c2">
+          <div><label for="b_desp">Tem despachada?</label><select id="b_desp">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+          </select></div>
+          <div><label for="b_qtd">Quantas malas</label><select id="b_qtd">
+            <option>1</option><option>2</option><option>3</option><option>4</option>
+          </select></div>
+        </div>
+        <div class="row c2">
+          <div><label for="b_trecho">Em quais trechos</label><select id="b_trecho">
+            <option value="ambos">Ida e volta</option>
+            <option value="ida">Somente na ida</option>
+            <option value="volta">Somente na volta</option>
+          </select></div>
+          <div><label for="b_pax">Para quantos passageiros</label><select id="b_pax">
+            <option value="todos">Todos</option>
+            <option value="1">1</option><option value="2">2</option>
+            <option value="3">3</option><option value="4">4</option>
+            <option value="5">5</option><option value="6">6</option>
+          </select></div>
+        </div>
+        <div class="row"><div><label for="bag">Como vai sair na cotação</label><textarea id="bag"></textarea></div></div>
+      </fieldset>
+
       <div id="avisos" style="margin-top:12px"></div>
       <div id="sobra"></div>
     </div>
@@ -225,33 +253,6 @@ ul.lst li b{color:var(--ink)}
           <div><label for="v_cheg">Chegada</label><input id="v_cheg"></div>
           <div><label for="v_esc">Escalas</label><input id="v_esc"></div>
         </div>
-      </fieldset>
-
-      <fieldset class="bagbox">
-        <legend>Bagagem despachada</legend>
-        <div class="row c2">
-          <div><label for="b_desp">Tem despachada?</label><select id="b_desp">
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
-          </select></div>
-          <div><label for="b_qtd">Quantas malas</label><select id="b_qtd">
-            <option>1</option><option>2</option><option>3</option><option>4</option>
-          </select></div>
-        </div>
-        <div class="row c2">
-          <div><label for="b_trecho">Em quais trechos</label><select id="b_trecho">
-            <option value="ambos">Ida e volta</option>
-            <option value="ida">Somente na ida</option>
-            <option value="volta">Somente na volta</option>
-          </select></div>
-          <div><label for="b_pax">Para quantos passageiros</label><select id="b_pax">
-            <option value="todos">Todos</option>
-            <option value="1">1</option><option value="2">2</option>
-            <option value="3">3</option><option value="4">4</option>
-            <option value="5">5</option><option value="6">6</option>
-          </select></div>
-        </div>
-        <div class="row"><div><label for="bag">Como vai sair na cotação</label><textarea id="bag"></textarea></div></div>
       </fieldset>
 
       <fieldset>
@@ -813,6 +814,8 @@ LEMBRAR.forEach(function(id){
 });
 
 $('f').addEventListener('input', render);
+/* o campo de bagagem fica no cartao de cima, fora do formulario */
+$('bag').addEventListener('input', render);
 $('ler').addEventListener('click', aplicar);
 $('imprimir').addEventListener('click', function(){ window.print() });
 $('exemplo').addEventListener('click', function(){ $('bruto').value = EXEMPLO; aplicar() });
