@@ -260,7 +260,7 @@ function limitesDiferentes(cias){
   return n>1;
 }
 function contaMalas(){
-  if($('b_desp').value==='nao') return {total:0};
+  if($('b_desp').value!=='sim') return {total:0};
   var q=parseInt($('b_qtd').value,10)||1, px=$('b_pax').value, n;
   if(px==='todos'){
     var m=String($('pax').value||'').match(/\d+/);
@@ -276,6 +276,7 @@ function textoDespachada(){
   s += px==='todos' ? ' por passageiro'
      : ' para '+px+(px==='1'?' passageiro':' passageiros');
   s += tr==='ida' ? ', somente na ida' : tr==='volta' ? ', somente na volta' : ', na ida e na volta';
+  if($('b_desp').value==='cia') s += ', já inclusa na tarifa';
   return s;
 }
 function montaBagagem(){
