@@ -341,7 +341,6 @@ function aplicar(){
     if(r.ida.aeronave) dd.push('Aeronave '+r.ida.aeronave.split(' · ')[0]);
   }
   dd.push($('b_desp').value==='sim' ? 'Bagagem despachada inclusa' : 'Bagagem de mão inclusa');
-  dd.push('Agência certificada Cadastur');
   $('dest').value = dd.join('\n');
 
   var h=new Date();
