@@ -1,459 +1,136 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Cotação OnliFly</title>
+<title>OnliFly Viagens &middot; Site em manutenção</title>
+<meta name="description" content="O site da OnliFly Viagens está em manutenção. O atendimento segue normalmente pelo WhatsApp (47) 99661-8052.">
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230B1F6B' rx='6'/><text x='16' y='22' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='14' fill='%23F5C518'>OF</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 <style>
-:root{
-  --navy:#0B1F6B; --deep:#071238; --gold:#F5C518; --gold-esc:#B8890A; --gold-cl:#FFF8E1;
-  --ink:#16203C; --ink2:#44527A; --muted:#78839F; --line:#D9DFEE; --bg:#EEF1F8;
-  --warn:#8A5A00; --warn-bg:#FFF6E0; --warn-br:#F0D28A;
-}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);
-  font-family:'Open Sans',system-ui,sans-serif;font-size:14px;line-height:1.5}
-
-.app{display:grid;grid-template-columns:420px 1fr;gap:22px;padding:22px;align-items:start}
-.app>*{min-width:0}
-.col{position:sticky;top:22px;max-height:calc(100vh - 44px);overflow-y:auto;
-  display:flex;flex-direction:column;gap:14px}
-
-/* ---------- painel de trabalho ---------- */
-.card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:20px}
-.card h2{font-family:'Montserrat',sans-serif;font-size:15px;font-weight:900;color:var(--navy);
-  margin:0 0 4px;letter-spacing:-.2px}
-.card .hint{font-size:12px;color:var(--muted);margin:0 0 12px}
-#bruto{width:100%;min-height:170px;resize:vertical;border:1px solid var(--line);
-  border-radius:4px;padding:10px;font-family:ui-monospace,Menlo,Consolas,monospace;
-  font-size:12px;line-height:1.55;color:var(--ink);background:#FBFCFE}
-#bruto:focus{outline:2px solid var(--gold-esc);outline-offset:-1px}
-
-fieldset{border:0;padding:0;margin:0 0 16px}
-legend{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:1.4px;
-  text-transform:uppercase;color:var(--gold-esc);padding:0;margin-bottom:8px}
-label{display:block;font-size:11px;font-weight:700;color:var(--ink2);margin:0 0 3px}
-input,textarea,select{width:100%;min-width:0;border:1px solid var(--line);border-radius:4px;
-  padding:7px 9px;font-family:inherit;font-size:13px;color:var(--ink);background:#fff}
-input:focus,textarea:focus,select:focus{outline:2px solid var(--gold-esc);outline-offset:-1px}
-textarea{resize:vertical;min-height:52px}
-.row{display:grid;gap:8px;margin-bottom:8px}
-.row.c2{grid-template-columns:1fr 1fr}
-.row.c3{grid-template-columns:1fr 1fr 1fr}
-.acts{display:flex;gap:8px}
-button{flex:1;border:0;border-radius:999px;padding:11px;cursor:pointer;
-  font-family:'Montserrat',sans-serif;font-weight:800;font-size:12.5px}
-.b1{background:var(--navy);color:#fff}
-.b2{background:#fff;color:var(--navy);border:1.5px solid var(--navy)}
-
-.bagbox{background:var(--gold-cl);border:1.5px solid #E6D08C;border-radius:6px;
-  padding:14px 14px 6px;margin:14px 0 0}
-.bagbox legend{margin:0 0 8px}
-.bagbox label{color:#6B5410}
-#bag{min-height:72px}
-
-.avisos{background:var(--warn-bg);border:1px solid var(--warn-br);border-radius:6px;
-  padding:12px 14px;font-size:12.5px;color:var(--warn)}
-.avisos b{display:block;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:.8px;
-  text-transform:uppercase;margin-bottom:6px}
-.avisos ul{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px}
-.avisos.ok{background:#EAF6EE;border-color:#B4DCC2;color:#1E6B3A}
-details.sobra{font-size:12px;color:var(--muted);margin-top:10px}
-details.sobra summary{cursor:pointer;font-weight:700}
-details.sobra pre{white-space:pre-wrap;word-break:break-word;font-size:10.5px;
-  background:#F6F8FC;border-radius:4px;padding:8px;margin:7px 0 0;max-height:160px;overflow:auto}
-
-/* ================= A COTAÇÃO ================= */
-.sheet{background:#fff;max-width:820px;border-radius:8px;overflow:hidden;
-  box-shadow:0 1px 3px rgba(11,31,107,.12)}
-
-.cab{background:var(--navy);color:#fff;padding:22px 30px 20px}
-.cab-top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:16px}
-.logo{font-family:'Montserrat',sans-serif;font-weight:900;font-size:19px;color:#fff;
-  letter-spacing:-.4px;display:inline-flex;align-items:baseline}
-.logo .idot{position:relative;display:inline-block}
-.logo .idot::after{content:'';position:absolute;top:.20em;left:50%;transform:translateX(-50%);
-  width:.17em;height:.17em;border-radius:50%;background:var(--gold)}
-.logo .sep{color:var(--gold);margin:0 .26em}
-.cab-tag{font-family:'Montserrat',sans-serif;font-weight:700;font-size:9px;letter-spacing:1.6px;
-  text-transform:uppercase;color:rgba(255,255,255,.62);text-align:right}
-.cab-para{font-family:'Montserrat',sans-serif;font-weight:700;font-size:9.5px;letter-spacing:1.8px;
-  text-transform:uppercase;color:var(--gold);margin-bottom:2px}
-.cab h1{font-family:'Montserrat',sans-serif;font-weight:900;font-size:33px;color:#fff;
-  margin:0 0 15px;letter-spacing:-1px;line-height:1.1}
-.chips{display:flex;flex-wrap:wrap;gap:7px}
-.chip{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:4px 13px;
-  font-size:11px;color:rgba(255,255,255,.92);white-space:nowrap}
-
-.corpo{padding:24px 30px 26px}
-.sec-t{font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:1.5px;
-  text-transform:uppercase;color:var(--navy);margin:0 0 10px}
-
-/* ---- trecho ---- */
-.leg{border:1px solid var(--line);border-radius:7px;padding:13px 16px 12px;margin-bottom:10px;
-  page-break-inside:avoid}
-.leg-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}
-.badge{font-family:'Montserrat',sans-serif;font-weight:800;font-size:9px;letter-spacing:1.3px;
-  background:var(--navy);color:#fff;border-radius:4px;padding:3px 10px}
-.leg-data{font-size:10.5px;color:var(--muted)}
-.linha{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:14px}
-.hora{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;color:var(--ink);
-  letter-spacing:-.6px;line-height:1.1;white-space:nowrap}
-.hora sup{font-size:11px;color:var(--gold-esc);font-weight:800}
-.apt{font-size:10.5px;color:var(--ink2);margin-top:1px;white-space:nowrap}
-.apt b{color:var(--ink)}
-.meio{text-align:center;position:relative;padding:0 4px}
-.meio .dur{font-size:10.5px;font-weight:700;color:var(--navy);margin-bottom:4px}
-.trilho{height:2px;background:var(--navy);position:relative;opacity:.35}
-.trilho::before,.trilho::after{content:'';position:absolute;top:50%;width:7px;height:7px;
-  border-radius:50%;border:2px solid var(--navy);background:#fff;transform:translateY(-50%)}
-.trilho::before{left:-1px}
-.trilho::after{right:-1px;background:var(--navy)}
-.meio .via{font-size:10px;color:var(--muted);margin-top:5px}
-.leg-det{font-size:10.5px;color:var(--muted);margin-top:10px;line-height:1.6}
-.leg-det b{color:var(--navy);font-weight:700}
-.dir{text-align:right}
-
-/* ---- duas colunas ---- */
-.duas{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin:20px 0 18px}
-ul.lst{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
-ul.lst li{font-size:12px;color:var(--ink2);padding-left:15px;position:relative;line-height:1.45}
-ul.lst li::before{content:'';position:absolute;left:0;top:.48em;width:6px;height:6px;
-  background:var(--gold);transform:rotate(45deg)}
-ul.lst li b{color:var(--ink)}
-
-/* ---- valores ---- */
-.itens{width:100%;border-collapse:collapse;margin-bottom:0}
-.itens th{font-family:'Montserrat',sans-serif;font-weight:800;font-size:9px;letter-spacing:1.3px;
-  text-transform:uppercase;color:var(--muted);text-align:left;padding:7px 14px;
-  border:1px solid var(--line);background:#F7F9FD}
-.itens th:last-child,.itens td:last-child{text-align:right}
-.itens td{font-size:12px;color:var(--ink2);padding:10px 14px;border:1px solid var(--line);
-  border-top:0}
-.total{background:var(--navy);color:#fff;display:flex;align-items:center;
-  justify-content:space-between;gap:16px;padding:13px 14px;border-radius:0 0 5px 5px;
-  page-break-inside:avoid}
-.total .k{font-family:'Montserrat',sans-serif;font-weight:800;font-size:11px;letter-spacing:1.3px;
-  text-transform:uppercase}
-.total .v{font-family:'Montserrat',sans-serif;font-weight:900;font-size:25px;color:var(--gold);
-  letter-spacing:-.8px}
-.parc{font-family:'Montserrat',sans-serif;font-weight:800;font-size:12.5px;color:var(--navy);
-  margin-top:9px}
-.parc2{font-size:11px;color:var(--muted);margin-top:1px}
-
-.dest{margin:0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;
-  gap:7px 24px;page-break-inside:avoid}
-.dest li{font-size:11.5px;color:var(--ink2);padding-left:15px;position:relative}
-.dest li::before{content:'';position:absolute;left:0;top:.45em;width:6px;height:6px;
-  background:var(--gold);transform:rotate(45deg)}
-
-.validade{background:var(--gold-cl);border:1px solid #EFDCA0;border-radius:6px;
-  padding:12px 15px;margin:18px 0 0;page-break-inside:avoid}
-.validade b{display:block;font-family:'Montserrat',sans-serif;font-weight:800;font-size:9.5px;
-  letter-spacing:1.3px;text-transform:uppercase;color:var(--gold-esc);margin-bottom:4px}
-.validade span{font-size:11px;color:#7A6320;line-height:1.55}
-
-.assina{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;
-  margin-top:18px;flex-wrap:wrap;page-break-inside:avoid}
-.assina .k{font-family:'Montserrat',sans-serif;font-weight:800;font-size:9px;letter-spacing:1.3px;
-  text-transform:uppercase;color:var(--muted);margin-bottom:2px}
-.assina .nome{font-family:'Montserrat',sans-serif;font-weight:900;font-size:15px;color:var(--navy)}
-.assina .cargo{font-size:11px;color:var(--muted)}
-.wabtn{background:var(--gold);color:var(--navy);border-radius:999px;padding:9px 20px;
-  font-family:'Montserrat',sans-serif;font-weight:800;font-size:10px;letter-spacing:.6px;
-  text-align:center;text-decoration:none;line-height:1.45;display:inline-block}
-.wabtn span{display:block;font-size:12.5px;letter-spacing:0}
-
-.cad{background:var(--deep);color:rgba(255,255,255,.72);font-size:9.5px;line-height:1.6;
-  padding:10px 30px;margin:0;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
-.cad b{color:var(--gold)}
-.cert{margin:0;padding:26px 30px}
-.cert .sec-t{margin-bottom:12px}
-.cert img{width:100%;height:auto;display:block;border-radius:6px;border:1px solid var(--line)}
-.cert figcaption{font-size:9.5px;color:var(--muted);margin-top:7px;text-align:center}
-
-@media(max-width:980px){
-  .app{grid-template-columns:1fr;padding:12px;gap:14px}
-  .col{position:static;max-height:none;overflow:visible}
-  .card{padding:16px}
-  input,textarea,select{font-size:16px;padding:9px 10px}
-  #bruto{font-size:13px}
-  .row.c3{grid-template-columns:1fr 1fr}
-  .cab{padding:18px 18px 16px}
-  .cab h1{font-size:25px}
-  .corpo{padding:18px}
-  .duas{grid-template-columns:1fr;gap:16px}
-  .dest{grid-template-columns:1fr}
-  .linha{grid-template-columns:1fr;gap:8px;text-align:left}
-  .dir{text-align:left}
-  .meio{text-align:left}
-  .trilho{display:none}
-  .cad{padding:10px 18px}
-  .cert{padding:18px}
-  .assina{flex-direction:column;align-items:flex-start}
-}
-
-@media print{
-  @page{ size:A4; margin:0 }
-  body{background:#fff}
-  .app{display:block;padding:0}
-  .col{display:none}
-  .sheet{max-width:none;border-radius:0;box-shadow:none}
-  .cab{padding:16mm 14mm 12mm}
-  .corpo{padding:10mm 14mm 8mm}
-  .cad{padding:6mm 14mm}
-  .cert{page-break-before:always;padding:16mm 14mm}
-  .cert img{border:0}
-  /* A4 tem 794px, entao a media query de celular acima pega na impressao.
-     Estas regras devolvem o layout largo para o papel. */
-  .linha{grid-template-columns:auto 1fr auto;gap:14px}
-  .meio{text-align:center}
-  .dir{text-align:right}
-  .trilho{display:block}
-  .duas{grid-template-columns:1fr 1fr;gap:26px}
-  .dest{grid-template-columns:1fr 1fr}
-  .assina{flex-direction:row;align-items:flex-end}
-}
+  :root{
+    --azul:#0B1F6B;
+    --azul-claro:#16307f;
+    --ouro:#F5C518;
+    --texto:#ffffff;
+    --texto-fraco:rgba(255,255,255,.72);
+    --texto-tenue:rgba(255,255,255,.46);
+    --linha:rgba(255,255,255,.14);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    min-height:100vh;
+    background:var(--azul);
+    background-image:radial-gradient(900px 520px at 50% -8%, var(--azul-claro) 0%, var(--azul) 62%);
+    color:var(--texto);
+    font-family:'Open Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:48px 16px;
+    text-align:center;
+    -webkit-font-smoothing:antialiased;
+  }
+  .marca{
+    font-family:Montserrat,sans-serif;font-weight:900;font-size:26px;letter-spacing:.3px;
+    margin:0 0 4px;
+  }
+  .marca span{color:var(--ouro)}
+  .sub{
+    font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;
+    color:var(--texto-tenue);margin:0 0 40px;
+  }
+  .card{
+    width:100%;max-width:520px;
+    background:rgba(255,255,255,.055);
+    border:1px solid var(--linha);
+    border-radius:20px;
+    padding:38px 26px 32px;
+  }
+  .selo{
+    display:inline-block;
+    background:rgba(245,197,24,.13);
+    border:1px solid rgba(245,197,24,.34);
+    color:var(--ouro);
+    font-family:Montserrat,sans-serif;font-weight:800;
+    font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;
+    border-radius:999px;padding:7px 15px;margin-bottom:22px;
+  }
+  h1{
+    font-family:Montserrat,sans-serif;font-weight:800;
+    font-size:27px;line-height:1.26;margin:0 0 14px;
+  }
+  .texto{
+    font-size:15px;line-height:1.65;color:var(--texto-fraco);
+    margin:0 auto 10px;max-width:420px;
+  }
+  .reforco{color:var(--texto);font-weight:600}
+  .btn{
+    display:flex;align-items:center;justify-content:center;gap:9px;
+    margin:28px auto 0;max-width:380px;
+    background:linear-gradient(135deg,var(--ouro),#D9A70F);
+    color:var(--azul);
+    font-family:Montserrat,sans-serif;font-weight:800;font-size:15px;
+    text-decoration:none;border-radius:999px;padding:16px 22px;
+  }
+  .btn svg{flex:0 0 auto}
+  .fone{
+    font-size:13.5px;color:var(--texto-tenue);margin:14px 0 0;
+  }
+  .fone a{color:var(--texto-fraco);text-decoration:none}
+  .horario{
+    font-size:12.5px;color:var(--texto-tenue);
+    margin:22px auto 0;padding-top:18px;border-top:1px solid var(--linha);
+    max-width:420px;line-height:1.6;
+  }
+  footer{
+    margin-top:34px;font-size:11.5px;color:var(--texto-tenue);line-height:1.7;
+  }
+  @media (max-width:420px){
+    h1{font-size:23px}
+    .card{padding:30px 20px 26px}
+    body{padding:32px 14px}
+  }
 </style>
+</head>
+<body>
 
-<div class="app">
+  <p class="marca">Onli<span>Fly</span> Viagens</p>
+  <p class="sub">Passagens nacionais e internacionais</p>
 
-  <div class="col">
-
-    <div class="card">
-      <h2>Colar a pesquisa</h2>
-      <p class="hint">Selecione tudo na página do voo, copie e cole aqui. Depois do texto, acrescente <b>Cliente: nome</b>, quantas pessoas e o valor.</p>
-      <textarea id="bruto" spellcheck="false" placeholder="Cole aqui o bloco copiado da pesquisa de voos."></textarea>
-      <div class="acts" style="margin-top:10px">
-        <button type="button" class="b1" id="ler">Montar cotação</button>
-        <button type="button" class="b2" id="exemplo">Ver exemplo</button>
-      </div>
-
-      <fieldset class="bagbox">
-        <legend>Bagagem despachada</legend>
-        <div class="row c2">
-          <div><label for="b_desp">Tem despachada?</label><select id="b_desp">
-            <option value="sim">Sim, cobrada</option><option value="cia">Sim, inclusa na tarifa</option><option value="nao">Não</option>
-          </select></div>
-          <div><label for="b_qtd">Malas por passageiro</label><select id="b_qtd">
-            <option>1</option><option>2</option><option>3</option><option>4</option>
-          </select></div>
-        </div>
-        <div class="row c2">
-          <div><label for="b_trecho">Em quais trechos</label><select id="b_trecho">
-            <option value="ambos">Ida e volta</option>
-            <option value="ida">Somente na ida</option>
-            <option value="volta">Somente na volta</option>
-          </select></div>
-          <div><label for="b_pax">Para quantos passageiros</label><select id="b_pax">
-            <option value="todos">Todos</option>
-            <option value="1">1</option><option value="2">2</option><option value="3">3</option>
-            <option value="4">4</option><option value="5">5</option><option value="6">6</option>
-          </select></div>
-        </div>
-        <div class="row c2">
-          <div><label for="b_valor">Valor por mala (R$)</label><input id="b_valor" value="169,90"></div>
-          <div><label for="b_soma">Adicional de bagagem</label><input id="b_soma" readonly tabindex="-1"></div>
-        </div>
-        <div class="row"><div><label for="bag">Como vai sair na cotação</label><textarea id="bag"></textarea></div></div>
-      </fieldset>
-
-      <div id="avisos" style="margin-top:12px"></div>
-      <div id="sobra"></div>
-    </div>
-
-    <form class="card" id="f" autocomplete="off">
-      <h2>Conferir e ajustar</h2>
-      <p class="hint">Tudo abaixo vem preenchido pela leitura. Corrija o que precisar antes de gerar o PDF.</p>
-
-      <fieldset>
-        <legend>Cliente</legend>
-        <div class="row c2">
-          <div><label for="cliente">Nome</label><input id="cliente"></div>
-          <div><label for="pax">Passageiros</label><input id="pax"></div>
-        </div>
-        <div class="row c2">
-          <div><label for="classe">Classe</label><input id="classe" value="Econômica"></div>
-          <div><label for="tipo">Tipo</label><input id="tipo" value="Ida e volta"></div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Ida</legend>
-        <div class="row c2">
-          <div><label for="i_data">Data</label><input id="i_data"></div>
-          <div><label for="i_cia">Companhia</label><input id="i_cia"></div>
-        </div>
-        <div class="row c2">
-          <div><label for="i_de">Origem</label><input id="i_de"></div>
-          <div><label for="i_para">Destino</label><input id="i_para"></div>
-        </div>
-        <div class="row c3">
-          <div><label for="i_sai">Saída</label><input id="i_sai"></div>
-          <div><label for="i_cheg">Chegada</label><input id="i_cheg"></div>
-          <div><label for="i_dur">Duração</label><input id="i_dur"></div>
-        </div>
-        <div class="row c2">
-          <div><label for="i_esc">Escalas</label><input id="i_esc"></div>
-          <div><label for="i_voo">Voo e aeronave</label><input id="i_voo"></div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Volta</legend>
-        <div class="row c2">
-          <div><label for="v_data">Data</label><input id="v_data"></div>
-          <div><label for="v_cia">Companhia</label><input id="v_cia"></div>
-        </div>
-        <div class="row c2">
-          <div><label for="v_de">Origem</label><input id="v_de"></div>
-          <div><label for="v_para">Destino</label><input id="v_para"></div>
-        </div>
-        <div class="row c3">
-          <div><label for="v_sai">Saída</label><input id="v_sai"></div>
-          <div><label for="v_cheg">Chegada</label><input id="v_cheg"></div>
-          <div><label for="v_dur">Duração</label><input id="v_dur"></div>
-        </div>
-        <div class="row c2">
-          <div><label for="v_esc">Escalas</label><input id="v_esc"></div>
-          <div><label for="v_voo">Voo e aeronave</label><input id="v_voo"></div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Valor</legend>
-        <div class="row c3">
-          <div><label for="total">Só a passagem (R$)</label><input id="total"></div>
-          <div><label for="desc">Desconto %</label><input id="desc" value="39,5"></div>
-          <div><label for="parc">Parcelar em até</label><input id="parc" value="10"></div>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Destaques</legend>
-        <div class="row"><div><label for="dest">Um por linha</label><textarea id="dest"></textarea></div></div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Validade</legend>
-        <div class="row c2">
-          <div><label for="valid">Tarifa consultada em</label><input id="valid"></div>
-          <div><label for="consultor">Consultor</label><select id="consultor">
-            <option>Pedro Fabretti</option><option>Juliana</option>
-          </select></div>
-        </div>
-      </fieldset>
-
-      <div class="acts">
-        <button type="button" class="b1" id="imprimir">Salvar em PDF</button>
-        <button type="button" class="b2" id="limpar">Limpar tudo</button>
-      </div>
-    </form>
-  </div>
-
-  <!-- ===================== COTAÇÃO ===================== -->
-  <div class="sheet" id="sheet">
-
-    <div class="cab">
-      <div class="cab-top">
-        <span class="logo">Onl<span class="idot">ı</span>Fly<span class="sep">•</span>Viagens</span>
-        <span class="cab-tag">Cotação personalizada</span>
-      </div>
-      <div class="cab-para" id="o_para">Preparada para <span id="o_cliente"></span></div>
-      <h1 id="o_rota">Cotação</h1>
-      <div class="chips">
-        <span class="chip" id="o_periodo"></span>
-        <span class="chip" id="o_pax"></span>
-        <span class="chip" id="o_classe"></span>
-        <span class="chip" id="o_tipo"></span>
-      </div>
-    </div>
-
-    <div class="corpo">
-      <div class="sec-t">Itinerário de voo</div>
-
-      <div class="leg" id="bl_ida">
-        <div class="leg-top"><span class="badge">IDA</span><span class="leg-data" id="o_i_data"></span></div>
-        <div class="linha">
-          <div>
-            <div class="hora" id="o_i_sai"></div>
-            <div class="apt" id="o_i_de"></div>
-          </div>
-          <div class="meio">
-            <div class="dur" id="o_i_dur"></div>
-            <div class="trilho"></div>
-            <div class="via" id="o_i_esc"></div>
-          </div>
-          <div class="dir">
-            <div class="hora" id="o_i_cheg"></div>
-            <div class="apt" id="o_i_para"></div>
-          </div>
-        </div>
-        <div class="leg-det" id="o_i_det"></div>
-      </div>
-
-      <div class="leg" id="bl_volta">
-        <div class="leg-top"><span class="badge">VOLTA</span><span class="leg-data" id="o_v_data"></span></div>
-        <div class="linha">
-          <div>
-            <div class="hora" id="o_v_sai"></div>
-            <div class="apt" id="o_v_de"></div>
-          </div>
-          <div class="meio">
-            <div class="dur" id="o_v_dur"></div>
-            <div class="trilho"></div>
-            <div class="via" id="o_v_esc"></div>
-          </div>
-          <div class="dir">
-            <div class="hora" id="o_v_cheg"></div>
-            <div class="apt" id="o_v_para"></div>
-          </div>
-        </div>
-        <div class="leg-det" id="o_v_det"></div>
-      </div>
-
-      <div class="duas">
-        <div><div class="sec-t">Bagagem</div><ul class="lst" id="o_bag"></ul></div>
-        <div><div class="sec-t">Formas de pagamento</div><ul class="lst">
-          <li><b>PIX</b> — à vista</li>
-          <li><b>Cartão de crédito</b> — em até <span id="o_parcn"></span>x</li>
-          <li><b>Transferência bancária</b></li>
-        </ul></div>
-      </div>
-
-      <table class="itens">
-        <tr><th>Item</th><th>Valor</th></tr>
-        <tr><td id="o_it_voo"></td><td id="o_it_voov"></td></tr>
-        <tr id="l_bag"><td id="o_it_bag"></td><td id="o_it_bagv"></td></tr>
-      </table>
-      <div class="total"><span class="k" id="o_tk">Total</span><span class="v">R$ <span id="o_total"></span></span></div>
-      <div class="parc" id="o_pagto"></div>
-      <div class="parc2">Consulte as condições de parcelamento com o seu consultor.</div>
-
-      <div style="margin-top:20px"><div class="sec-t">Destaques</div>
-        <ul class="dest" id="o_dest"></ul>
-      </div>
-
-      <div class="validade">
-        <b>Validade da tarifa</b>
-        <span>Os valores desta cotação seguem a disponibilidade e o preço da companhia aérea no momento da consulta. Tarifas aéreas são dinâmicas e podem sofrer alteração a qualquer momento, sem aviso prévio, conforme disponibilidade de assentos. Recomendamos confirmar o quanto antes para garantir a condição apresentada.</span>
-      </div>
-
-      <div class="assina">
-        <div>
-          <div class="k">Consultor responsável</div>
-          <div class="nome" id="o_consultor"></div>
-          <div class="cargo">Consultor de Viagens</div>
-        </div>
-        <a class="wabtn" href="https://wa.me/5547996618052">Confirmar pelo WhatsApp<span>(47) 99661-8052</span></a>
-      </div>
-    </div>
-
-    <p class="cad">
-      <span>Qualquer dúvida, consulte seu consultor de viagens.</span>
+  <main class="card">
+    <span class="selo">Site em manutenção</span>
+    <h1>Estamos fazendo uma atualização no site</h1>
+    <p class="texto">
+      Nossas páginas ficam fora do ar por algumas horas enquanto passamos por uma
+      manutenção. É uma pausa planejada, nada aconteceu com a agência.
     </p>
-  </div>
-</div>
+    <p class="texto reforco">
+      O atendimento continua normal pelo WhatsApp.
+    </p>
+    <p class="texto">
+      Se você já tem uma cotação ou uma reserva com a gente, pode falar com o seu
+      consultor pelo mesmo número de sempre. Nada muda.
+    </p>
 
-<script src="cotacao.js"></script>
+    <a class="btn" href="https://wa.me/5547996618052" target="_blank" rel="noopener">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.19-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.23.89 2.41 1.02 2.58.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.6.19 1.14.17 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+      Falar com a OnliFly no WhatsApp
+    </a>
+    <p class="fone">ou ligue para <a href="tel:+5547996618052">(47) 99661-8052</a></p>
+
+    <p class="horario">
+      Atendimento de segunda a domingo, das 7h &agrave;s 20h.<br>
+      Fora desse hor&aacute;rio, deixe sua mensagem que respondemos assim que abrirmos.
+    </p>
+  </main>
+
+  <footer>
+    OnliFly Viagens &middot; CNPJ 36.509.590/0001-20<br>
+    Navegantes, Santa Catarina
+  </footer>
+
+</body>
+</html>
