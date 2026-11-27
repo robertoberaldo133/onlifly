@@ -157,17 +157,19 @@ h2{font-size:clamp(28px,4.4vw,44px);font-weight:800}
 .destaque-txt h3{font-size:34px;font-weight:900;margin:8px 0 10px}
 .destaque-txt p{margin:0 0 18px;color:rgba(255,255,255,.8);font-size:14.5px;max-width:420px}
 .stubs{display:flex;flex-direction:column;gap:18px}
-.stub{display:flex;background:var(--papel-2);border:1px solid var(--linha-papel);
-  border-radius:6px;overflow:hidden;flex:1;text-decoration:none;color:inherit;
-  transition:border-color .15s,transform .15s}
-.stub:hover{border-color:rgba(10,24,54,.4);transform:translateY(-2px)}
-.stub-cod{flex:0 0 86px;background:var(--tinta);color:var(--branco);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}
-.stub-cod b{font-family:var(--mono);font-size:19px;font-weight:700;letter-spacing:.06em}
-.stub-cod span{font-size:9.5px;color:var(--txt-tenue);letter-spacing:.1em;text-transform:uppercase}
-.stub-txt{padding:16px 18px;display:flex;flex-direction:column;justify-content:center}
+.stub{position:relative;display:flex;align-items:flex-end;border-radius:6px;
+  overflow:hidden;flex:1;min-height:132px;text-decoration:none;color:var(--branco);
+  background:var(--tinta);transition:transform .15s}
+.stub:hover{transform:translateY(-2px)}
+.stub:hover .stub-foto{transform:scale(1.045)}
+.stub-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .4s ease}
+.stub::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(10,24,54,.93) 30%,rgba(10,24,54,.62) 62%,rgba(10,24,54,.3))}
+.stub-txt{position:relative;z-index:2;padding:16px 18px}
+.stub-txt .cod{color:var(--ouro);display:block;margin-bottom:6px}
 .stub-txt h3{font-size:19px;font-weight:800;margin-bottom:4px}
-.stub-txt p{margin:0;font-size:13.5px;color:#5A6782;line-height:1.5}
+.stub-txt p{margin:0;font-size:13px;color:rgba(255,255,255,.76);line-height:1.5;max-width:330px}
 .eua-nota{margin-top:26px;padding:18px 20px;background:rgba(10,24,54,.045);
   border-left:3px solid var(--tinta);border-radius:0 4px 4px 0}
 .eua-nota p{margin:0;font-size:14px;color:#44506B}
@@ -321,7 +323,7 @@ h2{font-size:clamp(28px,4.4vw,44px);font-weight:800}
       <div class="eua-cab">
         <div>
           <span class="selo-dez cod">Dezembro <b>·</b> Estados Unidos</span>
-          <h2>Os quatro destinos que mais<br>saem da nossa mesa</h2>
+          <h2>Os quatro destinos que<br>mais saem da nossa mesa</h2>
           <p class="sub">Miami, Orlando, Nova York e Las Vegas. Durante dezembro a gente cota esses quatro na frente de tudo, com resposta no mesmo dia.</p>
         </div>
         <a class="bt bt-escuro" href="#cotacao">Cotar meu destino</a>
@@ -340,22 +342,25 @@ h2{font-size:clamp(28px,4.4vw,44px);font-weight:800}
 
         <div class="stubs">
           <a class="stub" href="#cotacao">
-            <div class="stub-cod"><b>MCO</b><span>Orlando</span></div>
+            <img class="stub-foto" src="site-img/orlando.jpg" alt="Avenida arborizada de palmeiras em Orlando ao pôr do sol" width="1120" height="626" loading="lazy">
             <div class="stub-txt">
+              <span class="cod">MCO · Orlando</span>
               <h3>Orlando</h3>
               <p>Viagem de família e de parque. Quem fecha com antecedência escolhe horário e assentos juntos, em vez de pegar o que sobrou.</p>
             </div>
           </a>
           <a class="stub" href="#cotacao">
-            <div class="stub-cod"><b>JFK</b><span>Nova York</span></div>
+            <img class="stub-foto" src="site-img/novayork.jpg" alt="Skyline de Manhattan iluminado no fim de tarde de inverno" width="1120" height="626" loading="lazy">
             <div class="stub-txt">
+              <span class="cod">JFK · Nova York</span>
               <h3>Nova York</h3>
               <p>Dezembro é o mês mais caro do ano para lá, por causa das festas. Fora dessa janela, a mesma viagem muda de patamar.</p>
             </div>
           </a>
           <a class="stub" href="#cotacao">
-            <div class="stub-cod"><b>LAS</b><span>Las Vegas</span></div>
+            <img class="stub-foto" src="site-img/lasvegas.jpg" alt="Avenida de Las Vegas iluminada ao anoitecer" width="1120" height="626" loading="lazy">
             <div class="stub-txt">
+              <span class="cod">LAS · Las Vegas</span>
               <h3>Las Vegas</h3>
               <p>Quase sempre com conexão nos Estados Unidos. A escolha da conexão muda o preço e o tempo de viagem mais do que a companhia.</p>
             </div>
