@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.onliflyviagens.com.br/sitemap.xml
+Sitemap: https://www.ofviagens.com.br/sitemap.xml

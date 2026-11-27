@@ -475,10 +475,10 @@ function render(){
 /* ===================== eventos ===================== */
 var LEMBRAR=['consultor','b_desp','b_qtd','b_trecho','b_pax','b_valor','desc','parc'];
 LEMBRAR.forEach(function(id){
-  try{ var s=localStorage.getItem('onlifly-'+id); if(s) $(id).value=s; }catch(e){}
+  try{ var s=localStorage.getItem('ofviagens-'+id); if(s) $(id).value=s; }catch(e){}
   ['change','input'].forEach(function(ev){
     $(id).addEventListener(ev, function(){
-      try{ localStorage.setItem('onlifly-'+id, this.value) }catch(e){}
+      try{ localStorage.setItem('ofviagens-'+id, this.value) }catch(e){}
       if(id!=='consultor' && id!=='desc' && id!=='parc') montaBagagem();
       render();
     });
