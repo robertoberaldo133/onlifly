@@ -1,136 +1,556 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OnliFly Viagens &middot; Site em manutenção</title>
-<meta name="description" content="O site da OnliFly Viagens está em manutenção. O atendimento segue normalmente pelo WhatsApp (47) 99661-8052.">
-<meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230B1F6B' rx='6'/><text x='16' y='22' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='14' fill='%23F5C518'>OF</text></svg>">
+<meta charset="UTF-8"><!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1028424629773205');
+fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1028424629773205&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Meta Pixel Code -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OF Viagens · Passagens nacionais e internacionais</title>
+<meta name="description" content="Promoção de dezembro para Miami, Orlando, Nova York e Las Vegas. Um consultor pesquisa a sua passagem e devolve a cotação por escrito em até 30 minutos. Grátis e sem compromisso.">
+<link rel="canonical" href="https://www.ofviagens.com.br/">
+<meta name="theme-color" content="#0A1836">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OF Viagens">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://www.ofviagens.com.br/">
+<meta property="og:title" content="OF Viagens · Dezembro nos Estados Unidos">
+<meta property="og:description" content="Miami, Orlando, Nova York e Las Vegas. Cotação por escrito em até 30 minutos, com um consultor de verdade.">
+<meta property="og:image" content="https://www.ofviagens.com.br/og-image.png">
+<meta property="og:image:alt" content="OF Viagens · Viaje mais, pague menos">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OF Viagens · Dezembro nos Estados Unidos">
+<meta name="twitter:description" content="Miami, Orlando, Nova York e Las Vegas. Cotação por escrito em até 30 minutos.">
+<meta name="twitter:image" content="https://www.ofviagens.com.br/og-image.png">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230A1836' rx='7'/><text x='16' y='22' text-anchor='middle' font-family='Montserrat,sans-serif' font-weight='900' font-size='15' fill='%23F5C518'>OF</text></svg>">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
 <style>
-  :root{
-    --azul:#0B1F6B;
-    --azul-claro:#16307f;
-    --ouro:#F5C518;
-    --texto:#ffffff;
-    --texto-fraco:rgba(255,255,255,.72);
-    --texto-tenue:rgba(255,255,255,.46);
-    --linha:rgba(255,255,255,.14);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0}
-  body{
-    min-height:100vh;
-    background:var(--azul);
-    background-image:radial-gradient(900px 520px at 50% -8%, var(--azul-claro) 0%, var(--azul) 62%);
-    color:var(--texto);
-    font-family:'Open Sans',system-ui,-apple-system,Segoe UI,sans-serif;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    padding:48px 16px;
-    text-align:center;
-    -webkit-font-smoothing:antialiased;
-  }
-  .marca{
-    font-family:Montserrat,sans-serif;font-weight:900;font-size:26px;letter-spacing:.3px;
-    margin:0 0 4px;
-  }
-  .marca span{color:var(--ouro)}
-  .sub{
-    font-size:11.5px;letter-spacing:2.2px;text-transform:uppercase;
-    color:var(--texto-tenue);margin:0 0 40px;
-  }
-  .card{
-    width:100%;max-width:520px;
-    background:rgba(255,255,255,.055);
-    border:1px solid var(--linha);
-    border-radius:20px;
-    padding:38px 26px 32px;
-  }
-  .selo{
-    display:inline-block;
-    background:rgba(245,197,24,.13);
-    border:1px solid rgba(245,197,24,.34);
-    color:var(--ouro);
-    font-family:Montserrat,sans-serif;font-weight:800;
-    font-size:10.5px;letter-spacing:1.6px;text-transform:uppercase;
-    border-radius:999px;padding:7px 15px;margin-bottom:22px;
-  }
-  h1{
-    font-family:Montserrat,sans-serif;font-weight:800;
-    font-size:27px;line-height:1.26;margin:0 0 14px;
-  }
-  .texto{
-    font-size:15px;line-height:1.65;color:var(--texto-fraco);
-    margin:0 auto 10px;max-width:420px;
-  }
-  .reforco{color:var(--texto);font-weight:600}
-  .btn{
-    display:flex;align-items:center;justify-content:center;gap:9px;
-    margin:28px auto 0;max-width:380px;
-    background:linear-gradient(135deg,var(--ouro),#D9A70F);
-    color:var(--azul);
-    font-family:Montserrat,sans-serif;font-weight:800;font-size:15px;
-    text-decoration:none;border-radius:999px;padding:16px 22px;
-  }
-  .btn svg{flex:0 0 auto}
-  .fone{
-    font-size:13.5px;color:var(--texto-tenue);margin:14px 0 0;
-  }
-  .fone a{color:var(--texto-fraco);text-decoration:none}
-  .horario{
-    font-size:12.5px;color:var(--texto-tenue);
-    margin:22px auto 0;padding-top:18px;border-top:1px solid var(--linha);
-    max-width:420px;line-height:1.6;
-  }
-  footer{
-    margin-top:34px;font-size:11.5px;color:var(--texto-tenue);line-height:1.7;
-  }
-  @media (max-width:420px){
-    h1{font-size:23px}
-    .card{padding:30px 20px 26px}
-    body{padding:32px 14px}
-  }
+:root{
+  --tinta:#0A1836;
+  --tinta-2:#122452;
+  --papel:#F3EFE6;
+  --papel-2:#FBF8F2;
+  --ouro:#F5C518;
+  --ouro-fundo:#D9A70F;
+  --branco:#ffffff;
+  --txt-claro:rgba(255,255,255,.74);
+  --txt-tenue:rgba(255,255,255,.44);
+  --txt-escuro:#2A3754;
+  --linha:rgba(255,255,255,.13);
+  --linha-papel:rgba(10,24,54,.12);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --disp:'Montserrat',system-ui,sans-serif;
+  --corpo:'Open Sans',system-ui,sans-serif;
+  --limite:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--tinta);color:var(--branco);
+  font-family:var(--corpo);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+.wrap{width:100%;max-width:var(--limite);margin:0 auto;padding:0 20px}
+.cod{font-family:var(--mono);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:11px}
+.sec{padding:84px 0}
+.sec-escura{background:var(--tinta)}
+h1,h2,h3{font-family:var(--disp);margin:0;line-height:1.1;letter-spacing:-.02em}
+h2{font-size:clamp(28px,4.4vw,44px);font-weight:800}
+.olho{display:block;color:var(--ouro);margin-bottom:12px}
+.sub{max-width:620px;color:var(--txt-claro);margin:16px 0 0;font-size:16.5px}
+
+.bt{display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  font-family:var(--disp);font-weight:800;font-size:15px;text-decoration:none;
+  padding:16px 26px;border-radius:4px;border:0;cursor:pointer;transition:transform .12s,background .15s}
+.bt:active{transform:translateY(1px)}
+.bt-ouro{background:var(--ouro);color:var(--tinta)}
+.bt-ouro:hover{background:var(--ouro-fundo)}
+.bt-linha{background:transparent;color:var(--branco);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.3)}
+.bt-linha:hover{box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.7)}
+.bt-escuro{background:var(--tinta);color:var(--branco)}
+.bt-escuro:hover{background:var(--tinta-2)}
+
+.topo{position:sticky;top:0;z-index:50;background:rgba(10,24,54,.92);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--linha)}
+.topo-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.marca{font-family:var(--disp);font-weight:900;font-size:22px;letter-spacing:-.4px;
+  text-decoration:none;white-space:nowrap}
+.marca .pt{color:var(--ouro)}
+.topo .bt{padding:12px 20px;font-size:14px}
+
+.heroi{position:relative;padding:76px 0 70px;
+  background:radial-gradient(900px 480px at 78% 0%, var(--tinta-2) 0%, transparent 62%), var(--tinta);
+  border-bottom:1px solid var(--linha);overflow:hidden}
+.heroi::before{content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(var(--linha) 1px,transparent 1px);
+  background-size:100% 46px;-webkit-mask-image:linear-gradient(#000,transparent 72%);
+  mask-image:linear-gradient(#000,transparent 72%)}
+.heroi-in{position:relative;display:grid;grid-template-columns:1.12fr .88fr;gap:52px;align-items:center}
+.heroi h1{font-size:clamp(38px,6.4vw,66px);font-weight:900}
+.heroi h1 em{font-style:normal;color:var(--ouro);display:block}
+.heroi .sub{font-size:17.5px;margin-top:20px}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.provas{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:32px;padding-top:22px;border-top:1px solid var(--linha)}
+.provas span{color:var(--txt-tenue);font-family:var(--mono);font-size:11.5px;letter-spacing:.09em;text-transform:uppercase}
+.provas b{color:var(--branco);font-weight:700}
+
+.rota{background:linear-gradient(160deg,rgba(255,255,255,.075),rgba(255,255,255,.03));
+  border:1px solid var(--linha);border-radius:6px;padding:24px 22px}
+.rota-topo{display:flex;justify-content:space-between;align-items:center;color:var(--txt-tenue);margin-bottom:18px}
+.rota-linha{display:flex;align-items:center;gap:14px;margin:18px 0}
+.rota-pt{text-align:center;flex:0 0 auto}
+.rota-pt b{display:block;font-family:var(--mono);font-size:27px;font-weight:700;line-height:1}
+.rota-pt span{display:block;color:var(--txt-tenue);font-size:11px;margin-top:6px}
+.rota-tr{flex:1;position:relative;height:1px;background:rgba(255,255,255,.26)}
+.rota-tr::after{content:'';position:absolute;right:-1px;top:-3.5px;border:3.5px solid transparent;border-left-color:var(--ouro)}
+.rota-sep{height:1px;border-top:1px dashed rgba(255,255,255,.2);margin:20px -22px;position:relative}
+.rota-sep::before,.rota-sep::after{content:'';position:absolute;top:-9px;width:18px;height:18px;border-radius:50%;background:var(--tinta)}
+.rota-sep::before{left:-9px}
+.rota-sep::after{right:-9px}
+.rota-fim{display:flex;justify-content:space-between;align-items:flex-end;gap:12px}
+.rota-fim p{margin:0;color:var(--txt-claro);font-size:13px;max-width:62%}
+.rota-fim b{color:var(--ouro);font-family:var(--disp);font-weight:800;font-size:15px}
+
+.faixa{background:var(--ouro);color:var(--tinta);overflow:hidden}
+.faixa-in{display:flex;gap:40px;padding:13px 0;white-space:nowrap;animation:desliza 34s linear infinite;width:max-content}
+.faixa span{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.13em;text-transform:uppercase}
+@keyframes desliza{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.faixa-in{animation:none}}
+
+.eua{background:var(--papel);color:var(--txt-escuro);padding:84px 0}
+.eua .sub{color:#5A6782}
+.eua-cab{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:38px}
+.eua-cab h2{max-width:560px}
+.selo-dez{display:inline-flex;align-items:center;gap:8px;background:var(--tinta);
+  color:var(--branco);padding:9px 15px;border-radius:3px;margin-bottom:16px}
+.selo-dez b{color:var(--ouro)}
+.grade{display:grid;grid-template-columns:1.25fr 1fr;gap:18px}
+.destaque{position:relative;border-radius:6px;overflow:hidden;min-height:430px;display:flex;align-items:flex-end;background:var(--tinta)}
+.destaque img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.destaque::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(10,24,54,.93) 12%,rgba(10,24,54,.25) 62%,rgba(10,24,54,.35))}
+.destaque-txt{position:relative;z-index:2;padding:28px;color:var(--branco);width:100%}
+.destaque-txt .cod{color:var(--ouro)}
+.destaque-txt h3{font-size:34px;font-weight:900;margin:8px 0 10px}
+.destaque-txt p{margin:0 0 18px;color:rgba(255,255,255,.8);font-size:14.5px;max-width:420px}
+.stubs{display:flex;flex-direction:column;gap:18px}
+.stub{position:relative;display:flex;align-items:flex-end;border-radius:6px;
+  overflow:hidden;flex:1;min-height:132px;text-decoration:none;color:var(--branco);
+  background:var(--tinta);transition:transform .15s}
+.stub:hover{transform:translateY(-2px)}
+.stub:hover .stub-foto{transform:scale(1.045)}
+.stub-foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transition:transform .4s ease}
+.stub::after{content:'';position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(10,24,54,.93) 30%,rgba(10,24,54,.62) 62%,rgba(10,24,54,.3))}
+.stub-txt{position:relative;z-index:2;padding:16px 18px}
+.stub-txt .cod{color:var(--ouro);display:block;margin-bottom:6px}
+.stub-txt h3{font-size:19px;font-weight:800;margin-bottom:4px}
+.stub-txt p{margin:0;font-size:13px;color:rgba(255,255,255,.76);line-height:1.5;max-width:330px}
+.eua-nota{margin-top:26px;padding:18px 20px;background:rgba(10,24,54,.045);
+  border-left:3px solid var(--tinta);border-radius:0 4px 4px 0}
+.eua-nota p{margin:0;font-size:14px;color:#44506B}
+.eua-nota p + p{margin-top:8px}
+.eua-nota b{color:var(--tinta)}
+
+.hora{background:var(--tinta-2);padding:56px 0}
+.hora-in{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}
+.hora h2{font-size:clamp(24px,3.4vw,34px)}
+.hora p{margin:12px 0 0;color:var(--txt-claro);max-width:640px;font-size:15.5px}
+
+.passos{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+.passo{border:1px solid var(--linha);border-radius:6px;padding:26px 22px;background:rgba(255,255,255,.035)}
+.passo .cod{color:var(--ouro);display:block;margin-bottom:14px}
+.passo h3{font-size:19px;font-weight:800;margin-bottom:8px}
+.passo p{margin:0;color:var(--txt-claro);font-size:14.5px}
+
+.comp{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px}
+.comp-cx{border-radius:6px;padding:28px 24px}
+.comp-a{background:rgba(255,255,255,.04);border:1px solid var(--linha)}
+.comp-b{background:var(--papel);color:var(--txt-escuro)}
+.comp-cx .cod{display:block;margin-bottom:18px}
+.comp-a .cod{color:var(--txt-tenue)}
+.comp-b .cod{color:#B8860B}
+.comp-item{display:flex;gap:12px;padding:13px 0;border-top:1px solid var(--linha)}
+.comp-b .comp-item{border-top-color:var(--linha-papel)}
+.comp-item:first-of-type{border-top:0;padding-top:0}
+.comp-item i{flex:0 0 auto;font-style:normal;font-family:var(--mono);font-weight:700;font-size:13px}
+.comp-a .comp-item i{color:rgba(255,255,255,.3)}
+.comp-b .comp-item i{color:#1E7A3C}
+.comp-item b{display:block;font-family:var(--disp);font-weight:700;font-size:15px;margin-bottom:2px}
+.comp-item p{margin:0;font-size:13.5px;color:var(--txt-claro)}
+.comp-b .comp-item p{color:#5A6782}
+
+.form-cx{max-width:560px;margin:0 auto;background:var(--papel);color:var(--txt-escuro);border-radius:6px;padding:38px 32px}
+.form-cx h2{font-size:clamp(26px,3.6vw,34px)}
+.form-cx .sub{margin:12px 0 26px;color:#5A6782;font-size:15px}
+.campo{margin-bottom:16px}
+.campo label{display:block;font-family:var(--mono);font-size:10.5px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:#7A8498;margin-bottom:7px}
+.campo input{width:100%;padding:14px 15px;border:1px solid var(--linha-papel);border-radius:4px;
+  background:var(--papel-2);font-family:var(--corpo);font-size:15.5px;color:var(--txt-escuro)}
+.campo input:focus{outline:2px solid var(--tinta);outline-offset:-1px;border-color:transparent}
+.form-cx .bt{width:100%;margin-top:8px}
+.form-nota{margin:14px 0 0;font-size:12.5px;color:#7A8498;text-align:center}
+
+.faqs{max-width:720px;margin:38px auto 0;display:flex;flex-direction:column;gap:10px}
+.fq-cx{border:1px solid var(--linha);border-radius:5px;overflow:hidden;background:rgba(255,255,255,.03)}
+.fq{width:100%;display:flex;justify-content:space-between;align-items:center;gap:16px;
+  background:none;border:0;color:var(--branco);font-family:var(--disp);font-weight:700;
+  font-size:15.5px;text-align:left;padding:19px 20px;cursor:pointer}
+.fq span{color:var(--ouro);font-size:19px;line-height:1;flex:0 0 auto}
+.fa{display:none;padding:0 20px 19px;color:var(--txt-claro);font-size:14.5px}
+.fa.aberta{display:block}
+
+.conf{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--linha);
+  border:1px solid var(--linha);border-radius:6px;overflow:hidden}
+.conf div{background:var(--tinta);padding:22px 18px}
+.conf b{display:block;font-family:var(--disp);font-weight:800;font-size:15px;margin-bottom:4px}
+.conf span{color:var(--txt-tenue);font-size:12.5px}
+.pe{background:#07122A;padding:48px 0 34px;border-top:1px solid var(--linha)}
+.pe-in{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}
+.pe-links{display:flex;gap:22px;flex-wrap:wrap;align-items:flex-start}
+.pe-links a{color:var(--txt-claro);text-decoration:none;font-size:14px}
+.pe-links a:hover{color:var(--branco)}
+.pe-fim{margin-top:30px;padding-top:22px;border-top:1px solid var(--linha);
+  color:var(--txt-tenue);font-size:12.5px;line-height:1.8}
+
+.zap{position:fixed;right:18px;bottom:18px;z-index:60;display:inline-flex;align-items:center;gap:9px;
+  background:var(--ouro);color:var(--tinta);font-family:var(--disp);font-weight:800;font-size:14.5px;
+  text-decoration:none;padding:14px 20px;border-radius:999px;box-shadow:0 8px 26px rgba(0,0,0,.4)}
+
+@media (max-width:900px){
+  .heroi-in,.grade,.comp,.hora-in{grid-template-columns:1fr}
+  .passos{grid-template-columns:1fr}
+  .conf{grid-template-columns:1fr 1fr}
+  .heroi{padding:56px 0 52px}
+  .sec,.eua{padding:64px 0}
+  .destaque{min-height:330px}
+}
+@media (max-width:520px){
+  .wrap{padding:0 16px}
+  .topo .bt{padding:11px 15px;font-size:13px}
+  .marca{font-size:19px}
+  .conf{grid-template-columns:1fr}
+  .form-cx{padding:30px 20px}
+  .destaque-txt{padding:22px 20px}
+  .destaque-txt h3{font-size:28px}
+  .zap{right:12px;bottom:12px;padding:13px 17px;font-size:13.5px}
+  .rota-fim{flex-direction:column;align-items:flex-start;gap:8px}
+  .rota-fim p{max-width:100%}
+}
 </style>
 </head>
 <body>
 
-  <p class="marca">Onli<span>Fly</span> Viagens</p>
-  <p class="sub">Passagens nacionais e internacionais</p>
+<header class="topo">
+  <div class="wrap topo-in">
+    <a class="marca" href="/">OF<span class="pt">.</span><span class="pt">Viagens</span></a>
+    <a class="bt bt-ouro" href="#cotacao">Cotar agora</a>
+  </div>
+</header>
 
-  <main class="card">
-    <span class="selo">Site em manutenção</span>
-    <h1>Estamos fazendo uma atualização no site</h1>
-    <p class="texto">
-      Nossas páginas ficam fora do ar por algumas horas enquanto passamos por uma
-      manutenção. É uma pausa planejada, nada aconteceu com a agência.
-    </p>
-    <p class="texto reforco">
-      O atendimento continua normal pelo WhatsApp.
-    </p>
-    <p class="texto">
-      Se você já tem uma cotação ou uma reserva com a gente, pode falar com o seu
-      consultor pelo mesmo número de sempre. Nada muda.
-    </p>
+<main>
 
-    <a class="btn" href="https://wa.me/5547996618052" target="_blank" rel="noopener">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.11.82.83-3.04-.19-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.25 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.84-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.23.89 2.41 1.02 2.58.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.6.19 1.14.17 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
-      Falar com a OnliFly no WhatsApp
-    </a>
-    <p class="fone">ou ligue para <a href="tel:+5547996618052">(47) 99661-8052</a></p>
+  <section class="heroi">
+    <div class="wrap heroi-in">
+      <div>
+        <span class="cod" style="color:var(--ouro)">Passagens nacionais e internacionais</span>
+        <h1 style="margin-top:14px">Viaje mais,<em>pague menos.</em></h1>
+        <p class="sub">Um consultor pesquisa a sua passagem nas companhias, compara bagagem, escalas e regras de remarcação, e devolve a cotação por escrito em até 30 minutos. Grátis e sem compromisso.</p>
+        <div class="acoes">
+          <a class="bt bt-ouro" href="#cotacao">Quero minha cotação</a>
+          <a class="bt bt-linha" href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OF%20Viagens%20e%20quero%20cotar%20uma%20passagem." target="_blank" rel="noopener">Falar no WhatsApp</a>
+        </div>
+        <div class="provas">
+          <span><b>+500</b> clientes atendidos</span>
+          <span>resposta em <b>30 min</b></span>
+          <span>atendimento <b>humano</b></span>
+        </div>
+      </div>
 
-    <p class="horario">
-      Atendimento de segunda a domingo, das 7h &agrave;s 20h.<br>
-      Fora desse hor&aacute;rio, deixe sua mensagem que respondemos assim que abrirmos.
-    </p>
-  </main>
+      <div class="rota" aria-hidden="true">
+        <div class="rota-topo">
+          <span class="cod">Cotação OF</span>
+          <span class="cod">Dez 2026</span>
+        </div>
+        <div class="rota-linha">
+          <div class="rota-pt"><b>GRU</b><span>São Paulo</span></div>
+          <div class="rota-tr"></div>
+          <div class="rota-pt"><b>MIA</b><span>Miami</span></div>
+        </div>
+        <div class="rota-sep"></div>
+        <div class="rota-fim">
+          <p>Ida e volta, bagagem e escalas conferidas antes de você receber o preço.</p>
+          <b>30 min</b>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    OnliFly Viagens &middot; CNPJ 36.509.590/0001-20<br>
-    Navegantes, Santa Catarina
-  </footer>
+  <div class="faixa" aria-hidden="true">
+    <div class="faixa-in">
+      <span>Miami</span><span>·</span><span>Orlando</span><span>·</span><span>Nova York</span><span>·</span><span>Las Vegas</span><span>·</span><span>Promoção de dezembro</span><span>·</span>
+      <span>Miami</span><span>·</span><span>Orlando</span><span>·</span><span>Nova York</span><span>·</span><span>Las Vegas</span><span>·</span><span>Promoção de dezembro</span><span>·</span>
+    </div>
+  </div>
+
+  <section class="eua" id="estados-unidos">
+    <div class="wrap">
+      <div class="eua-cab">
+        <div>
+          <span class="selo-dez cod">Dezembro <b>·</b> Estados Unidos</span>
+          <h2>Os quatro destinos que<br>mais saem da nossa mesa</h2>
+          <p class="sub">Miami, Orlando, Nova York e Las Vegas. Durante dezembro a gente cota esses quatro na frente de tudo, com resposta no mesmo dia.</p>
+        </div>
+        <a class="bt bt-escuro" href="#cotacao">Cotar meu destino</a>
+      </div>
+
+      <div class="grade">
+        <article class="destaque">
+          <img src="site-img/miami.jpg" alt="Calçadão de South Beach em Miami com palmeiras ao pôr do sol" width="760" height="950" loading="lazy">
+          <div class="destaque-txt">
+            <span class="cod">MIA · Miami</span>
+            <h3>Miami</h3>
+            <p>O destino mais pedido aqui dentro, e o que tem mais voo direto saindo do Brasil. Mais opção de horário costuma significar mais margem para achar tarifa boa.</p>
+            <a class="bt bt-ouro" href="#cotacao">Cotar Miami</a>
+          </div>
+        </article>
+
+        <div class="stubs">
+          <a class="stub" href="#cotacao">
+            <img class="stub-foto" src="site-img/orlando.jpg" alt="Avenida arborizada de palmeiras em Orlando ao pôr do sol" width="1120" height="626" loading="lazy">
+            <div class="stub-txt">
+              <span class="cod">MCO · Orlando</span>
+              <h3>Orlando</h3>
+              <p>Viagem de família e de parque. Quem fecha com antecedência escolhe horário e assentos juntos, em vez de pegar o que sobrou.</p>
+            </div>
+          </a>
+          <a class="stub" href="#cotacao">
+            <img class="stub-foto" src="site-img/novayork.jpg" alt="Skyline de Manhattan iluminado no fim de tarde de inverno" width="1120" height="626" loading="lazy">
+            <div class="stub-txt">
+              <span class="cod">JFK · Nova York</span>
+              <h3>Nova York</h3>
+              <p>Dezembro é o mês mais caro do ano para lá, por causa das festas. Fora dessa janela, a mesma viagem muda de patamar.</p>
+            </div>
+          </a>
+          <a class="stub" href="#cotacao">
+            <img class="stub-foto" src="site-img/lasvegas.jpg" alt="Avenida de Las Vegas iluminada ao anoitecer" width="1120" height="626" loading="lazy">
+            <div class="stub-txt">
+              <span class="cod">LAS · Las Vegas</span>
+              <h3>Las Vegas</h3>
+              <p>Quase sempre com conexão nos Estados Unidos. A escolha da conexão muda o preço e o tempo de viagem mais do que a companhia.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="eua-nota">
+        <p><b>Sobre o "até 50%".</b> Esse número é a diferença entre viajar na baixa temporada e viajar nas datas de pico, como o fim de ano. Não é desconto sobre a cotação do dia. Na prática: quando dá para mexer na data, é aí que a economia aparece.</p>
+        <p><b>Estados Unidos pedem visto.</b> O visto americano é obrigatório para brasileiros e o agendamento costuma demorar. Se você ainda não tem, diga isso na cotação: a gente monta a viagem com uma data que caiba no seu prazo, ou sugere um destino que não exija visto.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hora">
+    <div class="wrap hora-in">
+      <div>
+        <span class="cod" style="color:var(--ouro)">Última hora</span>
+        <h2 style="margin-top:10px">Quer sair ainda neste dezembro?</h2>
+        <p>Dá, desde que o visto já esteja na mão. Em cima da hora o que decide não é só o preço: é quantos assentos ainda existem naquela data e quais combinações de voo continuam abertas. A gente olha isso na hora e te diz com franqueza se vale ou se é melhor mudar a data.</p>
+      </div>
+      <a class="bt bt-ouro" href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Quero%20viajar%20ainda%20em%20dezembro.%20J%C3%A1%20tenho%20visto%20americano." target="_blank" rel="noopener">Ver se ainda dá</a>
+    </div>
+  </section>
+
+  <section class="sec sec-escura">
+    <div class="wrap">
+      <span class="olho cod">Simples assim</span>
+      <h2>Como funciona</h2>
+      <div class="passos">
+        <div class="passo">
+          <span class="cod">Passo 01</span>
+          <h3>Você conta para onde vai</h3>
+          <p>Destino, data e quantas pessoas. Leva menos de um minuto, pelo formulário ou direto no WhatsApp.</p>
+        </div>
+        <div class="passo">
+          <span class="cod">Passo 02</span>
+          <h3>Um consultor pesquisa</h3>
+          <p>Gente, não robô. Comparamos companhias, escalas, bagagem e regra de remarcação, e mandamos a cotação por escrito.</p>
+        </div>
+        <div class="passo">
+          <span class="cod">Passo 03</span>
+          <h3>Você aprova e embarca</h3>
+          <p>Aprovou, a passagem é emitida pela companhia e você recebe o bilhete oficial, com o número de cada passageiro.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-escura" style="padding-top:0">
+    <div class="wrap">
+      <span class="olho cod">Por que a OF Viagens</span>
+      <h2>O que muda em relação a<br>comprar sozinho num site</h2>
+      <div class="comp">
+        <div class="comp-cx comp-a">
+          <span class="cod">Do jeito antigo</span>
+          <div class="comp-item"><i>—</i><div><b>Horas comparando abas</b><p>E no fim sem saber se aquilo era mesmo a melhor combinação.</p></div></div>
+          <div class="comp-item"><i>—</i><div><b>Atendimento automático</b><p>Quando algo foge do script, não tem com quem falar.</p></div></div>
+          <div class="comp-item"><i>—</i><div><b>Letra miúda só no fim</b><p>Bagagem, remarcação e escala aparecem na hora de pagar.</p></div></div>
+        </div>
+        <div class="comp-cx comp-b">
+          <span class="cod">Com a OF Viagens</span>
+          <div class="comp-item"><i>✓</i><div><b>Uma cotação por escrito</b><p>Com voo, horário, bagagem e regra de alteração, tudo no mesmo documento.</p></div></div>
+          <div class="comp-item"><i>✓</i><div><b>Um consultor com nome</b><p>A mesma pessoa do começo ao fim, inclusive depois de emitido.</p></div></div>
+          <div class="comp-item"><i>✓</i><div><b>Resposta em 30 minutos</b><p>Dentro do horário de atendimento, das 7h às 20h, todos os dias.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-escura" id="cotacao" style="padding-top:0">
+    <div class="wrap">
+      <div class="form-cx">
+        <h2>Quero minha cotação</h2>
+        <p class="sub">Nacional ou internacional. Preencha e receba a cotação no seu WhatsApp em até 30 minutos.</p>
+        <div class="campo"><label for="f1">Seu nome completo</label><input type="text" id="f1" placeholder="Ex: Maria Silva" autocomplete="name"></div>
+        <div class="campo"><label for="f2">WhatsApp com DDD</label><input type="tel" id="f2" placeholder="(11) 99999-9999" autocomplete="tel"></div>
+        <div class="campo"><label for="f3">Destino</label><input type="text" id="f3" placeholder="Ex: Miami, Orlando, Lisboa..."></div>
+        <button class="bt bt-escuro" type="button" onclick="enviar()">Quero minha cotação agora</button>
+        <p class="form-nota">Seus dados são usados apenas para a cotação. Não enviamos spam.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-escura" style="padding-top:0">
+    <div class="wrap">
+      <span class="olho cod">Dúvidas frequentes</span>
+      <h2>Perguntas e respostas</h2>
+      <div class="faqs">
+        <div class="fq-cx">
+          <button type="button" class="fq" aria-expanded="false" aria-controls="r1" onclick="faq(this)">A cotação tem algum custo?<span aria-hidden="true">+</span></button>
+          <div class="fa" id="r1">Não. A cotação é gratuita e sem compromisso. Você só paga se decidir comprar a passagem.</div>
+        </div>
+        <div class="fq-cx">
+          <button type="button" class="fq" aria-expanded="false" aria-controls="r2" onclick="faq(this)">O "até 50%" é desconto no preço de hoje?<span aria-hidden="true">+</span></button>
+          <div class="fa" id="r2">Não, e vale explicar. Esse número compara viajar na baixa temporada com viajar nas datas de pico, como o fim de ano. É a economia que aparece quando dá para escolher a data. Na sua cotação você recebe o valor fechado daquele roteiro, sem porcentagem no meio.</div>
+        </div>
+        <div class="fq-cx">
+          <button type="button" class="fq" aria-expanded="false" aria-controls="r3" onclick="faq(this)">Em quanto tempo recebo a cotação?<span aria-hidden="true">+</span></button>
+          <div class="fa" id="r3">A meta é 30 minutos, dentro do horário de atendimento, das 7h às 20h. Fora desse horário a mensagem fica registrada e respondemos na abertura.</div>
+        </div>
+        <div class="fq-cx">
+          <button type="button" class="fq" aria-expanded="false" aria-controls="r4" onclick="faq(this)">Preciso de visto para os Estados Unidos?<span aria-hidden="true">+</span></button>
+          <div class="fa" id="r4">Sim, brasileiros precisam de visto americano, e o agendamento costuma ser demorado. Se você ainda não tem, diga na cotação: a gente ajusta a data para caber no seu prazo, ou sugere um destino que não exija visto.</div>
+        </div>
+        <div class="fq-cx">
+          <button type="button" class="fq" aria-expanded="false" aria-controls="r5" onclick="faq(this)">A compra é segura?<span aria-hidden="true">+</span></button>
+          <div class="fa" id="r5">A passagem é emitida pela própria companhia aérea. Você recebe o bilhete oficial e consegue consultar a reserva direto no site dela, com o localizador e o seu sobrenome, sem depender da gente.</div>
+        </div>
+        <div class="fq-cx">
+          <button type="button" class="fq" aria-expanded="false" aria-controls="r6" onclick="faq(this)">Vocês trabalham com quais companhias?<span aria-hidden="true">+</span></button>
+          <div class="fa" id="r6">As principais companhias nacionais e internacionais. A escolha depende do seu roteiro: buscamos a melhor combinação de preço, horário e bagagem para a data que você quer.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec-escura" style="padding-top:0">
+    <div class="wrap">
+      <div class="conf">
+        <div><b>Emissão oficial</b><span>Bilhete emitido pela companhia</span></div>
+        <div><b>Atendimento 7h às 20h</b><span>Todos os dias, por pessoas</span></div>
+        <div><b>Empresa registrada</b><span>CNPJ 36.509.590/0001-20</span></div>
+        <div><b>+500 clientes</b><span>Nacional e internacional</span></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="pe">
+  <div class="wrap">
+    <div class="pe-in">
+      <div>
+        <a class="marca" href="/">OF<span class="pt">.</span><span class="pt">Viagens</span></a>
+        <p style="margin:10px 0 0;color:var(--txt-claro);font-size:14px;max-width:320px">Passagens nacionais e internacionais, com um consultor do começo ao fim.</p>
+      </div>
+      <div class="pe-links">
+        <a href="#estados-unidos">Dezembro nos EUA</a>
+        <a href="#cotacao">Cotação</a>
+        <a href="/termos-de-uso/">Termos de uso</a>
+        <a href="/politica-de-privacidade/">Privacidade</a>
+        <a href="https://wa.me/5547996618052" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="pe-fim">
+      OF Viagens · CNPJ 36.509.590/0001-20<br>
+      Navegantes, Santa Catarina · (47) 99661-8052 · contato@ofviagens.com.br
+    </div>
+  </div>
+</footer>
+
+<a class="zap" href="https://wa.me/5547996618052?text=Ol%C3%A1!%20Vim%20pelo%20site%20da%20OF%20Viagens%20e%20quero%20cotar%20uma%20passagem." target="_blank" rel="noopener">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.46 1.32 4.97L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2z"/></svg>
+  Falar no WhatsApp
+</a>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"TravelAgency",
+  "name":"OF Viagens",
+  "url":"https://www.ofviagens.com.br/",
+  "telephone":"+55 47 99661-8052",
+  "email":"contato@ofviagens.com.br",
+  "address":{"@type":"PostalAddress","addressLocality":"Navegantes","addressRegion":"SC","addressCountry":"BR"},
+  "areaServed":{"@type":"Country","name":"Brasil"},
+  "openingHours":"Mo-Su 07:00-20:00"
+}
+</script>
+
+<script>
+function faq(b){
+  var a=document.getElementById(b.getAttribute('aria-controls'));
+  var ab=a.classList.toggle('aberta');
+  b.setAttribute('aria-expanded',ab?'true':'false');
+  b.querySelector('span').textContent=ab?'−':'+';
+}
+function enviar(){
+  var n=document.getElementById('f1').value.trim();
+  var t=document.getElementById('f2').value.trim();
+  var d=document.getElementById('f3').value.trim();
+  if(!n||!t){ alert('Preencha seu nome e o WhatsApp para a gente conseguir te responder.'); return; }
+  if(window.fbq){ try{ fbq('track','Lead'); }catch(e){} }
+  var m='Ol%C3%A1!%20Vim%20pelo%20site%20da%20OF%20Viagens.%0ANome%3A%20'+encodeURIComponent(n)
+       +'%0AWhatsApp%3A%20'+encodeURIComponent(t)
+       +(d?'%0ADestino%3A%20'+encodeURIComponent(d):'');
+  window.open('https://wa.me/5547996618052?text='+m,'_blank','noopener');
+}
+</script>
 
 </body>
 </html>
